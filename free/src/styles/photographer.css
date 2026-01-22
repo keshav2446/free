@@ -1,0 +1,70 @@
+.page {
+  padding: 30px;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #111827;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px;
+  background: #020617;
+  border: 1px solid #1f2933;
+  color: #fff;
+  border-radius: 8px;
+}
+
+textarea {
+  resize: none;
+  height: 90px;
+}
+
+.primary-btn {
+  background: #38bdf8;
+  color: #000;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.status.pending {
+  color: #facc15;
+}
+
+.status.active {
+  color: #22c55e;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #020617;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page {
+    padding: 20px;
+  }
+}
