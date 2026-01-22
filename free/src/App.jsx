@@ -11,6 +11,8 @@ import EditProfile from "./pages/photographer/EditProfile";
 import Community from "./pages/photographer/Community";
 import SubscriptionStatus from "./pages/photographer/SubscriptionStatus";
 
+import Home from "./pages/Home";
+
 function App() {
   return (
     <Routes>
@@ -21,6 +23,10 @@ function App() {
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/subscription" element={<Subscription />} />
+
+     <Route path="/" element={<Home />} />
+<Route path="/homepage" element={<Home />} />
+
 
       {/* Photographer */}
       <Route path="/photographer/dashboard" element={<Dashboard />} />
