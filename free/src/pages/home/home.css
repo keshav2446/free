@@ -30,6 +30,18 @@
 }
 
 .search-box {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.search-btn {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.search-btn:hover {
+  transform: translateY(-1px);
+}
+
+.search-box {
   margin-top: 40px;
   background: #ffffff;
   border-radius: 12px;
@@ -88,3 +100,4 @@
     width: 100%;
   }
 }
+

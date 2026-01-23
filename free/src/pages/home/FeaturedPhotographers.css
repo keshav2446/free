@@ -1,0 +1,41 @@
+.featured-section {
+  padding: 80px 20px;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.featured-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 48px;
+}
+
+/* 🔥 MATCHES JSX */
+.photographers-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Button */
+.discover-btn {
+  margin-top: 50px;
+}
+
+.discover-btn button {
+  background: transparent;
+  border: 1px solid #cbd5f5;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.discover-btn button:hover {
+  background: #e0f2fe;
+  border-color: #0ea5e9;
+}

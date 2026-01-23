@@ -1,0 +1,98 @@
+.sidebar {
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.sidebar-logo {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* LINKS */
+.sidebar nav a {
+  display: block;
+  padding: 10px 0;
+  color: #334155;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar nav a:hover {
+  color: #0ea5e9;
+}
+
+/* USER WRAPPER (KEY PART) */
+.sidebar-user-wrapper {
+  position: relative; /* 🔥 MOST IMPORTANT */
+}
+
+/* USER ROW */
+.sidebar-user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #0ea5e9;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+/* DROPDOWN */
+.sidebar-dropdown {
+  position: absolute;
+  bottom: 52px; /* 👈 opens upward */
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+}
+
+.dropdown-title {
+  font-weight: 600;
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 6px;
+}
+
+.sidebar-dropdown a,
+.sidebar-dropdown button {
+  width: 100%;
+  padding: 8px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.sidebar-dropdown a:hover,
+.sidebar-dropdown button:hover {
+  background: #f1f5f9;
+}
+
+.logout {
+  color: #dc2626;
+}

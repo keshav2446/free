@@ -1,4 +1,9 @@
-* {
+/* ===============================
+   RESET & BASE
+================================ */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,136 +15,196 @@ body {
   height: 100%;
   overflow-x: hidden;
   background: #020617;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-
-/* GLOBAL CONTAINER */
+/* ===============================
+   AUTH PAGE WRAPPER
+================================ */
 .auth-container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #020617, #0f172a);
+  background: radial-gradient(
+      circle at top,
+      rgba(56, 189, 248, 0.08),
+      transparent 45%
+    ),
+    linear-gradient(180deg, #020617, #0f172a);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
-/* CARD */
+/* ===============================
+   AUTH CARD
+================================ */
 .auth-card {
   width: 100%;
-  max-width: 420px;
-  background: #111827;
-  padding: 32px;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  max-width: 440px;
+  background: linear-gradient(180deg, #111827, #0b1220);
+  padding: 36px;
+  border-radius: 16px;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  animation: fadeUp 0.45s ease both;
 }
 
-/* HEADINGS */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   HEADINGS
+================================ */
 .auth-card h2 {
-  color: #fff;
-  font-size: 24px;
+  color: #f8fafc;
+  font-size: 1.65rem;
+  font-weight: 700;
   margin-bottom: 6px;
 }
 
 .auth-subtitle {
-  color: #9ca3af;
-  font-size: 14px;
-  margin-bottom: 24px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
 }
 
-/* FORM */
+/* ===============================
+   FORM
+================================ */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .auth-form input {
   padding: 14px 16px;
-  background: #020617;
-  border: 1px solid #1f2933;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 14px;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth-form input::placeholder {
+  color: #64748b;
 }
 
 .auth-form input:focus {
   outline: none;
   border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
 }
 
-/* BUTTON */
+/* Autofill fix */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #020617 inset;
+  -webkit-text-fill-color: #e5e7eb;
+}
+
+/* ===============================
+   BUTTON
+================================ */
 .auth-btn {
-  margin-top: 10px;
+  margin-top: 8px;
   padding: 14px;
-  background: #38bdf8;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
   border: none;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 600;
+  color: #020617;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .auth-btn:hover {
-  background: #0ea5e9;
   transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
 }
 
-/* FOOTER */
+.auth-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(56, 189, 248, 0.25);
+}
+
+/* ===============================
+   FOOTER
+================================ */
 .auth-footer {
-  margin-top: 18px;
+  margin-top: 20px;
   text-align: center;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: 0.8rem;
+  color: #94a3b8;
 }
 
 .auth-footer span {
   color: #38bdf8;
   cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-footer span:hover {
+  text-decoration: underline;
 }
 
 .auth-footer.muted {
-  color: #6b7280;
+  color: #64748b;
 }
 
-/* PLAN BOX */
+/* ===============================
+   PLAN BOX (Subscription)
+================================ */
 .plan-box {
-  background: #020617;
-  border: 1px solid #1f2933;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 22px;
 }
 
 .plan-box h3 {
   color: #38bdf8;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .plan-box ul {
   list-style: none;
-  padding: 0;
 }
 
 .plan-box li {
-  color: #d1d5db;
-  font-size: 14px;
-  margin-bottom: 6px;
+  color: #cbd5f5;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 480px) {
   .auth-card {
-    padding: 24px;
+    padding: 26px;
   }
 
   .auth-card h2 {
-    font-size: 20px;
+    font-size: 1.4rem;
   }
 }
 
 @media (min-width: 1024px) {
   .auth-card {
-    max-width: 460px;
+    max-width: 480px;
   }
 }

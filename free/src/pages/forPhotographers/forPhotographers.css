@@ -1,0 +1,93 @@
+.fp-hero {
+  min-height: 90vh;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.fp-container {
+  max-width: 900px;
+  text-align: center;
+}
+
+.fp-container h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.fp-container h1 span {
+  color: #0ea5e9;
+}
+
+.fp-container p {
+  margin-top: 16px;
+  font-size: 1.15rem;
+  color: #475569;
+}
+
+.fp-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.fp-btn {
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.fp-btn.primary {
+  background: #0ea5e9;
+  color: white;
+}
+
+.fp-btn.primary:hover {
+  background: #0284c7;
+}
+
+.fp-btn.secondary {
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+}
+
+.fp-btn.secondary:hover {
+  background: #e0f2fe;
+}
+
+.fp-stats {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.fp-stats h3 {
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.fp-stats span {
+  display: block;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fp-container h1 {
+    font-size: 2.3rem;
+  }
+
+  .fp-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
