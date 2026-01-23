@@ -1,62 +1,47 @@
 import { Routes, Route } from "react-router-dom";
-
-/* Auth */
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Subscription from "./components/auth/Subscription";
+import Navbar from "./components/navbar/Navbar";
 
 /* Public */
 import Home from "./pages/home/Home";
 import ForPhotographers from "./pages/forPhotographers/ForPhotographers";
-import Navbar from "./components/navbar/Navbar";
 
-/* Dashboard */
+/* Auth */
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+
+/* Photographer */
+import PhotographerLayout from "./pages/photographer/PhotographerLayout";
 import Dashboard from "./pages/photographer/Dashboard";
 import EditProfile from "./pages/photographer/EditProfile";
-import Community from "./pages/photographer/Community";
+import Portfolio from "./pages/photographer/Portfolio";
 import SubscriptionStatus from "./pages/photographer/SubscriptionStatus";
+
+
 
 function App() {
   return (
-    <Routes>
-      {/* 🌐 PUBLIC WITH NAVBAR */}
-      <Route
-        path="/"
-        element={
-          <>
-            <Navbar />
-            <Home />
-          </>
-        }
-      />
+    <>
+      {/* Navbar ONLY for public */}
+      <Navbar />
 
-      <Route
-        path="/for-photographers"
-        element={
-          <>
-            <Navbar />
-            <ForPhotographers />
-          </>
-        }
-      />
+      <Routes>
+        {/* Public */}
+        <Route path="/" element={<Home />} />
+        <Route path="/for-photographers" element={<ForPhotographers />} />
 
-      {/* 🔐 AUTH */}
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/register" element={<Register />} />
-      <Route path="/auth/subscription" element={<Subscription />} />
+        {/* Auth */}
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
 
-      {/* 📸 DASHBOARD (NO NAVBAR) */}
-      <Route path="/photographer/dashboard" element={<Dashboard />} />
-      <Route path="/photographer/edit-profile" element={<EditProfile />} />
-      <Route path="/photographer/community" element={<Community />} />
-      <Route
-        path="/photographer/subscription"
-        element={<SubscriptionStatus />}
-      />
-
-      {/* 404 */}
-      <Route path="*" element={<h2>Page Not Found</h2>} />
-    </Routes>
+        {/* Photographer */}
+        <Route path="/photographer" element={<PhotographerLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="profile" element={<EditProfile />} />
+          <Route path="portfolio" element={<Portfolio />} />
+          <Route path="subscription" element={<SubscriptionStatus />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

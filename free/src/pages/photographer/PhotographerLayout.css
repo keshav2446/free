@@ -1,0 +1,12 @@
+.photographer-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc; /* OFF WHITE */
+}
+
+.photographer-main {
+  flex: 1;
+  background: #f8fafc;
+  padding: 24px;
+  overflow-y: auto;
+}

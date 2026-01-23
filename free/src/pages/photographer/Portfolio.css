@@ -1,0 +1,163 @@
+/* CARD */
+.portfolio-card {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  margin-top: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.muted-text {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* PAGE */
+.portfolio-page {
+  padding: 32px;
+  max-width: 1200px;
+}
+
+/* HEADER */
+.portfolio-header {
+  margin-bottom: 24px;
+}
+
+/* UPLOAD CARD */
+.upload-card {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* SUBTITLE */
+.subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* DROPZONE */
+.upload-dropzone {
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ICON */
+.upload-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.upload-text {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+/* BUTTON */
+.upload-btn {
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+/* GRID */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* IMAGE ITEM */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* BUTTONS */
+.view-btn,
+.delete-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.view-btn {
+  background: #ffffff;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* EMPTY STATE */
+.empty-gallery {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
+
+
+.upload-dropzone {
+  cursor: pointer;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+.upload-dropzone:hover {
+  background: #f8fafc;
+  border-color: #38bdf8;
+}
+
+.upload-text span {
+  color: #0ea5e9;
+  font-weight: 500;
+}
