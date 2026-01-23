@@ -1,56 +1,66 @@
+import "./SubscriptionStatus.css";
+
 const SubscriptionStatus = () => {
   return (
-    <div
-      style={{
-        padding: "40px",
-        color: "#fff",
-        maxWidth: "500px",
-        margin: "0 auto",
-      }}
-    >
-      <h1>Subscription Status</h1>
+    <div className="subscription-page">
+      {/* HEADER */}
+      <h1 className="page-title">Subscription</h1>
 
-      <div
-        style={{
-          background: "#111827",
-          borderRadius: "12px",
-          padding: "24px",
-          marginTop: "20px",
-        }}
-      >
-        <h2 style={{ color: "#38bdf8", marginBottom: "10px" }}>
-          ₹499 / Year
-        </h2>
+      <div className="subscription-grid">
+        {/* LEFT : CURRENT PLAN */}
+        <div className="subscription-card">
+          <h2>Your Plan</h2>
+          <p className="muted-text">
+            Manage your LensConnect subscription and billing details.
+          </p>
 
-        <p>
-          Status:{" "}
-          <span style={{ color: "#22c55e", fontWeight: "bold" }}>
-            Active
-          </span>
-        </p>
+          <div className="current-plan">
+            <div className="plan-badge">🏅</div>
 
-        <p style={{ color: "#9ca3af", marginTop: "6px" }}>
-          Valid till: January 2027
-        </p>
+            <div className="plan-info">
+              <h3>LensConnect Pro</h3>
+              <p className="status-text">
+                Your profile is active and visible.
+              </p>
+            </div>
+          </div>
 
-        <button style={{ ...buttonStyle, marginTop: "20px" }}>
-          Renew Subscription
-        </button>
+          <div className="renew-info">
+            Your subscription renews on{" "}
+            <strong>August 1, 2025</strong>.
+          </div>
+
+          <button className="outline-btn">Manage Billing</button>
+        </div>
+
+        {/* RIGHT : PRO PLAN */}
+        <div className="pro-card">
+          <div className="pro-header">
+            ⭐ <h2>Go Pro</h2>
+          </div>
+
+          <p className="pro-subtitle">
+            Unlock all features and grow your business.
+          </p>
+
+          <div className="price">
+            ₹499 <span>/ year</span>
+          </div>
+
+          <ul className="features-list">
+            <li>✔ Profile listed in search results</li>
+            <li>✔ Unlimited portfolio uploads</li>
+            <li>✔ Access to AI availability tools</li>
+            <li>✔ Community discovery features</li>
+            <li>✔ Direct client bookings (coming soon)</li>
+            <li>✔ Priority support</li>
+          </ul>
+
+          <button className="pro-btn">⚡ Billing Portal</button>
+        </div>
       </div>
     </div>
   );
-};
-
-/* ✅ BUTTON STYLE DEFINED */
-const buttonStyle = {
-  padding: "12px 16px",
-  borderRadius: "8px",
-  background: "#38bdf8",
-  color: "#020617",
-  border: "none",
-  fontSize: "14px",
-  fontWeight: "600",
-  cursor: "pointer",
 };
 
 export default SubscriptionStatus;
