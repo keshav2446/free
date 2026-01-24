@@ -1,16 +1,42 @@
+import { useState } from "react";
 import "./admin.css";
 
+const mockPhotographers = [
+  {
+    id: 1,
+    name: "Jane Doe",
+    email: "jane@example.com",
+    city: "New York",
+    status: "pending",
+  },
+  {
+    id: 2,
+    name: "Alex Smith",
+    email: "alex@example.com",
+    city: "London",
+    status: "approved",
+  },
+];
+
 const AdminPhotographers = () => {
+  const [photographers, setPhotographers] = useState(mockPhotographers);
+
+  const updateStatus = (id, status) => {
+    setPhotographers((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, status } : p
+      )
+    );
+  };
+
   return (
     <div className="admin-page">
-      <div className="admin-header">
-        <h1>Photographers</h1>
-        <p className="muted">
-          Review, approve or reject photographer applications
-        </p>
-      </div>
+      <h1>Photographer Approvals</h1>
+      <p className="muted">
+        Review and manage photographer applications
+      </p>
 
-      <div className="admin-card">
+      <div className="admin-table-card">
         <table className="admin-table">
           <thead>
             <tr>
@@ -18,41 +44,46 @@ const AdminPhotographers = () => {
               <th>Email</th>
               <th>City</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>Jane Doe</td>
-              <td>jane@example.com</td>
-              <td>Delhi</td>
-              <td>
-                <span className="status pending">Pending</span>
-              </td>
-              <td>
-                <button className="admin-btn small primary">
-                  Approve
-                </button>
-                <button className="admin-btn small danger">
-                  Reject
-                </button>
-              </td>
-            </tr>
+            {photographers.map((p) => (
+              <tr key={p.id}>
+                <td>{p.name}</td>
+                <td>{p.email}</td>
+                <td>{p.city}</td>
+                <td>
+                  <span className={`status ${p.status}`}>
+                    {p.status}
+                  </span>
+                </td>
+                <td>
+                  {p.status === "pending" && (
+                    <>
+                      <button
+                        className="admin-btn success"
+                        onClick={() =>
+                          updateStatus(p.id, "approved")
+                        }
+                      >
+                        Approve
+                      </button>
 
-            <tr>
-              <td>Alex Smith</td>
-              <td>alex@example.com</td>
-              <td>Mumbai</td>
-              <td>
-                <span className="status approved">Approved</span>
-              </td>
-              <td>
-                <button className="admin-btn small">
-                  View
-                </button>
-              </td>
-            </tr>
+                      <button
+                        className="admin-btn danger"
+                        onClick={() =>
+                          updateStatus(p.id, "rejected")
+                        }
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

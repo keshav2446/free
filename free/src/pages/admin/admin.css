@@ -178,3 +178,53 @@
   padding: 6px 12px;
   font-size: 13px;
 }
+
+
+.admin-table-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.status.approved {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.status.rejected {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.admin-btn.success {
+  background: #22c55e;
+  color: white;
+}
+
+.admin-btn.danger {
+  background: #ef4444;
+  color: white;
+}

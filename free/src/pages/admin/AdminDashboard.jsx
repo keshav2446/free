@@ -1,4 +1,21 @@
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import "./admin.css";
+
+/* MOCK ANALYTICS DATA (later API se aayega) */
+const revenueData = [
+  { month: "Aug", revenue: 42000 },
+  { month: "Sep", revenue: 56000 },
+  { month: "Oct", revenue: 61000 },
+  { month: "Nov", revenue: 78000 },
+  { month: "Dec", revenue: 97804 },
+];
 
 const AdminDashboard = () => {
   return (
@@ -6,9 +23,7 @@ const AdminDashboard = () => {
       {/* PAGE HEADER */}
       <div className="admin-header">
         <h1>Admin Dashboard</h1>
-        <p className="muted">
-          Platform overview & system monitoring
-        </p>
+        <p className="muted">Platform analytics & growth overview</p>
       </div>
 
       {/* STATS */}
@@ -28,14 +43,33 @@ const AdminDashboard = () => {
         <div className="admin-stat-card">
           <h3>Active Subscriptions</h3>
           <p className="stat-value">196</p>
-          <span className="stat-hint">₹97,804 / month</span>
+          <span className="stat-hint">Pro & Premium</span>
         </div>
 
         <div className="admin-stat-card">
-          <h3>Platform Activity</h3>
-          <p className="stat-value">High</p>
-          <span className="stat-hint">Last 24 hours</span>
+          <h3>Monthly Revenue</h3>
+          <p className="stat-value">₹97,804</p>
+          <span className="stat-hint">+18% MoM</span>
         </div>
+      </div>
+
+      {/* REVENUE CHART */}
+      <div className="admin-card">
+        <h2>Revenue Growth</h2>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={revenueData}>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              stroke="#0ea5e9"
+              strokeWidth={3}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       {/* ACTION CARDS */}
@@ -53,7 +87,7 @@ const AdminDashboard = () => {
         <div className="admin-action-card">
           <h3>Subscription Management</h3>
           <p className="muted">
-            View plans, override access, or resolve billing issues.
+            Manage plans, override access, resolve billing issues.
           </p>
           <button className="admin-btn">
             Manage Subscriptions

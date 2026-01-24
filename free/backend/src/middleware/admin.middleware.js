@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 
 const adminMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
-
   if (!authHeader)
     return res.status(401).json({ message: "No token" });
 
@@ -12,12 +11,11 @@ const adminMiddleware = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (decoded.role !== "admin") {
-      return res.status(403).json({ message: "Admin access only" });
+      return res.status(403).json({ message: "Admin only" });
     }
 
     req.user = decoded;
     next();
-  // eslint-disable-next-line no-unused-vars
   } catch (err) {
     res.status(401).json({ message: "Invalid token" });
   }
