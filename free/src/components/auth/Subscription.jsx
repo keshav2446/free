@@ -1,16 +1,48 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../../styles/auth.css";
 
 const Subscription = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const token = localStorage.getItem("token");
+
+  const handleSubscribe = async (e) => {
     e.preventDefault();
 
-    // 🔐 Later yahin payment / Razorpay / Stripe logic aayega
-    // Abhi direct dashboard redirect
+    if (!token) {
+      alert("Please login again");
+      navigate("/auth/login");
+      return;
+    }
 
-    navigate("/photographer/dashboard");
+    try {
+      setLoading(true);
+
+      const res = await fetch(
+        "http://localhost:5000/api/subscription/activate",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Subscription failed");
+      }
+
+      // ✅ Subscription activated
+      navigate("/auth/pending-approval");
+    } catch (error) {
+      alert(error.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -18,22 +50,25 @@ const Subscription = () => {
       <div className="auth-card">
         <h2>Activate Your Subscription</h2>
         <p className="auth-subtitle">
-          Unlock full access to LensConnect
+          Subscription required to unlock your account
         </p>
 
         <div className="plan-box">
-          <h3>₹499 / Year</h3>
+          <h3>Pro Photographer Plan</h3>
           <ul>
             <li>✔ Verified Photographer Badge</li>
             <li>✔ Client Booking Requests</li>
             <li>✔ AI Availability Management</li>
             <li>✔ Community Access</li>
+            <li>✔ Priority Listing</li>
           </ul>
+
+          <h2 style={{ marginTop: "12px" }}>₹499 / Year</h2>
         </div>
 
         <form onSubmit={handleSubscribe}>
-          <button type="submit" className="auth-btn">
-            Subscribe & Continue
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Activating..." : "Pay & Activate (Demo)"}
           </button>
         </form>
 

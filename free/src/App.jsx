@@ -28,6 +28,11 @@ import AdminGuard from "./pages/admin/AdminGuard";
 
 import PendingApproval from "./components/auth/PendingApproval";
 
+import Subscription from "./components/auth/Subscription";
+
+import SubscriptionGuard from "./guards/SubscriptionGuard";
+
+
 
 function App() {
   return (
@@ -41,15 +46,26 @@ function App() {
       </Route>
 
       {/* PHOTOGRAPHER (NO NAVBAR) */}
-      <Route path="/photographer" element={<PhotographerLayout />}>
+      <Route
+  path="/photographer"
+  element={
+    <SubscriptionGuard>
+      <PhotographerLayout />
+    </SubscriptionGuard>
+  }
+>
+
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<EditProfile />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="subscription" element={<SubscriptionStatus />} />
         <Route path="ai-availability" element={<AIAvailability />} />
       </Route>
+      
 
       <Route path="/auth/pending-approval" element={<PendingApproval />} />
+
+      <Route path="/auth/subscription" element={<Subscription />} />
 
 
       {/* ADMIN (NO NAVBAR, PROTECTED) */}

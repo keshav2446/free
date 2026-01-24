@@ -1,18 +1,49 @@
 import { useRef, useState } from "react";
 import "./Portfolio.css";
 
+/* ============================
+   YOUTUBE THUMBNAIL EXTRACTOR
+   ============================ */
+const getYoutubeThumbnail = (url) => {
+  if (!url) return null;
+
+  let videoId = null;
+
+  try {
+    // youtube.com/watch?v=
+    if (url.includes("youtube.com/watch")) {
+      const params = new URL(url).searchParams;
+      videoId = params.get("v");
+    }
+
+    // youtu.be/
+    if (url.includes("youtu.be")) {
+      videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    }
+
+    // youtube shorts
+    if (url.includes("youtube.com/shorts")) {
+      videoId = url.split("shorts/")[1]?.split("?")[0];
+    }
+  } catch (e) {
+    return null;
+  }
+
+  return videoId
+    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+    : null;
+};
+
 const Portfolio = () => {
   const fileInputRef = useRef(null);
 
-  // TEMP images (baad me backend / firebase se aayengi)
   const [images, setImages] = useState([
     "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
     "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    "https://images.unsplash.com/photo-1491553895911-0055eca6402d",
-    "https://images.unsplash.com/photo-1519741497674-611481863552",
-    "https://images.unsplash.com/photo-1508672019048-805c876b67e2",
-    "https://images.unsplash.com/photo-1521334884684-d80222895322",
   ]);
+
+  const [videos, setVideos] = useState([]);
+  const [videoLink, setVideoLink] = useState("");
 
   const openFilePicker = () => {
     fileInputRef.current.click();
@@ -20,47 +51,61 @@ const Portfolio = () => {
 
   const handleFiles = (e) => {
     const files = Array.from(e.target.files);
-    console.log("Selected files:", files);
-
-    // future:
-    // upload to backend / firebase
+    console.log(files);
   };
 
-  const deleteImage = (index) => {
-    setImages(images.filter((_, i) => i !== index));
+  /* ============================
+     ADD VIDEO (FIXED)
+     ============================ */
+  const addVideo = () => {
+    if (!videoLink.trim()) return;
+
+    const ytThumbnail = getYoutubeThumbnail(videoLink);
+
+    setVideos((prev) => [
+      ...prev,
+      {
+        url: videoLink,
+        thumbnail:
+          ytThumbnail ||
+          "https://cdn-icons-png.flaticon.com/512/1179/1179120.png",
+      },
+    ]);
+
+    setVideoLink("");
+  };
+
+  const deleteVideo = (index) => {
+    setVideos(videos.filter((_, i) => i !== index));
   };
 
   return (
     <div className="portfolio-page">
-      {/* PAGE HEADER */}
       <div className="portfolio-header">
         <h1>Manage Portfolio</h1>
       </div>
 
-      {/* ================= UPLOAD CARD ================= */}
+      {/* ================= IMAGE UPLOAD ================= */}
       <div className="portfolio-card">
-        <h2>Upload New Images</h2>
+        <h2>Upload Photos</h2>
         <p className="muted-text">
-          Add new photos to your portfolio. Drag and drop or click to upload.
+          Add images to your photography portfolio.
         </p>
 
         <div className="upload-dropzone" onClick={openFilePicker}>
           <div className="upload-icon">⬆️</div>
-
           <p className="upload-text">
-            Drag & drop files here, or <span>click to browse</span>
+            Drag & drop or <span>browse</span>
           </p>
-
-          <p className="upload-hint">PNG, JPG, GIF up to 10MB</p>
 
           <button
             className="upload-btn"
             onClick={(e) => {
-              e.stopPropagation(); // 🔥 prevents double click
+              e.stopPropagation();
               openFilePicker();
             }}
           >
-            Select Files
+            Select Images
           </button>
 
           <input
@@ -74,34 +119,47 @@ const Portfolio = () => {
         </div>
       </div>
 
-      {/* ================= GALLERY ================= */}
+      {/* ================= VIDEO PORTFOLIO ================= */}
       <div className="portfolio-card">
-        <h2>Your Gallery</h2>
+        <h2>Video Portfolio</h2>
         <p className="muted-text">
-          Here are the current images in your portfolio.
+          Add YouTube or Drive video links to showcase your work.
         </p>
 
-        {images.length === 0 ? (
+        <div className="video-input">
+          <input
+            type="text"
+            placeholder="Paste video link (YouTube / Drive)"
+            value={videoLink}
+            onChange={(e) => setVideoLink(e.target.value)}
+          />
+          <button className="upload-btn" onClick={addVideo}>
+            Add Video
+          </button>
+        </div>
+
+        {videos.length === 0 ? (
           <div className="empty-gallery">
-            No images yet. Upload your first photo 📸
+            No videos yet. Add your first video 🎥
           </div>
         ) : (
           <div className="gallery-grid">
-            {images.map((img, index) => (
+            {videos.map((vid, index) => (
               <div className="gallery-item" key={index}>
-                <img src={img} alt="portfolio" />
+                <img src={vid.thumbnail} alt="video thumbnail" />
+
+                <div className="video-badge">▶</div>
 
                 <div className="gallery-overlay">
                   <button
                     className="view-btn"
-                    onClick={() => window.open(img, "_blank")}
+                    onClick={() => window.open(vid.url, "_blank")}
                   >
-                    View
+                    Watch
                   </button>
-
                   <button
                     className="delete-btn"
-                    onClick={() => deleteImage(index)}
+                    onClick={() => deleteVideo(index)}
                   >
                     Delete
                   </button>
@@ -110,6 +168,36 @@ const Portfolio = () => {
             ))}
           </div>
         )}
+      </div>
+
+      {/* ================= PHOTO GALLERY ================= */}
+      <div className="portfolio-card">
+        <h2>Your Photo Gallery</h2>
+
+        <div className="gallery-grid">
+          {images.map((img, index) => (
+            <div className="gallery-item" key={index}>
+              <img src={img} alt="portfolio" />
+
+              <div className="gallery-overlay">
+                <button
+                  className="view-btn"
+                  onClick={() => window.open(img, "_blank")}
+                >
+                  View
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() =>
+                    setImages(images.filter((_, i) => i !== index))
+                  }
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

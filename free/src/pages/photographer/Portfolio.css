@@ -161,3 +161,55 @@
   color: #0ea5e9;
   font-weight: 500;
 }
+
+
+.upgrade-btn {
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.upload-card.locked {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.skeleton {
+  height: 180px;
+  background: #e5e7eb;
+  border-radius: 12px;
+}
+
+
+
+
+
+
+
+
+.video-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.video-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.video-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+}

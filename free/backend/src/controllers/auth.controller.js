@@ -26,8 +26,8 @@ export const register = async (req, res) => {
       city,
       password: hashedPassword,
       role: "photographer",
-      isApproved: false,
-      subscriptionActive: false,
+      isApproved: false,          // admin decides
+      subscriptionActive: false,  // user decides later
     });
 
     res.status(201).json({
@@ -41,16 +41,14 @@ export const register = async (req, res) => {
 };
 
 /* ===============================
-   LOGIN USER
+   LOGIN USER (FINAL & CORRECT)
 ================================ */
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({
-        message: "Email and password are required",
-      });
+      return res.status(400).json({ message: "Email and password are required" });
     }
 
     const user = await User.findOne({ email });
@@ -58,18 +56,20 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // 🔐 Block unapproved photographers
-    if (user.role === "photographer" && !user.isApproved) {
-      return res.status(403).json({
-        message: "Your account is pending admin approval",
-      });
-    }
-
+    // ✅ PASSWORD CHECK
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
+    // ✅ ADMIN APPROVAL CHECK (ONLY BLOCKER)
+    // if (user.role === "photographer" && !user.isApproved) {
+    //   return res.status(403).json({
+    //     message: "Your account is pending admin approval",
+    //   });
+    // }
+
+    // ✅ TOKEN
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,

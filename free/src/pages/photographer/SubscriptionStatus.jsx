@@ -1,9 +1,33 @@
 import "./SubscriptionStatus.css";
 
 const SubscriptionStatus = () => {
+  // 🔹 Subscription dates (backend se baad me replace ho sakta hai)
+  const lastRenewed = new Date("2024-08-01");
+  const expiresOn = new Date("2025-08-01");
+  const today = new Date();
+
+  // 🔹 Calculations
+  const totalDuration =
+    expiresOn.getTime() - lastRenewed.getTime();
+  const timePassed =
+    today.getTime() - lastRenewed.getTime();
+  const remainingTime =
+    expiresOn.getTime() - today.getTime();
+
+  const daysLeft = Math.max(
+    Math.ceil(remainingTime / (1000 * 60 * 60 * 24)),
+    0
+  );
+
+  const progressPercentage = Math.min(
+    Math.max((timePassed / totalDuration) * 100, 0),
+    100
+  );
+
+  const isExpiringSoon = daysLeft <= 30;
+
   return (
     <div className="subscription-page">
-      {/* HEADER */}
       <h1 className="page-title">Subscription</h1>
 
       <div className="subscription-grid">
@@ -16,7 +40,6 @@ const SubscriptionStatus = () => {
 
           <div className="current-plan">
             <div className="plan-badge">🏅</div>
-
             <div className="plan-info">
               <h3>LensConnect Pro</h3>
               <p className="status-text">
@@ -25,9 +48,48 @@ const SubscriptionStatus = () => {
             </div>
           </div>
 
-          <div className="renew-info">
-            Your subscription renews on{" "}
-            <strong>August 1, 2025</strong>.
+          {/* 🔔 Expiry Warning */}
+          {isExpiringSoon && (
+            <p className="expiry-warning">
+              ⚠ Your subscription expires in {daysLeft} days. Renew soon.
+            </p>
+          )}
+
+          {/* 📊 Progress Bar */}
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{ width: `${progressPercentage}%` }}
+            ></div>
+          </div>
+
+          {/* 📄 Subscription Meta Info */}
+          <div className="plan-meta">
+            <div className="meta-item">
+              <span className="meta-label">Last Renewed</span>
+              <span className="meta-value">
+                {lastRenewed.toDateString()}
+              </span>
+            </div>
+
+            <div className="meta-item">
+              <span className="meta-label">Expires On</span>
+              <span className="meta-value">
+                {expiresOn.toDateString()}
+              </span>
+            </div>
+
+            <div className="meta-item">
+              <span className="meta-label">Time Remaining</span>
+              <span className="meta-value highlight">
+                {daysLeft} days left
+              </span>
+            </div>
+
+            <div className="meta-item">
+              <span className="meta-label">Billing Cycle</span>
+              <span className="meta-value">Yearly</span>
+            </div>
           </div>
 
           <button className="outline-btn">Manage Billing</button>

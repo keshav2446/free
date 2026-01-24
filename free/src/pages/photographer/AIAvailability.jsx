@@ -1,88 +1,111 @@
 import { useState } from "react";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import "./AIAvailability.css";
-// import useSubscription from "../../hooks/useSubscription"; // later
 
 const AIAvailability = () => {
-  // const { plan } = useSubscription(); // later backend
   const [suggestions, setSuggestions] = useState([]);
-  const [conflictResult, setConflictResult] = useState("");
+  const [conflictResult, setConflictResult] = useState(null);
 
   const suggestAvailability = () => {
-    // 🔮 fake AI response (frontend only)
     setSuggestions([
-      "Jan 26 • 10:00 AM – 12:00 PM",
-      "Jan 27 • 11:00 AM – 1:00 PM",
-      "Jan 28 • 9:30 AM – 11:30 AM",
+      {
+        slot: "Jan 26 • 10:00 AM – 12:00 PM",
+        reason: "Matches your morning preference & no nearby bookings",
+      },
+      {
+        slot: "Jan 27 • 11:00 AM – 1:00 PM",
+        reason: "Optimized for travel buffer and client demand",
+      },
+      {
+        slot: "Jan 28 • 9:30 AM – 11:30 AM",
+        reason: "Low calendar load, high acceptance rate",
+      },
     ]);
   };
 
   const checkConflicts = () => {
-    setConflictResult("❌ Conflict detected with existing booking at 11:00 AM");
+    setConflictResult({
+      level: "high",
+      message: "Hard conflict with existing booking at 11:00 AM",
+    });
   };
-
-  /* 🔒 PRO LOCK (enable later)
-  if (plan !== "PRO") {
-    return (
-      <div className="ai-locked">
-        <h2>🔒 AI Availability is a Pro Feature</h2>
-        <p className="muted">
-          Upgrade to Pro to unlock AI-powered scheduling.
-        </p>
-        <button className="primary-btn">🚀 Upgrade to Pro</button>
-      </div>
-    );
-  }
-  */
 
   return (
     <div className="availability-page">
       <h1>AI Availability Assistant</h1>
 
-      {/* ================= CALENDAR ================= */}
+      {/* 🤖 AI STATUS */}
+      <div className="ai-status">
+        🤖 AI Active • Learning from your booking patterns
+      </div>
+
+      {/* 📅 CALENDAR */}
       <AvailabilityCalendar />
 
-      {/* ================= AI SUGGESTIONS ================= */}
+      {/* 🎯 AI SUGGESTIONS */}
       <div className="card">
-        <h2>AI-Powered Availability Suggestions</h2>
+        <h2>Smart Availability Generator</h2>
         <p className="muted">
-          Let AI analyze your preferences and suggest optimal booking slots.
+          AI analyzes your habits, travel buffer & booking history.
         </p>
 
-        <label>Scheduling Preferences</label>
-        <textarea
-          defaultValue="Prefer morning shoots from 9 AM to 1 PM. No bookings on Sundays."
-        />
+        <div className="grid-2">
+          <div>
+            <label>Preferred Time Range</label>
+            <input type="text" defaultValue="9:00 AM – 1:00 PM" />
+          </div>
 
-        <label>Average Travel Time (minutes)</label>
-        <input type="number" defaultValue={30} />
+          <div>
+            <label>Exclude Days</label>
+            <input type="text" defaultValue="Sunday" />
+          </div>
+        </div>
 
-        <label>Max Bookings Per Day</label>
-        <input type="number" defaultValue={3} />
+        <div className="grid-2">
+          <div>
+            <label>Travel Buffer (minutes)</label>
+            <input type="number" defaultValue={30} />
+          </div>
+
+          <div>
+            <label>Max Bookings / Day</label>
+            <input type="number" defaultValue={3} />
+          </div>
+        </div>
+
+        <label>Shoot Preferences</label>
+        <textarea defaultValue="Prefer weddings & outdoor portrait shoots" />
 
         <button className="primary-btn" onClick={suggestAvailability}>
-          🤖 Suggest Availability
+          🤖 Generate Smart Slots
         </button>
 
         {suggestions.length > 0 && (
           <div className="suggestions">
-            <h4>Suggested Slots</h4>
-            <div className="chips">
-              {suggestions.map((slot, i) => (
-                <span key={i} className="slot-chip">
-                  {slot}
-                </span>
-              ))}
-            </div>
+            <h4>Recommended Slots</h4>
+
+            {suggestions.map((s, i) => (
+              <div key={i} className="slot-card">
+                <div>
+                  <strong>{s.slot}</strong>
+                  <p className="slot-reason">{s.reason}</p>
+                </div>
+
+                <div className="slot-actions">
+                  <button>Apply</button>
+                  <button className="ghost">Copy</button>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
 
-      {/* ================= CONFLICT CHECKER ================= */}
+      {/* ⚠️ CONFLICT DETECTOR */}
       <div className="card">
-        <h2>Smart Booking Conflict Detector</h2>
+        <h2>AI Conflict Analyzer</h2>
         <p className="muted">
-          Check if a new booking conflicts with your schedule.
+          Detects time overlap, travel issues & overload risk.
         </p>
 
         <div className="grid-2">
@@ -91,11 +114,13 @@ const AIAvailability = () => {
         </div>
 
         <button className="secondary-btn" onClick={checkConflicts}>
-          ⚠️ Check for Conflicts
+          ⚠️ Analyze Conflict
         </button>
 
         {conflictResult && (
-          <p className="conflict-text">{conflictResult}</p>
+          <div className={`conflict-box ${conflictResult.level}`}>
+            🔴 {conflictResult.message}
+          </div>
         )}
       </div>
     </div>
