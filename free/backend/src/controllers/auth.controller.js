@@ -9,83 +9,73 @@ export const register = async (req, res) => {
   try {
     const { name, email, city, password } = req.body;
 
-    // 1️⃣ Basic validation
     if (!name || !email || !city || !password) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    // 2️⃣ Check existing user
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-      });
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    // 3️⃣ Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 4️⃣ Create user
     const user = await User.create({
       name,
       email,
       city,
       password: hashedPassword,
+      role: "photographer",
+      isApproved: false,
+      subscriptionActive: false,
     });
 
-    // 5️⃣ Response
     res.status(201).json({
-      message: "Registered successfully",
+      message: "Registered successfully. Await admin approval.",
       userId: user._id,
     });
   } catch (error) {
     console.error("Register Error:", error.message);
-    res.status(500).json({
-      message: "Server error",
-    });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
 /* ===============================
-   LOGIN PHOTOGRAPHER
+   LOGIN USER
 ================================ */
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1️⃣ Validate input
     if (!email || !password) {
       return res.status(400).json({
         message: "Email and password are required",
       });
     }
 
-    // 2️⃣ Find user
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        message: "Invalid credentials",
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // 🔐 Block unapproved photographers
+    if (user.role === "photographer" && !user.isApproved) {
+      return res.status(403).json({
+        message: "Your account is pending admin approval",
       });
     }
 
-    // 3️⃣ Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({
-        message: "Invalid credentials",
-      });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // 4️⃣ Generate JWT
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
-    // 5️⃣ Response
     res.json({
       token,
       user: {
@@ -93,12 +83,13 @@ export const login = async (req, res) => {
         name: user.name,
         email: user.email,
         city: user.city,
+        role: user.role,
+        isApproved: user.isApproved,
+        subscriptionActive: user.subscriptionActive,
       },
     });
   } catch (error) {
     console.error("Login Error:", error.message);
-    res.status(500).json({
-      message: "Server error",
-    });
+    res.status(500).json({ message: "Server error" });
   }
 };

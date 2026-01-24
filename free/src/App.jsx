@@ -26,6 +26,9 @@ import AdminSubscriptions from "./pages/admin/AdminSubscriptions";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminGuard from "./pages/admin/AdminGuard";
 
+import PendingApproval from "./components/auth/PendingApproval";
+
+
 function App() {
   return (
     <Routes>
@@ -45,6 +48,9 @@ function App() {
         <Route path="subscription" element={<SubscriptionStatus />} />
         <Route path="ai-availability" element={<AIAvailability />} />
       </Route>
+
+      <Route path="/auth/pending-approval" element={<PendingApproval />} />
+
 
       {/* ADMIN (NO NAVBAR, PROTECTED) */}
       <Route

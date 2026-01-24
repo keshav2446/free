@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
       lowercase: true,
+      index: true, // 🔥 performance + safety
     },
 
     city: {
@@ -27,12 +28,13 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
+      enum: ["user", "photographer", "admin"], // 🔥 strict roles
       default: "photographer",
     },
 
     isApproved: {
       type: Boolean,
-      default: false, // future: super admin approval
+      default: false, // photographer approval by admin
     },
 
     subscriptionActive: {

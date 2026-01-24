@@ -1,0 +1,48 @@
+/* ===============================
+   Pending Approval Page
+================================ */
+
+.pending-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+}
+
+.pending-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 14px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.pending-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.pending-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.pending-text {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.pending-note {
+  margin-top: 22px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 14px;
+  border-radius: 10px;
+}

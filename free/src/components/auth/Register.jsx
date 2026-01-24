@@ -1,16 +1,54 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../../styles/auth.css";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    city: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    // 🔐 Later yahin Firebase register logic aayega
-    // Abhi direct subscription page par bhej rahe hain
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
-    navigate("/auth/subscription");
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
+
+      // ✅ Registration successful
+      navigate("/auth/pending-approval");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -23,31 +61,45 @@ const Register = () => {
 
         <form className="auth-form" onSubmit={handleRegister}>
           <input
+            name="name"
             type="text"
             placeholder="Full Name"
+            value={form.name}
+            onChange={handleChange}
             required
           />
 
           <input
+            name="email"
             type="email"
             placeholder="Email address"
+            value={form.email}
+            onChange={handleChange}
             required
           />
 
           <input
+            name="city"
             type="text"
             placeholder="City"
+            value={form.city}
+            onChange={handleChange}
             required
           />
 
           <input
+            name="password"
             type="password"
             placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
             required
           />
 
-          <button type="submit" className="auth-btn">
-            Continue to Subscription
+          {error && <p className="error-text">{error}</p>}
+
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
 

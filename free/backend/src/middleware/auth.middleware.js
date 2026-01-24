@@ -1,26 +1,26 @@
 import jwt from "jsonwebtoken";
 
-const adminMiddleware = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader)
-    return res.status(401).json({ message: "No token" });
-
-  const token = authHeader.split(" ")[1];
-
+const authMiddleware = (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const authHeader = req.headers.authorization;
 
-    if (decoded.role !== "admin") {
-      return res.status(403).json({ message: "Admin access only" });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        message: "Authorization token missing",
+      });
     }
 
-    req.user = decoded;
+    const token = authHeader.split(" ")[1];
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = decoded; // { id, role }
     next();
-  // eslint-disable-next-line no-unused-vars
-  } catch (err) {
-    res.status(401).json({ message: "Invalid token" });
+  } catch (error) {
+    return res.status(401).json({
+      message: "Invalid or expired token",
+    });
   }
 };
 
-export default adminMiddleware;
+export default authMiddleware;
