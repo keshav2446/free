@@ -1,10 +1,9 @@
 import PhotographerCard from "./PhotographerCard";
-
 import "./FeaturedPhotographers.css";
-
 
 const photographers = [
   {
+    username: "vishu",
     name: "Vishu",
     city: "Lahore",
     rating: 4.9,
@@ -12,6 +11,7 @@ const photographers = [
     image: "/images/vishu.jpeg",
   },
   {
+    username: "vaibhav-gupta",
     name: "Vaibhav Gupta",
     city: "Delhi",
     rating: 4.8,
@@ -19,6 +19,7 @@ const photographers = [
     image: "/images/vaibhav.jpeg",
   },
   {
+    username: "keshav-singh",
     name: "Keshav Singh",
     city: "Japan",
     rating: 4.9,
@@ -26,7 +27,8 @@ const photographers = [
     image: "/images/ks.jpg",
   },
   {
-    name: "Rukmani Rani",
+    username: "mika",
+    name: "Mika",
     city: "Rampur",
     rating: 4.7,
     tags: ["Street", "Documentary"],
@@ -40,8 +42,11 @@ const FeaturedPhotographers = () => {
       <h2>Featured Photographers</h2>
 
       <div className="photographers-grid">
-        {photographers.map((p, index) => (
-          <PhotographerCard key={index} photographer={p} />
+        {photographers.map((p) => (
+          <PhotographerCard
+            key={p.username}
+            photographer={p}
+          />
         ))}
       </div>
 

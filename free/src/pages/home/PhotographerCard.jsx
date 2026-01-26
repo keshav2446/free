@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./PhotographerCard.css";
 
 const PhotographerCard = ({ photographer }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="photographer-card">
       <div className="image-wrapper">
@@ -18,9 +21,14 @@ const PhotographerCard = ({ photographer }) => {
           ))}
         </div>
 
-        <a href="#" className="view-profile">
+        <button
+          className="view-profile"
+          onClick={() =>
+            navigate(`/photographers/${photographer.username}`)
+          }
+        >
           View Profile →
-        </a>
+        </button>
       </div>
     </div>
   );

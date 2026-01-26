@@ -32,6 +32,9 @@ import Subscription from "./components/auth/Subscription";
 
 import SubscriptionGuard from "./guards/SubscriptionGuard";
 
+import PhotographerProfile from "./pages/photographer/PhotographerProfile";
+
+
 
 
 function App() {
@@ -43,7 +46,15 @@ function App() {
         <Route path="/for-photographers" element={<ForPhotographers />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
+
+          <Route
+    path="/photographers/:username"
+    element={<PhotographerProfile />}
+  />
+
       </Route>
+
+      
 
       {/* PHOTOGRAPHER (NO NAVBAR) */}
       <Route
