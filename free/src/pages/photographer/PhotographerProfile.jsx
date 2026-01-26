@@ -33,23 +33,30 @@ const mockPortfolioData = {
 const PhotographerProfile = () => {
   const { username } = useParams();
   const data = mockPortfolioData[username];
-
   const [lightbox, setLightbox] = useState(null);
 
   if (!data) {
-    return <div className="public-profile-not-found">Profile not found</div>;
+    return (
+      <div className="public-profile-page">
+        <div className="public-profile-not-found">Profile not found</div>
+      </div>
+    );
   }
 
   return (
     <div className="public-profile-page">
       <div className="public-profile-container">
-
         {/* ================= TOP ================= */}
         <div className="profile-top">
           {/* LEFT */}
           <div className="profile-left">
+            {/* PROFILE CARD */}
             <div className="profile-card">
-              <img className="profile-avatar" src={data.images[0]} alt={data.name} />
+              <img
+                className="profile-avatar"
+                src={data.images[0]}
+                alt={data.name}
+              />
 
               <div className="profile-info">
                 <h1>{data.name}</h1>
@@ -70,7 +77,7 @@ const PhotographerProfile = () => {
               </div>
             </div>
 
-            {/* PORTFOLIO */}
+            {/* ================= PORTFOLIO ================= */}
             <div className="portfolio-section">
               <h2>Portfolio</h2>
 
@@ -81,7 +88,9 @@ const PhotographerProfile = () => {
                   <div
                     key={i}
                     className="gallery-item clickable"
-                    onClick={() => setLightbox({ type: "image", src: img })}
+                    onClick={() =>
+                      setLightbox({ type: "image", src: img })
+                    }
                   >
                     <img src={img} alt="portfolio" />
                   </div>
@@ -95,7 +104,9 @@ const PhotographerProfile = () => {
                   <div
                     key={i}
                     className="gallery-item clickable"
-                    onClick={() => setLightbox({ type: "video", src: vid.url })}
+                    onClick={() =>
+                      setLightbox({ type: "video", src: vid.url })
+                    }
                   >
                     <img src={vid.thumbnail} alt="video" />
                     <div className="video-badge">▶</div>
@@ -109,9 +120,13 @@ const PhotographerProfile = () => {
           <div className="profile-right">
             <div className="booking-card">
               <h3>Book Now</h3>
-              <button className="primary-btn">📅 Check Availability</button>
+              <button className="primary-btn">
+                📅 Check Availability
+              </button>
               <button className="secondary-btn">✉ Contact</button>
-              <p className="hint">Contact info visible to logged-in users</p>
+              <p className="hint">
+                Contact info visible to logged-in users
+              </p>
             </div>
 
             <div className="equipment-card">
@@ -128,8 +143,14 @@ const PhotographerProfile = () => {
 
       {/* ================= LIGHTBOX ================= */}
       {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(null)}>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="lightbox"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             {lightbox.type === "image" ? (
               <img src={lightbox.src} alt="preview" />
             ) : (
@@ -137,6 +158,7 @@ const PhotographerProfile = () => {
                 src={lightbox.src.replace("watch?v=", "embed/")}
                 title="video"
                 frameBorder="0"
+                allow="autoplay; encrypted-media"
                 allowFullScreen
               />
             )}

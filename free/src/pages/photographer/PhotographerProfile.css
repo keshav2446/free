@@ -7,34 +7,34 @@
   background: #f8fafc;
 }
 
-.public-profile-container {
-  max-width: 1400px;   /* 🔥 SIDE GAP FIX */
+.public-profile-page .public-profile-container {
+  max-width: 1400px;
   margin: auto;
   padding: 32px 20px;
 }
 
 /* LAYOUT */
-.profile-top {
+.public-profile-page .profile-top {
   display: grid;
   grid-template-columns: 2.2fr 1fr;
   gap: 28px;
 }
 
 /* LEFT / RIGHT */
-.profile-left {
+.public-profile-page .profile-left {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.profile-right {
+.public-profile-page .profile-right {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 /* PROFILE CARD */
-.profile-card {
+.public-profile-page .profile-card {
   display: flex;
   gap: 20px;
   background: #fff;
@@ -43,14 +43,14 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
-.profile-avatar {
+.public-profile-page .profile-avatar {
   width: 130px;
   height: 130px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.meta {
+.public-profile-page .meta {
   display: flex;
   gap: 14px;
   font-size: 14px;
@@ -58,7 +58,7 @@
   margin-bottom: 10px;
 }
 
-.tags span {
+.public-profile-page .tags span {
   background: #f1f5f9;
   padding: 6px 12px;
   border-radius: 999px;
@@ -66,21 +66,21 @@
   margin-right: 6px;
 }
 
-.about {
+.public-profile-page .about {
   font-size: 14px;
   color: #475569;
 }
 
 /* BOOKING + EQUIPMENT */
-.booking-card,
-.equipment-card {
+.public-profile-page .booking-card,
+.public-profile-page .equipment-card {
   background: #fff;
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
-.primary-btn {
+.public-profile-page .primary-btn {
   width: 100%;
   background: #0ea5e9;
   color: #fff;
@@ -91,7 +91,7 @@
   cursor: pointer;
 }
 
-.secondary-btn {
+.public-profile-page .secondary-btn {
   width: 100%;
   background: #f1f5f9;
   border: none;
@@ -101,44 +101,40 @@
 }
 
 /* PORTFOLIO */
-.portfolio-section h2 {
-  margin-bottom: 10px;
-}
-
-.portfolio-subtitle {
+.public-profile-page .portfolio-subtitle {
   margin: 18px 0 10px;
   font-size: 16px;
   font-weight: 600;
 }
 
-.gallery-grid {
+.public-profile-page .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
 }
 
-.gallery-item {
+.public-profile-page .gallery-item {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
 }
 
-.gallery-item img {
+.public-profile-page .gallery-item img {
   width: 100%;
   height: 170px;
   object-fit: cover;
 }
 
-.clickable {
+.public-profile-page .clickable {
   cursor: pointer;
 }
 
-.gallery-item:hover img {
+.public-profile-page .gallery-item:hover img {
   transform: scale(1.04);
   transition: 0.3s;
 }
 
-.video-badge {
+.public-profile-page .video-badge {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -148,10 +144,8 @@
   border-radius: 999px;
 }
 
-
-
-/* ================= LIGHTBOX ================= */
-.lightbox {
+/* LIGHTBOX */
+.public-profile-page .lightbox {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.85);
@@ -161,23 +155,21 @@
   z-index: 9999;
 }
 
-.lightbox-content {
+.public-profile-page .lightbox-content {
   width: 90vw;
   max-width: 1100px;
   aspect-ratio: 16 / 9;
 }
 
-
-.lightbox-content img,
-.lightbox-content iframe {
+.public-profile-page .lightbox-content img,
+.public-profile-page .lightbox-content iframe {
   width: 100%;
   height: 100%;
   border-radius: 12px;
 }
 
-
 /* NOT FOUND */
-.public-profile-not-found {
+.public-profile-page .public-profile-not-found {
   padding: 80px;
   text-align: center;
   font-size: 18px;

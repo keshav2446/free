@@ -17,7 +17,8 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="profile-page">
+    <div className="edit-profile-page">
+
       <h1>Edit Profile</h1>
 
       <div className="profile-grid">
