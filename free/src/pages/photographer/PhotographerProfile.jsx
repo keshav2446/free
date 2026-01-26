@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import "./PhotographerProfile.css";
 
 /* Dummy data (later backend / firebase) */
@@ -23,6 +24,7 @@ const mockPortfolioData = {
     videos: [
       {
         thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       },
     ],
   },
@@ -32,24 +34,22 @@ const PhotographerProfile = () => {
   const { username } = useParams();
   const data = mockPortfolioData[username];
 
+  const [lightbox, setLightbox] = useState(null);
+
   if (!data) {
-    return <div className="profile-not-found">Profile not found</div>;
+    return <div className="public-profile-not-found">Profile not found</div>;
   }
 
   return (
     <div className="public-profile-page">
-      <div className="profile-container">
-        {/* TOP SECTION */}
+      <div className="public-profile-container">
+
+        {/* ================= TOP ================= */}
         <div className="profile-top">
           {/* LEFT */}
           <div className="profile-left">
-            {/* PROFILE CARD */}
             <div className="profile-card">
-              <img
-                className="profile-avatar"
-                src={data.images[0]}
-                alt={data.name}
-              />
+              <img className="profile-avatar" src={data.images[0]} alt={data.name} />
 
               <div className="profile-info">
                 <h1>{data.name}</h1>
@@ -74,11 +74,15 @@ const PhotographerProfile = () => {
             <div className="portfolio-section">
               <h2>Portfolio</h2>
 
-              {/* IMAGES */}
+              {/* PHOTOS */}
               <h3 className="portfolio-subtitle">Photos</h3>
               <div className="gallery-grid">
                 {data.images.map((img, i) => (
-                  <div className="gallery-item" key={i}>
+                  <div
+                    key={i}
+                    className="gallery-item clickable"
+                    onClick={() => setLightbox({ type: "image", src: img })}
+                  >
                     <img src={img} alt="portfolio" />
                   </div>
                 ))}
@@ -88,7 +92,11 @@ const PhotographerProfile = () => {
               <h3 className="portfolio-subtitle">Videos</h3>
               <div className="gallery-grid">
                 {data.videos.map((vid, i) => (
-                  <div className="gallery-item" key={`v-${i}`}>
+                  <div
+                    key={i}
+                    className="gallery-item clickable"
+                    onClick={() => setLightbox({ type: "video", src: vid.url })}
+                  >
                     <img src={vid.thumbnail} alt="video" />
                     <div className="video-badge">▶</div>
                   </div>
@@ -99,19 +107,13 @@ const PhotographerProfile = () => {
 
           {/* RIGHT */}
           <div className="profile-right">
-            {/* BOOKING */}
             <div className="booking-card">
               <h3>Book Now</h3>
-              <button className="primary-btn">
-                📅 Check Availability
-              </button>
+              <button className="primary-btn">📅 Check Availability</button>
               <button className="secondary-btn">✉ Contact</button>
-              <p className="hint">
-                Contact info visible to logged-in users
-              </p>
+              <p className="hint">Contact info visible to logged-in users</p>
             </div>
 
-            {/* EQUIPMENT */}
             <div className="equipment-card">
               <h3>Equipment</h3>
               <ul>
@@ -123,6 +125,24 @@ const PhotographerProfile = () => {
           </div>
         </div>
       </div>
+
+      {/* ================= LIGHTBOX ================= */}
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(null)}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            {lightbox.type === "image" ? (
+              <img src={lightbox.src} alt="preview" />
+            ) : (
+              <iframe
+                src={lightbox.src.replace("watch?v=", "embed/")}
+                title="video"
+                frameBorder="0"
+                allowFullScreen
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
