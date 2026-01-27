@@ -37,7 +37,7 @@
 
 .stat-hint {
   font-size: 13px;
-  color: #0ea5e9;
+  color: #808080;
 }
 
 /* ACTION GRID */
@@ -99,7 +99,7 @@
 
 .admin-sidebar {
   width: 240px;
-  background: #0f172a;
+  background: #808080;
   color: #ffffff;
   padding: 24px;
 }
@@ -125,7 +125,7 @@
 
 .admin-sidebar nav a.active,
 .admin-sidebar nav a:hover {
-  background: #1e293b;
+  background: #3B3B3B;
   color: #ffffff;
 }
 

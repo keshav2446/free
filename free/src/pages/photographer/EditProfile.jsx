@@ -12,13 +12,46 @@ const EditProfile = () => {
     equipment: "Canon EOS R5, RF 24-70mm f/2.8",
   });
 
+  // 🔥 SELLING EQUIPMENT STATE
+  const [sellingEquipment, setSellingEquipment] = useState([
+    { name: "", price: "", condition: "", description: "" },
+  ]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSellingChange = (index, field, value) => {
+    const updated = [...sellingEquipment];
+    updated[index][field] = value;
+    setSellingEquipment(updated);
+  };
+
+  const addSellingItem = () => {
+    setSellingEquipment([
+      ...sellingEquipment,
+      { name: "", price: "", condition: "", description: "" },
+    ]);
+  };
+
+  const removeSellingItem = (index) => {
+    setSellingEquipment(sellingEquipment.filter((_, i) => i !== index));
+  };
+
+  const handleSave = () => {
+    const payload = {
+      ...formData,
+      sellingEquipment: sellingEquipment.filter(
+        (item) => item.name && item.price
+      ),
+    };
+
+    console.log("SAVE PROFILE DATA 👉", payload);
+    alert("Profile & selling items saved (check console)");
+  };
+
   return (
     <div className="edit-profile-page">
-
       <h1>Edit Profile</h1>
 
       <div className="profile-grid">
@@ -33,11 +66,7 @@ const EditProfile = () => {
           </div>
 
           <label>Full Name</label>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <input name="name" value={formData.name} onChange={handleChange} />
 
           <label>Email</label>
           <input value={formData.email} disabled />
@@ -46,7 +75,9 @@ const EditProfile = () => {
         {/* RIGHT */}
         <div className="profile-card">
           <h3>Actions</h3>
-          <button className="primary-btn full">Save Changes</button>
+          <button className="primary-btn full" onClick={handleSave}>
+            Save Changes
+          </button>
         </div>
 
         {/* PROFESSIONAL */}
@@ -97,6 +128,87 @@ const EditProfile = () => {
             value={formData.equipment}
             onChange={handleChange}
           />
+        </div>
+
+        {/* 🔥 SELLING EQUIPMENT */}
+        <div className="profile-card wide">
+          <h3>Selling Equipment</h3>
+          <p className="muted">
+            Fill details below and click <strong>Save Changes</strong> to add
+            items to your public profile
+          </p>
+
+          {sellingEquipment.map((item, i) => (
+            <div key={i} className="selling-form">
+              <div className="two-col">
+                <div>
+                  <label>Item Name</label>
+                  <input
+                    value={item.name}
+                    onChange={(e) =>
+                      handleSellingChange(i, "name", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div>
+                  <label>Price</label>
+                  <input
+                    value={item.price}
+                    onChange={(e) =>
+                      handleSellingChange(i, "price", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="two-col">
+                <div>
+                  <label>Condition</label>
+                  <input
+                    value={item.condition}
+                    onChange={(e) =>
+                      handleSellingChange(i, "condition", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div>
+                  <label>Description</label>
+                  <input
+                    value={item.description}
+                    onChange={(e) =>
+                      handleSellingChange(i, "description", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+
+              {sellingEquipment.length > 1 && (
+                <button
+                  className="danger-btn"
+                  onClick={() => removeSellingItem(i)}
+                >
+                  Remove Item
+                </button>
+              )}
+
+              <hr />
+            </div>
+          ))}
+
+          <button className="secondary-btn" onClick={addSellingItem}>
+            + Add Another Item
+          </button>
+
+          {/* OPTIONAL EXTRA SAVE (UX CLARITY) */}
+          <button
+            className="primary-btn full"
+            style={{ marginTop: "12px" }}
+            onClick={handleSave}
+          >
+            Save Selling Equipment
+          </button>
         </div>
       </div>
     </div>

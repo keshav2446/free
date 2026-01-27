@@ -10,9 +10,9 @@ import "./admin.css";
 
 /* MOCK ANALYTICS DATA (later API se aayega) */
 const revenueData = [
-  { month: "Aug", revenue: 42000 },
-  { month: "Sep", revenue: 56000 },
-  { month: "Oct", revenue: 61000 },
+  { month: "Aug", revenue: 4200 },
+  { month: "Sep", revenue: 72000 },
+  { month: "Oct", revenue: 32000 },
   { month: "Nov", revenue: 78000 },
   { month: "Dec", revenue: 97804 },
 ];
@@ -30,25 +30,25 @@ const AdminDashboard = () => {
       <div className="admin-stats-grid">
         <div className="admin-stat-card">
           <h3>Total Users</h3>
-          <p className="stat-value">1,284</p>
+          <p className="stat-value">1,500</p>
           <span className="stat-hint">+42 this month</span>
         </div>
 
-        <div className="admin-stat-card">
+        {/* <div className="admin-stat-card">
           <h3>Photographers</h3>
           <p className="stat-value">342</p>
           <span className="stat-hint">18 pending approval</span>
-        </div>
+        </div> */}
 
         <div className="admin-stat-card">
           <h3>Active Subscriptions</h3>
-          <p className="stat-value">196</p>
+          <p className="stat-value">996</p>
           <span className="stat-hint">Pro & Premium</span>
         </div>
 
         <div className="admin-stat-card">
           <h3>Monthly Revenue</h3>
-          <p className="stat-value">₹97,804</p>
+          <p className="stat-value">₹20,804</p>
           <span className="stat-hint">+18% MoM</span>
         </div>
       </div>
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
             <Line
               type="monotone"
               dataKey="revenue"
-              stroke="#0ea5e9"
+              stroke="#696969"
               strokeWidth={3}
             />
           </LineChart>
@@ -111,13 +111,13 @@ const AdminDashboard = () => {
 
         <ul className="activity-list">
           <li>
-            📸 <strong>Jane Doe</strong> submitted photographer verification
+            📸 <strong>Keshav Singh</strong> submitted photographer verification
           </li>
           <li>
             💳 Subscription upgraded to <strong>Pro</strong>
           </li>
           <li>
-            🚫 User <strong>alex@example.com</strong> suspended
+            🚫 User <strong>vishnuverma@gmail.com</strong> suspended
           </li>
           <li>
             🏙️ New city <strong>Jaipur</strong> added

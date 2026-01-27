@@ -140,3 +140,58 @@
     grid-column: span 1;
   }
 }
+
+
+/* =============================
+   SELLING EQUIPMENT (EDIT PROFILE)
+============================= */
+
+.edit-profile-page .selling-form {
+  margin-top: 20px;
+}
+
+.edit-profile-page .selling-form .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.edit-profile-page .selling-form label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.edit-profile-page .selling-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.edit-profile-page .selling-form hr {
+  border: none;
+  border-top: 1px dashed #e2e8f0;
+  margin: 18px 0;
+}
+
+/* REMOVE BUTTON */
+.edit-profile-page .danger-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .edit-profile-page .selling-form .two-col {
+    grid-template-columns: 1fr;
+  }
+}
