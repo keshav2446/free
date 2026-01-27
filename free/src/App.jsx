@@ -15,7 +15,7 @@ import Dashboard from "./pages/photographer/Dashboard";
 import EditProfile from "./pages/photographer/EditProfile";
 import Portfolio from "./pages/photographer/Portfolio";
 import SubscriptionStatus from "./pages/photographer/SubscriptionStatus";
-import AIAvailability from "./pages/photographer/AIAvailability";
+import Availability from "./pages/photographer/Availability";
 
 /* Admin */
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -70,7 +70,7 @@ function App() {
         <Route path="profile" element={<EditProfile />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="subscription" element={<SubscriptionStatus />} />
-        <Route path="ai-availability" element={<AIAvailability />} />
+        <Route path="ai-availability" element={<Availability />} />
       </Route>
       
 
