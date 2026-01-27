@@ -19,7 +19,7 @@
 }
 
 .fp-container h1 span {
-  color: #0ea5e9;
+  color: #696969;
 }
 
 .fp-container p {
@@ -45,17 +45,17 @@
 }
 
 .fp-btn.primary {
-  background: #0ea5e9;
+  background: #696969;
   color: white;
 }
 
 .fp-btn.primary:hover {
-  background: #0284c7;
+  background: #3B3B3B;
 }
 
 .fp-btn.secondary {
-  border: 2px solid #0ea5e9;
-  color: #0ea5e9;
+  border: 2px solid #696969;
+  color: #696969;
 }
 
 .fp-btn.secondary:hover {

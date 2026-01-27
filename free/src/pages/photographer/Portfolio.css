@@ -68,7 +68,7 @@
 
 /* BUTTON */
 .upload-btn {
-  background: #0ea5e9;
+  background: #808080;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -154,17 +154,17 @@
 
 .upload-dropzone:hover {
   background: #f8fafc;
-  border-color: #38bdf8;
+  border-color: #808080;
 }
 
 .upload-text span {
-  color: #0ea5e9;
+  color: #808080;
   font-weight: 500;
 }
 
 
 .upgrade-btn {
-  background: #0ea5e9;
+  background: #808080;
   color: white;
   border: none;
   padding: 8px 14px;

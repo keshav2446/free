@@ -22,7 +22,7 @@
   margin-bottom: 4px;
   font-size: 14px;
   font-weight: 500;
-  color: #334155;
+  color: #242424;
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -30,13 +30,13 @@
 
 .sidebar nav a:hover {
   background: #f1f5f9;
-  color: #0ea5e9;
+  color: #808080;
 }
 
 /* ACTIVE LINK */
 .sidebar nav a.active {
   background: #e0f2fe;
-  color: #0284c7;
+  color: #3B3B3B;
   font-weight: 600;
 }
 
@@ -65,7 +65,7 @@
 .avatar {
   width: 36px;
   height: 36px;
-  background: #0ea5e9;
+  background: #696969;
   color: white;
   border-radius: 50%;
   display: grid;

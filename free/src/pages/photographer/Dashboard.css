@@ -30,13 +30,13 @@
 }
 
 .subscription-status.free {
-  background: #0ea5e9;
+  background: #808080;
   color: white;
 }
 
 .subscription-status button {
   background: white;
-  color: #0ea5e9;
+  color: #808080;
   border: none;
   padding: 8px 14px;
   border-radius: 8px;
@@ -100,7 +100,7 @@
 .link-btn {
   background: none;
   border: none;
-  color: #0ea5e9;
+  color: #808080;
   cursor: pointer;
   padding: 0;
   margin-top: 6px;

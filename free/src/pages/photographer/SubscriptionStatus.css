@@ -71,11 +71,11 @@
 
 /* RIGHT PRO CARD */
 .pro-card {
-  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  background: linear-gradient(135deg, #808080, #3B3B3B);
   color: white;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+  box-shadow: 0 20px 40px #3B3B3B;
 }
 
 .pro-header {
@@ -114,7 +114,7 @@
 
 .pro-btn {
   width: 100%;
-  background: #f97316;
+  background: #242424;
   border: none;
   color: white;
   padding: 12px;
@@ -141,7 +141,7 @@
 .meta-label {
   display: block;
   font-size: 12px;
-  color: #64748b;
+  color: #808080;
   margin-bottom: 4px;
 }
 

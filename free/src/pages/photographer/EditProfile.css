@@ -53,7 +53,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #0ea5e9;
+  background: #808080;
   color: white;
   display: grid;
   place-items: center;
@@ -81,7 +81,7 @@
 .edit-profile-page input:focus,
 .edit-profile-page textarea:focus {
   outline: none;
-  border-color: #0ea5e9;
+  border-color: #808080;
 }
 
 .edit-profile-page textarea {
@@ -101,7 +101,7 @@
 
 /* Buttons */
 .edit-profile-page .primary-btn {
-  background: #0ea5e9;
+  background: #808080;
   color: white;
   border: none;
   padding: 12px 18px;
@@ -111,7 +111,7 @@
 }
 
 .edit-profile-page .primary-btn:hover {
-  background: #0284c7;
+  background: #6c6d6d;
 }
 
 .edit-profile-page .secondary-btn {

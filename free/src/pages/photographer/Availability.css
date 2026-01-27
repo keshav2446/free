@@ -39,7 +39,7 @@
 .selected-slot {
   margin-top: 18px;
   background: #ecfeff;
-  border: 1px solid #67e8f9;
+  border: 1px solid #808080;
   padding: 14px 18px;
   border-radius: 12px;
   font-size: 15px;
@@ -50,7 +50,7 @@
 
 /* CONFIRM BUTTON */
 .confirm-btn {
-  background: #0ea5e9;
+  background: #808080;
   color: #ffffff;
   border: none;
   padding: 8px 16px;
@@ -60,7 +60,7 @@
 }
 
 .confirm-btn:hover {
-  background: #0284c7;
+  background: #969696;
 }
 
 
@@ -107,7 +107,7 @@
 
 .apply-btn {
   align-self: end;
-  background: #0ea5e9;
+  background: #808080;
   color: white;
   border: none;
   padding: 10px;
@@ -117,5 +117,5 @@
 }
 
 .apply-btn:hover {
-  background: #0284c7;
+  background: #808080;
 }
