@@ -119,21 +119,27 @@ import "./admin.css";
 const dummyPhotographers = [
   {
     _id: "1",
-    name: "Vishu Kumar",
+    name: "Vishu Verma",
     email: "vishu@gmail.com",
     city: "Lahore",
   },
   {
     _id: "2",
-    name: "Ayesha Khan",
-    email: "ayesha@gmail.com",
-    city: "Karachi",
+    name: "Vaibhav Gupta",
+    email: "vaibhavgupta@gmail.com",
+    city: "Delhi",
   },
   {
     _id: "3",
-    name: "Ali Raza",
-    email: "ali@gmail.com",
-    city: "Islamabad",
+    name: "Keshav Singh",
+    email: "keshavsingh@gmail.com",
+    city: "Moradabad",
+  },
+    {
+    _id: "4",
+    name: "Mika",
+    email: "mika@gmail.com",
+    city: "Rampur",
   },
 ];
 

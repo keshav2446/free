@@ -6,9 +6,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useNavigate } from "react-router-dom";
 import "./admin.css";
 
-/* MOCK ANALYTICS DATA (later API se aayega) */
+/* MOCK ANALYTICS DATA */
 const revenueData = [
   { month: "Aug", revenue: 4200 },
   { month: "Sep", revenue: 72000 },
@@ -18,6 +19,8 @@ const revenueData = [
 ];
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="admin-page">
       {/* PAGE HEADER */}
@@ -33,12 +36,6 @@ const AdminDashboard = () => {
           <p className="stat-value">1,500</p>
           <span className="stat-hint">+42 this month</span>
         </div>
-
-        {/* <div className="admin-stat-card">
-          <h3>Photographers</h3>
-          <p className="stat-value">342</p>
-          <span className="stat-hint">18 pending approval</span>
-        </div> */}
 
         <div className="admin-stat-card">
           <h3>Active Subscriptions</h3>
@@ -79,7 +76,10 @@ const AdminDashboard = () => {
           <p className="muted">
             Review and approve new photographer registrations.
           </p>
-          <button className="admin-btn primary">
+          <button
+            className="admin-btn primary"
+            onClick={() => navigate("/admin/photographers")}
+          >
             Review Applications
           </button>
         </div>
@@ -89,18 +89,24 @@ const AdminDashboard = () => {
           <p className="muted">
             Manage plans, override access, resolve billing issues.
           </p>
-          <button className="admin-btn">
+          <button
+            className="admin-btn"
+            onClick={() => navigate("/admin/subscriptions")}
+          >
             Manage Subscriptions
           </button>
         </div>
 
         <div className="admin-action-card">
-          <h3>User Accounts</h3>
+          <h3>Photographer Accounts</h3>
           <p className="muted">
-            Suspend, verify, or manage platform users.
+            Suspend, verify, or manage photographers.
           </p>
-          <button className="admin-btn">
-            View Users
+          <button
+            className="admin-btn"
+            onClick={() => navigate("/admin/users")}
+          >
+            View Photographers
           </button>
         </div>
       </div>

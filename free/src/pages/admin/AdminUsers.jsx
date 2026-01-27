@@ -28,9 +28,9 @@ const AdminUsers = () => {
 
           <tbody>
             <tr>
-              <td>Jane Doe</td>
-              <td>jane@example.com</td>
-              <td>New York</td>
+              <td>Vishu Verma</td>
+              <td>vishuverma@example.com</td>
+              <td>Lahore</td>
               <td>
                 <span className="status approved">Approved</span>
               </td>
@@ -46,9 +46,9 @@ const AdminUsers = () => {
             </tr>
 
             <tr>
-              <td>Alex Smith</td>
-              <td>alex@example.com</td>
-              <td>London</td>
+              <td>Keshav Singh</td>
+              <td>keshavsingh@example.com</td>
+              <td>Moradabad</td>
               <td>
                 <span className="status pending">Pending</span>
               </td>
@@ -64,8 +64,26 @@ const AdminUsers = () => {
             </tr>
 
             <tr>
-              <td>Rahul Verma</td>
-              <td>rahul@example.com</td>
+              <td>Mika</td>
+              <td>mika@example.com</td>
+              <td>Rampur</td>
+              <td>
+                <span className="status pending">Pending</span>
+              </td>
+              <td>
+                <span className="status muted">Inactive</span>
+              </td>
+              <td>02 Dec 2024</td>
+              <td>
+                <button className="admin-btn small success">
+                  Activate
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Vaibhav Gupta</td>
+              <td>vaibhavgupta@example.com</td>
               <td>Delhi</td>
               <td>
                 <span className="status approved">Approved</span>

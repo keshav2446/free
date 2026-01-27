@@ -49,7 +49,7 @@ const AdminSubscriptions = () => {
 
           <tbody>
             <tr>
-              <td>Jane Doe</td>
+              <td>Vishu Verma</td>
               <td>Pro</td>
               <td>
                 <span className="status active">Active</span>
@@ -65,7 +65,7 @@ const AdminSubscriptions = () => {
             </tr>
 
             <tr>
-              <td>Alex Smith</td>
+              <td>Keshav Singh</td>
               <td>Free</td>
               <td>
                 <span className="status muted">Inactive</span>
@@ -81,7 +81,23 @@ const AdminSubscriptions = () => {
             </tr>
 
             <tr>
-              <td>Rahul Verma</td>
+              <td>Mika</td>
+              <td>Free</td>
+              <td>
+                <span className="status muted">Inactive</span>
+              </td>
+              <td>—</td>
+              <td>—</td>
+              <td>₹0</td>
+              <td>
+                <button className="admin-btn small primary">
+                  Upgrade
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Vaibhav Gupta</td>
               <td>Pro</td>
               <td>
                 <span className="status warning">Expired</span>
