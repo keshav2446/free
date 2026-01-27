@@ -62,3 +62,60 @@
 .confirm-btn:hover {
   background: #0284c7;
 }
+
+
+/* 🔴 BOOKED SLOT */
+.fc-event.BOOKED {
+  background-color: #fecaca !important;
+  border-color: #dc2626 !important;
+  color: #7f1d1d !important;
+}
+
+/* 🟢 SELECTED SLOT */
+.fc-event.SELECTED {
+  background-color: #bbf7d0 !important;
+  border-color: #16a34a !important;
+  color: #14532d !important;
+}
+
+
+/* 🎛 FILTER PANEL */
+.filter-panel {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  margin-bottom: 18px;
+}
+
+.filter-panel label {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.filter-panel input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.apply-btn {
+  align-self: end;
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apply-btn:hover {
+  background: #0284c7;
+}

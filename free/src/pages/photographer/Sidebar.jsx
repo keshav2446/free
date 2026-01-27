@@ -16,13 +16,15 @@ const Sidebar = () => {
     <aside className="sidebar">
       {/* TOP */}
       <div>
-        <div className="sidebar-logo">📷 LensConnect</div>
+        {/* <div className="sidebar-logo">📷 LensConnect</div> */}
+
+        
 
         <nav className="sidebar-nav">
           <NavLink to="/photographer/dashboard">Dashboard</NavLink>
           <NavLink to="/photographer/profile">Profile</NavLink>
           <NavLink to="/photographer/portfolio">Portfolio</NavLink>
-          <NavLink to="/photographer/ai-availability">AI Availability</NavLink>
+          <NavLink to="/photographer/ai-availability">Availability</NavLink>
           <NavLink to="/photographer/subscription">Subscription</NavLink>
           
         </nav>

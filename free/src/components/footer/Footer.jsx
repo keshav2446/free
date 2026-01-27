@@ -12,10 +12,23 @@ const Footer = () => {
           </p>
 
           <div className="social-icons">
-            <span>🐦</span>
-            <span>📸</span>
-            <span>💼</span>
-          </div>
+  <a href="#" aria-label="Twitter">
+    <img src="/images/icons/twitter.png" alt="Twitter" />
+  </a>
+
+  <a href="#" aria-label="Threads">
+    <img src="/images/icons/threads.png" alt="Threads" />
+  </a>
+
+  <a href="#" aria-label="Pinterest">
+    <img src="/images/icons/pintrest.png" alt="Pinterest" />
+  </a>
+
+  <a href="#" aria-label="Instagram">
+    <img src="/images/icons/instagram.png" alt="Instagram" />
+  </a>
+</div>
+
         </div>
 
         {/* Platform */}

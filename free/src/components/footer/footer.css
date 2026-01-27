@@ -1,3 +1,6 @@
+/* =========================
+   FOOTER
+========================= */
 .footer {
   background: #f8fafc;
   padding: 70px 20px 30px;
@@ -12,6 +15,9 @@
   gap: 40px;
 }
 
+/* =========================
+   BRAND
+========================= */
 .footer-brand h3 {
   font-size: 1.4rem;
   font-weight: 700;
@@ -23,16 +29,52 @@
   font-size: 0.9rem;
   color: #475569;
   max-width: 260px;
+  line-height: 1.6;
 }
 
+/* =========================
+   SOCIAL ICONS
+========================= */
 .social-icons {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  font-size: 1.1rem;
-  cursor: pointer;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
 }
 
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  transition: background 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.social-icons a:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.social-icons img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons a:hover img {
+  opacity: 1;
+}
+
+/* =========================
+   FOOTER COLUMNS
+========================= */
 .footer-column h4 {
   font-size: 1rem;
   font-weight: 600;
@@ -46,12 +88,16 @@
   color: #475569;
   text-decoration: none;
   margin-bottom: 10px;
+  transition: color 0.2s ease;
 }
 
 .footer-column a:hover {
   color: #0ea5e9;
 }
 
+/* =========================
+   FOOTER BOTTOM
+========================= */
 .footer-bottom {
   text-align: center;
   margin-top: 50px;
@@ -61,7 +107,9 @@
   padding-top: 20px;
 }
 
-/* 📱 Responsive */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
@@ -79,5 +127,10 @@
 
   .social-icons {
     justify-content: center;
+  }
+
+  .footer-brand p {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
