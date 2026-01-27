@@ -5,20 +5,21 @@ const AdminUsers = () => {
     <div className="admin-page">
       {/* HEADER */}
       <div className="admin-header">
-        <h1>User Management</h1>
+        <h1>Photographer Management</h1>
         <p className="muted">
-          View, verify, or suspend platform users
+          Manage photographers, their status, and platform access
         </p>
       </div>
 
-      {/* USERS TABLE */}
-      <div className="admin-card">
+      {/* PHOTOGRAPHERS TABLE */}
+      <div className="admin-table-card">
         <table className="admin-table">
           <thead>
             <tr>
-              <th>User</th>
+              <th>Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>City</th>
+              <th>Verified</th>
               <th>Status</th>
               <th>Joined</th>
               <th>Actions</th>
@@ -29,27 +30,35 @@ const AdminUsers = () => {
             <tr>
               <td>Jane Doe</td>
               <td>jane@example.com</td>
-              <td>Photographer</td>
+              <td>New York</td>
+              <td>
+                <span className="status approved">Approved</span>
+              </td>
               <td>
                 <span className="status active">Active</span>
               </td>
               <td>12 Jan 2025</td>
               <td>
-                <button className="admin-btn small">Suspend</button>
+                <button className="admin-btn small danger">
+                  Suspend
+                </button>
               </td>
             </tr>
 
             <tr>
               <td>Alex Smith</td>
               <td>alex@example.com</td>
-              <td>User</td>
+              <td>London</td>
               <td>
-                <span className="status blocked">Blocked</span>
+                <span className="status pending">Pending</span>
+              </td>
+              <td>
+                <span className="status muted">Inactive</span>
               </td>
               <td>02 Dec 2024</td>
               <td>
-                <button className="admin-btn small danger">
-                  Reactivate
+                <button className="admin-btn small success">
+                  Activate
                 </button>
               </td>
             </tr>
@@ -57,13 +66,18 @@ const AdminUsers = () => {
             <tr>
               <td>Rahul Verma</td>
               <td>rahul@example.com</td>
-              <td>User</td>
+              <td>Delhi</td>
+              <td>
+                <span className="status approved">Approved</span>
+              </td>
               <td>
                 <span className="status active">Active</span>
               </td>
               <td>18 Jan 2025</td>
               <td>
-                <button className="admin-btn small">Suspend</button>
+                <button className="admin-btn small danger">
+                  Suspend
+                </button>
               </td>
             </tr>
           </tbody>

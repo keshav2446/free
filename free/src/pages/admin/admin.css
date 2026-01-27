@@ -228,3 +228,93 @@
   background: #ef4444;
   color: white;
 }
+
+
+/* .......... */
+
+/* =============================
+   ADMIN SETTINGS – IMPROVED UI
+============================= */
+
+/* PAGE SPACING */
+.admin-page {
+  padding: 40px;
+}
+
+/* SETTINGS CARD */
+.admin-card.settings-card {
+  max-width: 720px;
+  margin-top: 24px;
+}
+
+/* FORM LAYOUT */
+.admin-card.settings-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* LABELS */
+.admin-card.settings-card label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* INPUTS & SELECTS */
+.admin-card.settings-card input,
+.admin-card.settings-card select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.admin-card.settings-card input:focus,
+.admin-card.settings-card select:focus {
+  outline: none;
+  border-color: #696969;
+  box-shadow: 0 0 0 2px rgba(105,105,105,0.15);
+}
+
+/* FIELD GROUP */
+.admin-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* SAVE BUTTON */
+.admin-card.settings-card .admin-btn.primary {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+/* HEADER IMPROVEMENT */
+.admin-header h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.admin-header .muted {
+  max-width: 520px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 24px;
+  }
+
+  .admin-card.settings-card {
+    max-width: 100%;
+  }
+}
+
+
+/* .................. */
+

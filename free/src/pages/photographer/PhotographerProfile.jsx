@@ -23,13 +23,13 @@ const mockPortfolioData = {
     sellingEquipment: [
       {
         name: "Canon EOS 5D Mark IV",
-        price: "PKR 320,000",
+        price: "INR 320,000",
         condition: "Used - Excellent",
         description: "Well maintained, shutter count 45k",
       },
       {
         name: "Sigma 35mm f/1.4 Art",
-        price: "PKR 120,000",
+        price: "INR 120,000",
         condition: "Used - Good",
         description: "No fungus, clean glass",
       },

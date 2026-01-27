@@ -10,7 +10,7 @@ const AdminSettings = () => {
         </p>
       </div>
 
-      <div className="admin-card">
+      <div className="admin-card settings-card">
         <h3>General Settings</h3>
 
         <div className="form-group">
@@ -20,17 +20,17 @@ const AdminSettings = () => {
 
         <div className="form-group">
           <label>Default Subscription Plan</label>
-          <select>
-            <option>Free</option>
-            <option selected>Pro</option>
+          <select defaultValue="Pro">
+            <option value="Free">Free</option>
+            <option value="Pro">Pro</option>
           </select>
         </div>
 
         <div className="form-group">
           <label>Auto-Approve Photographers</label>
-          <select>
-            <option>No</option>
-            <option>Yes</option>
+          <select defaultValue="No">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </div>
 
