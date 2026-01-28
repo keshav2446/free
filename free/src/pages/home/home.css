@@ -21,10 +21,11 @@
   position: absolute;
   inset: 0;
   background: url("/images/hero.jpg") center / cover no-repeat;
-  filter: blur(4px);
+  filter: blur(3px) brightness(0.85);
   transform: scale(1.1);
   z-index: 1;
 }
+
 
 /* =========================
    DARK OVERLAY (STATIC)
@@ -35,12 +36,16 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(15,23,42,0.55) 0%,
-    rgba(255,255,255,0.2) 40%,
+    rgba(15, 23, 42, 0.7) 0%,
+    rgba(15, 23, 42, 0.5) 45%,
+    rgba(15, 23, 42, 0.25) 65%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.5) 92%,
     #ffffff 100%
   );
   z-index: 2;
 }
+
 
 
 
@@ -79,12 +84,18 @@
 }
 
 .hero-content h1 {
-  color: #1e293b; /* darker slate */
+  /* color: #1e293b; */
+  color: #e5e7eb;
   text-shadow: 0 3px 14px rgba(255,255,255,0.6);
 }
 
 .hero-content p {
-  color: #334155;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: #e5e7eb;
+  line-height: 1.6;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  /* color: #334155; */
 }
 
 

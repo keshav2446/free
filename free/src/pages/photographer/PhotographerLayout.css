@@ -1,8 +1,14 @@
 .photographer-layout {
   display: flex;
   min-height: 100vh;
-  background: #f8fafc; /* OFF WHITE */
+  /* background: #f8fafc;  */
 }
+.photographer-layout {
+  background: transparent;
+  color: var(--text);
+  min-height: 100vh;
+}
+
 
 .photographer-main {
   flex: 1;
