@@ -1,13 +1,14 @@
 .featured-section {
   padding: 80px 20px;
-  background: #f8fafc;
+  background: transparent; /* 🔥 IMPORTANT: body controls bg */
   text-align: center;
 }
 
+/* Heading */
 .featured-section h2 {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text);       /* ✅ FIX */
   margin-bottom: 48px;
 }
 
@@ -20,22 +21,24 @@
   gap: 24px;
 }
 
-/* Button */
+/* Button wrapper */
 .discover-btn {
   margin-top: 50px;
 }
 
+/* Button */
 .discover-btn button {
-  background: transparent;
-  border: 1px solid #cbd5f5;
+  background: var(--card);                /* ✅ FIX */
+  border: 1px solid var(--border);        /* ✅ FIX */
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 0.95rem;
   cursor: pointer;
+  color: var(--text);
   transition: all 0.25s ease;
 }
 
 .discover-btn button:hover {
-  background: #e0f2fe;
-  border-color: #808080;
+  background: var(--border);              /* ✅ FIX */
+  border-color: var(--primary);
 }
