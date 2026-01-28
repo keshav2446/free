@@ -1,12 +1,66 @@
+import { useEffect } from "react";
 import FeaturedPhotographers from "./FeaturedPhotographers";
 import "./home.css";
 import Footer from "../../components/footer/Footer";
 
 const Home = () => {
+  // useEffect(() => {
+  //   const overlay = document.querySelector(".fade-overlay");
+
+  //   const handleScroll = () => {
+  //     if (!overlay) return;
+
+  //     const scrollY = window.scrollY;
+  //     const heroHeight = window.innerHeight * 0.9;
+
+  //     let opacity = scrollY / heroHeight;
+  //     opacity = Math.min(opacity, 1);
+
+  //     overlay.style.background = `rgba(248, 250, 252, ${opacity})`;
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+  useEffect(() => {
+  const overlay = document.querySelector(".fade-overlay");
+  const hero = document.querySelector(".hero");
+
+  if (!overlay || !hero) return;
+
+  const handleScroll = () => {
+    const rect = hero.getBoundingClientRect();
+    const heroHeight = rect.height;
+
+    // progress from 0 → 1 while hero scrolls out
+    const progress = Math.min(
+      Math.max(-rect.top / heroHeight, 0),
+      1
+    );
+
+    // overlay.style.background = `rgba(248, 250, 252, ${progress})`;
+    overlay.style.background = `linear-gradient(
+  to bottom,
+  rgba(255, 255, 255, ${progress * 0.2}),
+  rgba(255, 255, 255, ${progress * 0.8})
+)`;
+
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // run once on load
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
   return (
     <>
       {/* HERO SECTION */}
       <section className="hero">
+        {/* White fade overlay (scroll controlled) */}
+        <div className="fade-overlay"></div>
+
         <div className="hero-content">
           <h1>
             Find Your Perfect <span>Photographer</span>
@@ -52,9 +106,9 @@ const Home = () => {
 
       {/* 🔥 ABOUT PLATFORM SECTION */}
       <section className="about-platform">
-       <h2>
-  Why Choose <span className="platform-text">Our Platform</span>?
-</h2>
+        <h2>
+          Why Choose <span className="platform-text">Our Platform</span>?
+        </h2>
 
         <p className="about-subtitle">
           Everything you need to discover, book, and trust professional

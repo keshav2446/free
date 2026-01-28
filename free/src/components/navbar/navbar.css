@@ -1,22 +1,72 @@
+/* =======================
+   NAVBAR BASE (SINGLE SOURCE)
+======================= */
 .navbar {
   width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
+
+  background: rgba(242, 242, 242, 0.9);
+
+  -webkit-backdrop-filter: blur(0px) saturate(180%);
+  backdrop-filter: blur(0px) saturate(180%);
+
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s ease,
+    backdrop-filter 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+
+/* =======================
+   NAV CONTAINER
+======================= */
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 14px 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  transition: padding 0.35s ease;
 }
 
-/* LOGO */
+/* =======================
+   SCROLLED STATE (APPLE)
+======================= */
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.75);
+
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  transform: scale(0.98);
+}
+
+
+.navbar.scrolled .nav-container {
+  padding: 8px 20px;
+}
+
+/* =======================
+   HIDE ON SCROLL
+======================= */
+.navbar.hide {
+  transform: translateY(-110%);
+}
+
+.navbar:not(.hide) {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* =======================
+   LOGO
+======================= */
 .logo {
   text-decoration: none;
   font-size: 1.2rem;
@@ -31,7 +81,9 @@
   color: #969696;
 }
 
-/* NAV LINKS */
+/* =======================
+   NAV LINKS
+======================= */
 .nav-links {
   display: flex;
   align-items: center;
@@ -41,24 +93,28 @@
 .nav-links a {
   text-decoration: none;
   font-size: 0.9rem;
-  color: #334155;
+  color: #696969;
   font-weight: 500;
 }
 
-/* AUTH BUTTONS */
+/* =======================
+   AUTH BUTTONS
+======================= */
 .login-btn {
   padding: 8px 14px;
 }
 
 .signup-btn {
-  background: #696969;
+  background: #ADADAD;
   color: #ffffff;
   padding: 8px 16px;
   border-radius: 8px;
   font-weight: 600;
 }
 
-/* USER AREA */
+/* =======================
+   USER AREA
+======================= */
 .user-area {
   display: flex;
   align-items: center;
@@ -78,7 +134,9 @@
   font-weight: 500;
 }
 
-/* BADGES */
+/* =======================
+   BADGES
+======================= */
 .badge {
   font-size: 0.65rem;
   font-weight: 700;
@@ -89,7 +147,6 @@
 }
 
 .badge.pro {
-  /* background: linear-gradient(135deg, #22c55e, #16a34a); */
   background: linear-gradient(135deg, #C4C4C4, #525252);
   color: white;
 }
@@ -99,7 +156,9 @@
   color: #475569;
 }
 
-/* AVATAR */
+/* =======================
+   AVATAR
+======================= */
 .avatar {
   width: 36px;
   height: 36px;
@@ -113,7 +172,9 @@
   cursor: pointer;
 }
 
-/* DROPDOWN */
+/* =======================
+   DROPDOWN
+======================= */
 .avatar-menu {
   position: absolute;
   top: 48px;
@@ -146,7 +207,9 @@
   padding-bottom: 6px;
 }
 
-/* HAMBURGER */
+/* =======================
+   HAMBURGER
+======================= */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -160,7 +223,9 @@
   background: #0f172a;
 }
 
-/* MOBILE */
+/* =======================
+   MOBILE
+======================= */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -182,4 +247,18 @@
   .nav-links.open {
     display: flex;
   }
+
+  /* prevent scale issues on mobile */
+  .navbar.scrolled {
+    transform: none;
+  }
 }
+
+/* =======================
+   SMOOTH SCROLL
+======================= */
+html {
+  scroll-behavior: smooth;
+}
+
+

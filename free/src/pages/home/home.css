@@ -2,15 +2,69 @@
    HERO SECTION
 ========================= */
 .hero {
+  position: relative;
   min-height: 90vh;
-  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px 16px;
+  overflow: hidden;
 }
 
+
+
+/* =========================
+   BACKGROUND IMAGE
+========================= */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/hero.jpg") center / cover no-repeat;
+  filter: blur(4px);
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* =========================
+   DARK OVERLAY (STATIC)
+========================= */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15,23,42,0.55) 0%,
+    rgba(255,255,255,0.2) 40%,
+    #ffffff 100%
+  );
+  z-index: 2;
+}
+
+
+
+
+/* =========================
+   WHITE FADE OVERLAY (SCROLL)
+========================= */
+.hero .fade-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  z-index: 3;
+  pointer-events: none;
+  
+}
+
+
+
+/* =========================
+   HERO CONTENT
+========================= */
 .hero-content {
+  position: relative;
+  z-index: 4;
   max-width: 900px;
   width: 100%;
   text-align: center;
@@ -19,34 +73,66 @@
 .hero-content h1 {
   font-size: 3rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #4f5561; /* deep slate */
   line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.8);
 }
 
+.hero-content h1 {
+  color: #1e293b; /* darker slate */
+  text-shadow: 0 3px 14px rgba(255,255,255,0.6);
+}
+
+.hero-content p {
+  color: #334155;
+}
+
+
 .hero-content h1 span {
-  color: #808080;
+  color: #334155;
 }
 
 .hero-content p {
   margin-top: 12px;
   font-size: 1.1rem;
-  color: #475569;
+  color: #334155;
   line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.7);
 }
+
+
+/* .hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #3B3B3B;
+  line-height: 1.2;
+}
+
+.hero-content h1 span {
+  color: #ADADAD;
+}
+
+.hero-content p {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  line-height: 1.6;
+} */
 
 /* =========================
    SEARCH BOX
 ========================= */
 .search-box {
   margin-top: 40px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
   border-radius: 14px;
   padding: 16px;
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
@@ -95,7 +181,7 @@
 ========================= */
 .search-btn {
   background: #808080;
-  color: white;
+  color: #ffffff;
   border: none;
   padding: 12px 22px;
   border-radius: 10px;
@@ -110,7 +196,7 @@
 .search-btn:hover {
   background: #969696;
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(110, 110, 107, 0.971);
+  box-shadow: 0 8px 18px rgba(110, 110, 107, 0.5);
 }
 
 .search-btn:active {
@@ -145,9 +231,12 @@
 }
 
 
+
+
 /* =============================
    ABOUT PLATFORM SECTION
 ============================= */
+
 
 .about-platform {
   padding: 80px 20px;
