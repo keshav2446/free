@@ -4,12 +4,31 @@
 
 .sidebar {
   width: 240px;
-  background: var(--card);              /* ✅ FIX */
+  background: var(--card);
   border-right: 1px solid var(--border);
   padding: 20px;
   display: flex;
   flex-direction: column;
   color: var(--text);
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+/* COLLAPSED STATE */
+.sidebar.closed {
+  width: 70px;
+  padding: 20px 10px;
+}
+
+/* =============================
+   TOGGLE BUTTON
+============================= */
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  margin-bottom: 16px;
 }
 
 /* =============================
@@ -28,7 +47,9 @@
 ============================= */
 
 .sidebar nav a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px 12px;
   margin-bottom: 4px;
   font-size: 14px;
@@ -49,6 +70,12 @@
   background: color-mix(in srgb, var(--primary) 20%, transparent);
   color: var(--text);
   font-weight: 600;
+}
+
+/* CENTER ICONS WHEN CLOSED */
+.sidebar.closed nav a {
+  justify-content: center;
+  padding: 12px 0;
 }
 
 /* =============================
@@ -105,6 +132,12 @@
   color: var(--muted-text);
 }
 
+/* HIDE USER INFO & CHEVRON WHEN COLLAPSED */
+.sidebar.closed .user-info,
+.sidebar.closed .chevron {
+  display: none;
+}
+
 /* =============================
    DROPDOWN
 ============================= */
@@ -114,7 +147,7 @@
   bottom: 56px;
   left: 0;
   width: 100%;
-  background: var(--card);              /* ✅ FIX */
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 8px;
@@ -171,4 +204,22 @@
 /* LOGOUT */
 .logout {
   color: var(--danger);
+}
+
+
+/* NAV ICONS */
+.sidebar nav a img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* TEXT */
+.sidebar nav a span {
+  white-space: nowrap;
+}
+
+/* CENTER ICON WHEN SIDEBAR CLOSED */
+.sidebar.closed nav a img {
+  margin: 0 auto;
 }

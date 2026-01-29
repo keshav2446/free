@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { State, City } from "country-state-city";
 import "./browseEquipment.css";
 
-const dummyEquipment = [
+const equipmentData = [
   {
     id: 1,
     name: "Canon EOS R5",
     price: "₹2,45,000",
     condition: "Like New",
     city: "Mumbai",
+    stateCode: "MH",
     seller: "Amit Sharma",
   },
   {
@@ -16,6 +18,7 @@ const dummyEquipment = [
     price: "₹1,25,000",
     condition: "Good",
     city: "Delhi",
+    stateCode: "DL",
     seller: "Rohit Verma",
   },
   {
@@ -24,16 +27,54 @@ const dummyEquipment = [
     price: "₹1,60,000",
     condition: "Excellent",
     city: "Bangalore",
+    stateCode: "KA",
     seller: "Neha Kapoor",
   },
 ];
 
 const BrowseEquipment = () => {
   const [search, setSearch] = useState("");
+  const [showFilter, setShowFilter] = useState(false);
 
-  const filteredEquipment = dummyEquipment.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  );
+  /* location data */
+  const [states] = useState(() => State.getStatesOfCountry("IN"));
+  const [cities, setCities] = useState([]);
+
+  /* dropdown control */
+  const [stateOpen, setStateOpen] = useState(false);
+  const [cityOpen, setCityOpen] = useState(false);
+
+  /* search inside dropdown */
+  const [stateSearch, setStateSearch] = useState("");
+  const [citySearch, setCitySearch] = useState("");
+
+  /* selected values */
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [condition, setCondition] = useState("");
+
+  const selectState = (state) => {
+    setSelectedState(state);
+    setSelectedCity(null);
+    setCities(City.getCitiesOfState("IN", state.isoCode));
+    setStateOpen(false);
+    setCityOpen(false);
+    setCitySearch("");
+  };
+
+  const selectCity = (city) => {
+    setSelectedCity(city);
+    setCityOpen(false);
+  };
+
+  const filteredEquipment = equipmentData.filter((item) => {
+    return (
+      item.name.toLowerCase().includes(search.toLowerCase()) &&
+      (!selectedState || item.stateCode === selectedState.isoCode) &&
+      (!selectedCity || item.city === selectedCity.name) &&
+      (!condition || item.condition === condition)
+    );
+  });
 
   return (
     <div className="browse-equipment-page">
@@ -41,12 +82,127 @@ const BrowseEquipment = () => {
         <h1>Browse Equipment</h1>
         <p>Camera gear listed by verified photographers</p>
 
-        <input
-          type="text"
-          placeholder="Search camera, lens, accessory..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="search-filter-row">
+          <input
+            type="text"
+            placeholder="Search camera, lens, accessory..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <button
+            className="filter-btn"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            Filters ⚙️
+          </button>
+        </div>
+
+        {showFilter && (
+          <div className="filter-panel">
+            {/* STATE */}
+            <div className="dropdown">
+              <div
+                className={`input-group ${stateOpen ? "open" : ""}`}
+                onClick={() => {
+                  setStateOpen(!stateOpen);
+                  setCityOpen(false);
+                }}
+              >
+                <input
+                  readOnly
+                  placeholder="Select State"
+                  value={selectedState?.name || ""}
+                />
+                <span className="dropdown-arrow">▾</span>
+              </div>
+
+              {stateOpen && (
+                <div className="dropdown-menu inside">
+                  <input
+                    className="dropdown-search"
+                    placeholder="Search state..."
+                    value={stateSearch}
+                    onChange={(e) => setStateSearch(e.target.value)}
+                  />
+
+                  <div className="dropdown-scroll">
+                    {states
+                      .filter((s) =>
+                        s.name
+                          .toLowerCase()
+                          .includes(stateSearch.toLowerCase())
+                      )
+                      .map((state) => (
+                        <div
+                          key={state.isoCode}
+                          className="dropdown-item"
+                          onClick={() => selectState(state)}
+                        >
+                          {state.name}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* CITY */}
+            <div className="dropdown">
+              <div
+                className={`input-group ${cityOpen ? "open" : ""}`}
+                onClick={() => selectedState && setCityOpen(!cityOpen)}
+              >
+                <input
+                  readOnly
+                  placeholder="Select City"
+                  value={selectedCity?.name || ""}
+                />
+                <span className="dropdown-arrow">▾</span>
+              </div>
+
+              {cityOpen && (
+                <div className="dropdown-menu inside">
+                  <input
+                    className="dropdown-search"
+                    placeholder="Search city..."
+                    value={citySearch}
+                    onChange={(e) => setCitySearch(e.target.value)}
+                  />
+
+                  <div className="dropdown-scroll">
+                    {cities
+                      .filter((c) =>
+                        c.name
+                          .toLowerCase()
+                          .includes(citySearch.toLowerCase())
+                      )
+                      .map((city) => (
+                        <div
+                          key={city.name}
+                          className="dropdown-item"
+                          onClick={() => selectCity(city)}
+                        >
+                          {city.name}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* CONDITION */}
+            <select
+              value={condition}
+              onChange={(e) => setCondition(e.target.value)}
+            >
+              <option value="">Condition</option>
+              <option value="Like New">Like New</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+            </select>
+          </div>
+        )}
       </div>
 
       <div className="equipment-grid">

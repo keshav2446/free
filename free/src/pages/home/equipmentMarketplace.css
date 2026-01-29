@@ -122,3 +122,12 @@
     font-size: 2.1rem;
   }
 }
+
+
+.marketplace-btn,
+.marketplace-btn:hover,
+.marketplace-btn:focus,
+.marketplace-btn:active {
+  color: #fff; /* text color fixed */
+  /* text-decoration: none; */
+}

@@ -5,7 +5,8 @@
 .portfolio-page {
   padding: 32px;
   max-width: 1200px;
-  background: transparent;   /* 🔥 body controls bg */
+  width: 100%;
+  background: transparent;
   color: var(--text);
 }
 
@@ -15,7 +16,7 @@
 
 .portfolio-card,
 .upload-card {
-  background: var(--card);           /* ✅ FIX */
+  background: var(--card);
   padding: 24px;
   border-radius: 14px;
   margin-top: 24px;
@@ -29,7 +30,7 @@
 
 .muted-text,
 .subtitle {
-  color: var(--muted-text);           /* ✅ FIX */
+  color: var(--muted-text);
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -47,7 +48,7 @@
 ============================= */
 
 .upload-dropzone {
-  border: 2px dashed var(--border);   /* ✅ FIX */
+  border: 2px dashed var(--border);
   border-radius: 12px;
   padding: 40px;
   text-align: center;
@@ -92,7 +93,7 @@
 
 .upload-btn,
 .upgrade-btn {
-  background: var(--primary);         /* ✅ FIX */
+  background: var(--primary);
   color: white;
   border: none;
   padding: 10px 16px;
@@ -171,7 +172,7 @@
 }
 
 .view-btn {
-  background: var(--card);            /* ✅ FIX */
+  background: var(--card);
   color: var(--text);
 }
 
@@ -205,7 +206,7 @@
 
 .skeleton {
   height: 180px;
-  background: var(--border);          /* ✅ FIX */
+  background: var(--border);
   border-radius: 12px;
 }
 
@@ -241,4 +242,41 @@
   font-size: 16px;
   padding: 6px 10px;
   border-radius: 999px;
+}
+
+/* =============================
+   MOBILE FIXES (FINAL)
+============================= */
+
+@media (max-width: 768px) {
+  .portfolio-page {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .video-input {
+    flex-direction: column;
+  }
+
+  .video-input button {
+    width: 100%;
+  }
+
+  /* Mobile has no hover → show actions */
+  .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      transparent
+    );
+    align-items: flex-end;
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item img {
+    height: 150px;
+  }
 }

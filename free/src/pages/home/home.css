@@ -215,6 +215,24 @@
   opacity: 1;
 }
 
+/* =========================
+   HERO INPUT VISIBILITY FIX
+========================= */
+
+.hero .input-group {
+  background: var(--card);
+}
+
+.hero .input-group input {
+  color: var(--text);
+}
+
+.hero .dropdown-arrow {
+  color: var(--muted-text);
+}
+
+
+
 
 /* =========================
    RESPONSIVE
@@ -290,3 +308,5 @@
 .platform-text {
   color: var(--muted-text);
 }
+
+

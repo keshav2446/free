@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 /* Public */
@@ -39,6 +40,17 @@ import DiscoverPhotographers from "./pages/home/DiscoverPhotographers";
 import BrowseEquipment from "./pages/marketplace/BrowseEquipment";
 
 function App() {
+  /* 🔒 Persist theme on refresh */
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, []);
+
   return (
     <Routes>
       {/* ================= PUBLIC (WITH NAVBAR) ================= */}
@@ -57,7 +69,7 @@ function App() {
           element={<PhotographerProfile />}
         />
 
-        {/* 🛒 EQUIPMENT MARKETPLACE (BROWSE ONLY) */}
+        {/* 🛒 EQUIPMENT MARKETPLACE */}
         <Route path="/marketplace" element={<BrowseEquipment />} />
       </Route>
 

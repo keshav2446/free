@@ -1,62 +1,88 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown, Menu } from "lucide-react";
 import "./Sidebar.css";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    // later: clear token
     navigate("/auth/login");
   };
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
       {/* TOP */}
       <div>
-        {/* <div className="sidebar-logo">📷 LensConnect</div> */}
-
-        
+        {/* TOGGLE BUTTON */}
+        <button
+          className="sidebar-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <Menu size={20} />
+        </button>
 
         <nav className="sidebar-nav">
-          <NavLink to="/photographer/dashboard">Dashboard</NavLink>
-          <NavLink to="/photographer/profile">Profile</NavLink>
-          <NavLink to="/photographer/portfolio">Portfolio</NavLink>
-          <NavLink to="/photographer/ai-availability">Availability</NavLink>
-          <NavLink to="/photographer/subscription">Subscription</NavLink>
-          
+          <NavLink to="/photographer/dashboard">
+            <img src="/images/icons/dashboard.png" alt="Dashboard" />
+            {sidebarOpen && <span>Dashboard</span>}
+          </NavLink>
+
+          <NavLink to="/photographer/profile">
+            <img src="/images/icons/user.png" alt="Profile" />
+            {sidebarOpen && <span>Profile</span>}
+          </NavLink>
+
+          <NavLink to="/photographer/portfolio">
+            <img src="/images/icons/portfolio.png" alt="Portfolio" />
+            {sidebarOpen && <span>Portfolio</span>}
+          </NavLink>
+
+          <NavLink to="/photographer/ai-availability">
+            <img src="/images/icons/google.png" alt="Availability" />
+            {sidebarOpen && <span>Availability</span>}
+          </NavLink>
+
+          <NavLink to="/photographer/subscription">
+            <img src="/images/icons/subscription.png" alt="Subscription" />
+            {sidebarOpen && <span>Subscription</span>}
+          </NavLink>
         </nav>
       </div>
 
       {/* USER SECTION */}
       <div className="sidebar-user-wrapper">
         <div
-          className={`sidebar-user ${open ? "active" : ""}`}
-          onClick={() => setOpen(!open)}
+          className="sidebar-user"
+          onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           <div className="avatar">N</div>
 
-          <div className="user-info">
-            <strong>Jane Doe</strong>
-            <span>jane.doe@example.com</span>
-          </div>
+          {/* {sidebarOpen && (
+            <div className="user-info">
+              <strong>Jane Doe</strong>
+              <span>jane.doe@example.com</span>
+            </div>
+          )} */}
 
-          <div className="chevron">
-            {open ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </div>
+          {sidebarOpen && (
+            <div className="chevron">
+              {dropdownOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </div>
+          )}
         </div>
 
-        {open && (
+        {dropdownOpen && sidebarOpen && (
           <div className="sidebar-dropdown">
             <p className="dropdown-title">My Account</p>
 
-            <NavLink to="/photographer/profile">👤 Profile</NavLink>
-            <NavLink to="/photographer/settings">⚙️ Settings</NavLink>
+            <NavLink to="/photographer/profile">Profile</NavLink>
+            <NavLink to="/photographer/settings">Settings</NavLink>
 
             <button className="logout" onClick={logoutHandler}>
-              🚪 Log out
+              Log out
             </button>
           </div>
         )}
