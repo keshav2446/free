@@ -10,8 +10,8 @@
   --card: #f6f6f6;
   --border: #e0e0e0;
 
-  --primary: #6c5ce7;
-  --primary-hover: #5848d6;
+  --primary: #696969;
+  --primary-hover: #3B3B3B;
 
   --danger: #e74c3c;
 }
@@ -25,8 +25,8 @@ body.dark {
   --card: #1e1e1e;
   --border: #2a2a2a;
 
-  --primary: #a29bfe;
-  --primary-hover: #8e8bf4;
+  --primary: #969696;
+  --primary-hover: #696969;
 
   --danger: #ff6b6b;
 }
