@@ -1,5 +1,5 @@
 /* =======================
-   NAVBAR BASE (SINGLE SOURCE)
+   NAVBAR BASE
 ======================= */
 .navbar {
   width: 100%;
@@ -19,12 +19,13 @@
 }
 
 /* =======================
-   NAV CONTAINER
+   NAV CONTAINER (FULL WIDTH)
 ======================= */
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 14px 32px;
 
   display: flex;
   align-items: center;
@@ -34,7 +35,7 @@
 }
 
 /* =======================
-   SCROLLED STATE (GLASS)
+   SCROLLED STATE
 ======================= */
 .navbar.scrolled {
   background: color-mix(in srgb, var(--bg) 75%, transparent);
@@ -45,7 +46,7 @@
 }
 
 .navbar.scrolled .nav-container {
-  padding: 8px 20px;
+  padding: 8px 32px;
 }
 
 /* =======================
@@ -60,7 +61,7 @@
 }
 
 /* =======================
-   LOGO
+   LOGO (LEFT CORNER)
 ======================= */
 .logo {
   text-decoration: none;
@@ -77,9 +78,10 @@
 }
 
 /* =======================
-   NAV LINKS
+   NAV LINKS (RIGHT SIDE)
 ======================= */
 .nav-links {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 22px;
@@ -106,14 +108,14 @@
 
 .signup-btn {
   background: var(--primary);
-  color: #ffffff;
+  color: #fff;
   padding: 8px 16px;
   border-radius: 8px;
   font-weight: 600;
 }
 
 /* =======================
-   USER AREA
+   USER AREA (RIGHT CORNER)
 ======================= */
 .user-area {
   display: flex;
@@ -148,7 +150,7 @@
 
 .badge.pro {
   background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-  color: white;
+  color: #fff;
 }
 
 .badge.free {
@@ -163,7 +165,7 @@
   width: 36px;
   height: 36px;
   background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-  color: white;
+  color: #fff;
   font-weight: 700;
   border-radius: 50%;
   display: flex;
@@ -210,7 +212,6 @@
   font-weight: 600;
   border-bottom: 1px solid var(--border);
   padding-bottom: 6px;
-  color: var(--text);
 }
 
 /* =======================

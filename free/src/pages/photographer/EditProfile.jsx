@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./EditProfile.css";
 
 const EditProfile = () => {
@@ -12,6 +12,10 @@ const EditProfile = () => {
     equipment: "Canon EOS R5, RF 24-70mm f/2.8",
   });
 
+  // 🔥 PROFILE PHOTO (FRONTEND ONLY)
+  const [profilePhoto, setProfilePhoto] = useState(null);
+  const fileInputRef = useRef(null);
+
   // 🔥 SELLING EQUIPMENT STATE
   const [sellingEquipment, setSellingEquipment] = useState([
     { name: "", price: "", condition: "", description: "" },
@@ -19,6 +23,18 @@ const EditProfile = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // 📸 PHOTO HANDLERS
+  const handlePhotoClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePhoto(file);
+    }
   };
 
   const handleSellingChange = (index, field, value) => {
@@ -41,13 +57,14 @@ const EditProfile = () => {
   const handleSave = () => {
     const payload = {
       ...formData,
+      photo: profilePhoto, // 🔥 backend-ready
       sellingEquipment: sellingEquipment.filter(
         (item) => item.name && item.price
       ),
     };
 
     console.log("SAVE PROFILE DATA 👉", payload);
-    alert("Profile & selling items saved (check console)");
+    alert("Profile data logged in console (frontend only)");
   };
 
   return (
@@ -61,8 +78,29 @@ const EditProfile = () => {
           <p className="muted">Update your personal details</p>
 
           <div className="avatar-row">
-            <div className="avatar-lg">N</div>
-            <button className="secondary-btn">Change Photo</button>
+            <div className="avatar-lg">
+              {profilePhoto ? (
+                <img
+                  src={URL.createObjectURL(profilePhoto)}
+                  alt="Profile"
+                  className="avatar-img"
+                />
+              ) : (
+                "N"
+              )}
+            </div>
+
+            <button className="secondary-btn" onClick={handlePhotoClick}>
+              Change Photo
+            </button>
+
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handlePhotoChange}
+            />
           </div>
 
           <label>Full Name</label>
@@ -201,7 +239,6 @@ const EditProfile = () => {
             + Add Another Item
           </button>
 
-          {/* OPTIONAL EXTRA SAVE (UX CLARITY) */}
           <button
             className="primary-btn full"
             style={{ marginTop: "12px" }}

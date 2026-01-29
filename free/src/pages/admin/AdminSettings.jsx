@@ -30,7 +30,7 @@ const AdminSettings = () => {
         <h3>Appearance</h3>
 
         <p className="muted">
-          Control how the admin panel looks for all admins
+          Control how the admin panel
         </p>
 
         <button

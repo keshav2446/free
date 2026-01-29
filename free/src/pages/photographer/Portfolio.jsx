@@ -3,7 +3,7 @@ import "./Portfolio.css";
 
 /* ============================
    YOUTUBE THUMBNAIL EXTRACTOR
-   ============================ */
+============================ */
 const getYoutubeThumbnail = (url) => {
   if (!url) return null;
 
@@ -25,14 +25,18 @@ const getYoutubeThumbnail = (url) => {
     if (url.includes("youtube.com/shorts")) {
       videoId = url.split("shorts/")[1]?.split("?")[0];
     }
-  } catch (e) {
+  } catch {
     return null;
   }
 
+  // ✅ mqdefault is more reliable than hqdefault
   return videoId
-    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+    ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
     : null;
 };
+
+const FALLBACK_THUMB =
+  "https://cdn-icons-png.flaticon.com/512/1179/1179120.png";
 
 const Portfolio = () => {
   const fileInputRef = useRef(null);
@@ -55,20 +59,18 @@ const Portfolio = () => {
   };
 
   /* ============================
-     ADD VIDEO (FIXED)
-     ============================ */
+     ADD VIDEO
+  ============================ */
   const addVideo = () => {
     if (!videoLink.trim()) return;
 
-    const ytThumbnail = getYoutubeThumbnail(videoLink);
+    const thumbnail = getYoutubeThumbnail(videoLink) || FALLBACK_THUMB;
 
     setVideos((prev) => [
       ...prev,
       {
         url: videoLink,
-        thumbnail:
-          ytThumbnail ||
-          "https://cdn-icons-png.flaticon.com/512/1179/1179120.png",
+        thumbnail,
       },
     ]);
 
@@ -76,7 +78,7 @@ const Portfolio = () => {
   };
 
   const deleteVideo = (index) => {
-    setVideos(videos.filter((_, i) => i !== index));
+    setVideos((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -146,7 +148,14 @@ const Portfolio = () => {
           <div className="gallery-grid">
             {videos.map((vid, index) => (
               <div className="gallery-item" key={index}>
-                <img src={vid.thumbnail} alt="video thumbnail" />
+                <img
+                  src={vid.thumbnail}
+                  alt="video thumbnail"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.src = FALLBACK_THUMB;
+                  }}
+                />
 
                 <div className="video-badge">▶</div>
 
