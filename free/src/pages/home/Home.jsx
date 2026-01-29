@@ -140,6 +140,41 @@ const Home = () => {
         </div>
       </section>
 
+      {/* 🔥 ABOUT PLATFORM SECTION */}
+      <section className="about-platform">
+        <h2>
+          Why Choose <span className="platform-text">Our Platform</span>?
+        </h2>
+
+        <p className="about-subtitle">
+          Everything you need to discover, book, and trust professional
+          photographers.
+        </p>
+
+        <div className="about-features">
+          <div className="about-card">
+            <h4>📸 Verified Photographers</h4>
+            <p>
+              Browse real portfolios, reviews, and experience before booking.
+            </p>
+          </div>
+
+          <div className="about-card">
+            <h4>📅 Easy Booking</h4>
+            <p>
+              Check availability and contact photographers instantly.
+            </p>
+          </div>
+
+          <div className="about-card">
+            <h4>🛒 Equipment Marketplace</h4>
+            <p>
+              Buy and sell camera gear directly from trusted professionals.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* <FeaturedPhotographers /> */}
 
          <FeaturedPhotographers
