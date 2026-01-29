@@ -7,8 +7,7 @@
   top: 0;
   z-index: 1000;
 
-  background: rgba(242, 242, 242, 0.9);
-
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   -webkit-backdrop-filter: blur(0px) saturate(180%);
   backdrop-filter: blur(0px) saturate(180%);
 
@@ -18,7 +17,6 @@
     backdrop-filter 0.35s ease,
     box-shadow 0.35s ease;
 }
-
 
 /* =======================
    NAV CONTAINER
@@ -36,18 +34,15 @@
 }
 
 /* =======================
-   SCROLLED STATE (APPLE)
+   SCROLLED STATE (GLASS)
 ======================= */
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.75);
-
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
   backdrop-filter: blur(14px) saturate(180%);
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
   transform: scale(0.98);
 }
-
 
 .navbar.scrolled .nav-container {
   padding: 8px 20px;
@@ -61,7 +56,7 @@
 }
 
 .navbar:not(.hide) {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* =======================
@@ -71,14 +66,14 @@
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .logo span {
-  color: #969696;
+  color: var(--muted-text);
 }
 
 /* =======================
@@ -93,8 +88,12 @@
 .nav-links a {
   text-decoration: none;
   font-size: 0.9rem;
-  color: #696969;
+  color: var(--muted-text);
   font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--text);
 }
 
 /* =======================
@@ -102,10 +101,11 @@
 ======================= */
 .login-btn {
   padding: 8px 14px;
+  color: var(--text);
 }
 
 .signup-btn {
-  background: #ADADAD;
+  background: var(--primary);
   color: #ffffff;
   padding: 8px 16px;
   border-radius: 8px;
@@ -130,7 +130,7 @@
 
 .user-email {
   font-size: 0.8rem;
-  color: #334155;
+  color: var(--muted-text);
   font-weight: 500;
 }
 
@@ -147,13 +147,13 @@
 }
 
 .badge.pro {
-  background: linear-gradient(135deg, #C4C4C4, #525252);
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
   color: white;
 }
 
 .badge.free {
-  background: #e5e7eb;
-  color: #475569;
+  background: var(--card);
+  color: var(--muted-text);
 }
 
 /* =======================
@@ -162,7 +162,7 @@
 .avatar {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #808080, #3B3B3B);
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   color: white;
   font-weight: 700;
   border-radius: 50%;
@@ -179,10 +179,10 @@
   position: absolute;
   top: 48px;
   right: 0;
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   padding: 10px;
   min-width: 180px;
   display: flex;
@@ -198,13 +198,19 @@
   text-align: left;
   cursor: pointer;
   font-size: 0.9rem;
-  color: #334155;
+  color: var(--text);
+}
+
+.avatar-menu a:hover,
+.avatar-menu button:hover {
+  color: var(--primary);
 }
 
 .avatar-name {
   font-weight: 600;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border);
   padding-bottom: 6px;
+  color: var(--text);
 }
 
 /* =======================
@@ -220,7 +226,7 @@
 .hamburger span {
   width: 22px;
   height: 2px;
-  background: #0f172a;
+  background: var(--text);
 }
 
 /* =======================
@@ -236,11 +242,11 @@
     top: 64px;
     left: 0;
     width: 100%;
-    background: #ffffff;
+    background: var(--bg);
     flex-direction: column;
     padding: 20px;
     gap: 16px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border);
     display: none;
   }
 
@@ -248,7 +254,6 @@
     display: flex;
   }
 
-  /* prevent scale issues on mobile */
   .navbar.scrolled {
     transform: none;
   }
@@ -260,5 +265,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-

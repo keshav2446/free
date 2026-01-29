@@ -1,15 +1,48 @@
+import { useEffect, useState } from "react";
 import "./admin.css";
 
 const AdminSettings = () => {
+  // 🌙 GLOBAL THEME STATE
+  const [darkMode, setDarkMode] = useState(
+    document.body.classList.contains("dark")
+  );
+
+  // 🌙 APPLY THEME
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
   return (
     <div className="admin-page">
       <div className="admin-header">
         <h1>Platform Settings</h1>
-        <p className="muted">
-          Manage global platform configurations
-        </p>
+        <p className="muted">Manage global platform configurations</p>
       </div>
 
+      {/* 🌙 THEME TOGGLE CARD */}
+      <div className="admin-card settings-card">
+        <h3>Appearance</h3>
+
+        <p className="muted">
+          Control how the admin panel looks for all admins
+        </p>
+
+        <button
+          className="admin-btn primary"
+          style={{ marginTop: "12px" }}
+          onClick={() => setDarkMode(!darkMode)}
+        >
+          {darkMode ? "☀ Switch to Light Mode" : "🌙 Switch to Dark Mode"}
+        </button>
+      </div>
+
+      {/* ⚙️ GENERAL SETTINGS */}
       <div className="admin-card settings-card">
         <h3>General Settings</h3>
 
