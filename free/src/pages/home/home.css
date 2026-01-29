@@ -81,6 +81,7 @@
 .search-box {
   margin-top: 40px;
   background: color-mix(in srgb, var(--card) 85%, transparent);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 14px;
   padding: 16px;
@@ -153,6 +154,67 @@
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
 }
+
+/* =========================
+   DROPDOWN
+========================= */
+.dropdown {
+  position: relative;
+  flex: 1;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 8px;
+  z-index: 10;
+  border: 1px solid var(--border);
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.dropdown-item {
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* =========================
+   DROPDOWN ARROW
+========================= */
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.input-group.open .dropdown-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
 
 /* =========================
    RESPONSIVE
