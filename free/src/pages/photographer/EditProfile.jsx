@@ -12,41 +12,50 @@ const EditProfile = () => {
     equipment: "Canon EOS R5, RF 24-70mm f/2.8",
   });
 
-  // 🔥 PROFILE PHOTO (FRONTEND ONLY)
+  /* PROFILE PHOTO */
   const [profilePhoto, setProfilePhoto] = useState(null);
   const fileInputRef = useRef(null);
 
-  // 🔥 SELLING EQUIPMENT STATE
+  /* 🔥 SELLING EQUIPMENT (WITH IMAGES) */
   const [sellingEquipment, setSellingEquipment] = useState([
-    { name: "", price: "", condition: "", description: "" },
+    {
+      name: "",
+      price: "",
+      condition: "",
+      description: "",
+      images: [],
+    },
   ]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 📸 PHOTO HANDLERS
-  const handlePhotoClick = () => {
-    fileInputRef.current.click();
-  };
+  const handlePhotoClick = () => fileInputRef.current.click();
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setProfilePhoto(file);
-    }
+    if (file) setProfilePhoto(file);
   };
 
+  /* SELLING ITEM CHANGE */
   const handleSellingChange = (index, field, value) => {
     const updated = [...sellingEquipment];
     updated[index][field] = value;
     setSellingEquipment(updated);
   };
 
+  /* 🔥 IMAGE UPLOAD */
+  const handleSellingImages = (index, files) => {
+    const updated = [...sellingEquipment];
+    updated[index].images = [...files];
+    setSellingEquipment(updated);
+  };
+
   const addSellingItem = () => {
     setSellingEquipment([
       ...sellingEquipment,
-      { name: "", price: "", condition: "", description: "" },
+      { name: "", price: "", condition: "", description: "", images: [] },
     ]);
   };
 
@@ -57,7 +66,7 @@ const EditProfile = () => {
   const handleSave = () => {
     const payload = {
       ...formData,
-      photo: profilePhoto, // 🔥 backend-ready
+      photo: profilePhoto,
       sellingEquipment: sellingEquipment.filter(
         (item) => item.name && item.price
       ),
@@ -72,10 +81,9 @@ const EditProfile = () => {
       <h1>Edit Profile</h1>
 
       <div className="profile-grid">
-        {/* LEFT */}
+        {/* PERSONAL */}
         <div className="profile-card">
           <h3>Personal Information</h3>
-          <p className="muted">Update your personal details</p>
 
           <div className="avatar-row">
             <div className="avatar-lg">
@@ -98,7 +106,7 @@ const EditProfile = () => {
               type="file"
               accept="image/*"
               ref={fileInputRef}
-              style={{ display: "none" }}
+              hidden
               onChange={handlePhotoChange}
             />
           </div>
@@ -110,7 +118,7 @@ const EditProfile = () => {
           <input value={formData.email} disabled />
         </div>
 
-        {/* RIGHT */}
+        {/* ACTION */}
         <div className="profile-card">
           <h3>Actions</h3>
           <button className="primary-btn full" onClick={handleSave}>
@@ -121,7 +129,6 @@ const EditProfile = () => {
         {/* PROFESSIONAL */}
         <div className="profile-card wide">
           <h3>Professional Details</h3>
-          <p className="muted">Showcase your expertise</p>
 
           <label>Bio</label>
           <textarea
@@ -132,23 +139,18 @@ const EditProfile = () => {
           />
 
           <div className="two-col">
-            <div>
-              <label>Experience (Years)</label>
-              <input
-                name="experience"
-                value={formData.experience}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div>
-              <label>City</label>
-              <input
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-              />
-            </div>
+            <input
+              name="experience"
+              value={formData.experience}
+              onChange={handleChange}
+              placeholder="Experience (Years)"
+            />
+            <input
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              placeholder="City"
+            />
           </div>
 
           <label>Photography Types</label>
@@ -157,7 +159,6 @@ const EditProfile = () => {
             value={formData.types}
             onChange={handleChange}
           />
-          <small>Separate with commas</small>
 
           <label>Equipment</label>
           <textarea
@@ -171,56 +172,66 @@ const EditProfile = () => {
         {/* 🔥 SELLING EQUIPMENT */}
         <div className="profile-card wide">
           <h3>Selling Equipment</h3>
-          <p className="muted">
-            Fill details below and click <strong>Save Changes</strong> to add
-            items to your public profile
-          </p>
 
           {sellingEquipment.map((item, i) => (
             <div key={i} className="selling-form">
               <div className="two-col">
-                <div>
-                  <label>Item Name</label>
-                  <input
-                    value={item.name}
-                    onChange={(e) =>
-                      handleSellingChange(i, "name", e.target.value)
-                    }
-                  />
-                </div>
-
-                <div>
-                  <label>Price</label>
-                  <input
-                    value={item.price}
-                    onChange={(e) =>
-                      handleSellingChange(i, "price", e.target.value)
-                    }
-                  />
-                </div>
+                <input
+                  placeholder="Item Name"
+                  value={item.name}
+                  onChange={(e) =>
+                    handleSellingChange(i, "name", e.target.value)
+                  }
+                />
+                <input
+                  placeholder="Price"
+                  value={item.price}
+                  onChange={(e) =>
+                    handleSellingChange(i, "price", e.target.value)
+                  }
+                />
               </div>
 
               <div className="two-col">
-                <div>
-                  <label>Condition</label>
-                  <input
-                    value={item.condition}
-                    onChange={(e) =>
-                      handleSellingChange(i, "condition", e.target.value)
-                    }
-                  />
-                </div>
-
-                <div>
-                  <label>Description</label>
-                  <input
-                    value={item.description}
-                    onChange={(e) =>
-                      handleSellingChange(i, "description", e.target.value)
-                    }
-                  />
-                </div>
+                <input
+                  placeholder="Condition"
+                  value={item.condition}
+                  onChange={(e) =>
+                    handleSellingChange(i, "condition", e.target.value)
+                  }
+                />
+                <input
+                  placeholder="Description"
+                  value={item.description}
+                  onChange={(e) =>
+                    handleSellingChange(i, "description", e.target.value)
+                  }
+                />
               </div>
+
+              {/* 🔥 IMAGE UPLOAD */}
+              <label>Equipment Images</label>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) =>
+                  handleSellingImages(i, e.target.files)
+                }
+              />
+
+              {/* PREVIEW */}
+              {item.images.length > 0 && (
+                <div className="image-preview-row">
+                  {Array.from(item.images).map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={URL.createObjectURL(img)}
+                      alt="preview"
+                    />
+                  ))}
+                </div>
+              )}
 
               {sellingEquipment.length > 1 && (
                 <button

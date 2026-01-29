@@ -77,7 +77,7 @@
   place-items: center;
   font-size: 22px;
   font-weight: 700;
-  overflow: hidden; /* 🔥 IMPORTANT for image */
+  overflow: hidden;
 }
 
 .edit-profile-page .avatar-img {
@@ -108,6 +108,7 @@
   font-size: 14px;
   background: var(--card);
   color: var(--text);
+  transition: border-color 0.2s ease;
 }
 
 .edit-profile-page input:focus,
@@ -146,6 +147,7 @@
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.25s ease;
 }
 
 .edit-profile-page .primary-btn:hover {
@@ -159,10 +161,12 @@
   border-radius: 8px;
   cursor: pointer;
   color: var(--text);
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .edit-profile-page .secondary-btn:hover {
-  background: var(--border);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border-color: var(--primary);
 }
 
 .edit-profile-page .full {
@@ -234,6 +238,30 @@
   cursor: pointer;
   margin-top: 10px;
   font-size: 13px;
+  transition: background 0.25s ease;
+}
+
+.edit-profile-page .danger-btn:hover {
+  background: color-mix(in srgb, var(--danger) 25%, transparent);
+}
+
+/* =============================
+   IMAGE PREVIEW
+============================= */
+
+.image-preview-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.image-preview-row img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border);
 }
 
 /* =============================

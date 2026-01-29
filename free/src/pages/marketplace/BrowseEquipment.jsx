@@ -2,6 +2,7 @@ import { useState } from "react";
 import { State, City } from "country-state-city";
 import "./browseEquipment.css";
 
+/* 🔥 MULTIPLE IMAGES PER ITEM */
 const equipmentData = [
   {
     id: 1,
@@ -11,6 +12,11 @@ const equipmentData = [
     city: "Mumbai",
     stateCode: "MH",
     seller: "Amit Sharma",
+    images: [
+      "https://images.unsplash.com/photo-1519183071298-a2962be96cda?w=800",
+      "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800",
+    ],
   },
   {
     id: 2,
@@ -20,6 +26,10 @@ const equipmentData = [
     city: "Delhi",
     stateCode: "DL",
     seller: "Rohit Verma",
+    images: [
+      "https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=800",
+      "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
+    ],
   },
   {
     id: 3,
@@ -29,26 +39,81 @@ const equipmentData = [
     city: "Bangalore",
     stateCode: "KA",
     seller: "Neha Kapoor",
+    images: [
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800",
+      "https://images.unsplash.com/photo-1519183071298-a2962be96cda?w=800",
+    ],
   },
 ];
+
+/* 🔥 CARD WITH SLIDER */
+const EquipmentCard = ({ item }) => {
+  const [index, setIndex] = useState(0);
+
+  const prev = () =>
+    setIndex((i) => (i === 0 ? item.images.length - 1 : i - 1));
+
+  const next = () =>
+    setIndex((i) => (i === item.images.length - 1 ? 0 : i + 1));
+
+  return (
+    <div className="equipment-card">
+      <div className="equipment-image">
+        <img src={item.images[index]} alt={item.name} />
+
+        {item.images.length > 1 && (
+          <>
+            <button className="slide-btn prev" onClick={prev}>
+              ‹
+            </button>
+            <button className="slide-btn next" onClick={next}>
+              ›
+            </button>
+
+            <div className="slider-dots">
+              {item.images.map((_, i) => (
+                <span
+                  key={i}
+                  className={i === index ? "active" : ""}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      <div className="equipment-body">
+        <h3>{item.name}</h3>
+
+        <div className="equipment-meta">
+          <span>📍 {item.city}</span>
+          <span>{item.condition}</span>
+        </div>
+
+        <div className="equipment-footer">
+          <span className="price">{item.price}</span>
+          <button className="contact-btn">Contact Seller</button>
+        </div>
+
+        <p className="seller">Seller: {item.seller}</p>
+      </div>
+    </div>
+  );
+};
 
 const BrowseEquipment = () => {
   const [search, setSearch] = useState("");
   const [showFilter, setShowFilter] = useState(false);
 
-  /* location data */
   const [states] = useState(() => State.getStatesOfCountry("IN"));
   const [cities, setCities] = useState([]);
 
-  /* dropdown control */
   const [stateOpen, setStateOpen] = useState(false);
   const [cityOpen, setCityOpen] = useState(false);
 
-  /* search inside dropdown */
   const [stateSearch, setStateSearch] = useState("");
   const [citySearch, setCitySearch] = useState("");
 
-  /* selected values */
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [condition, setCondition] = useState("");
@@ -59,7 +124,6 @@ const BrowseEquipment = () => {
     setCities(City.getCitiesOfState("IN", state.isoCode));
     setStateOpen(false);
     setCityOpen(false);
-    setCitySearch("");
   };
 
   const selectCity = (city) => {
@@ -103,7 +167,7 @@ const BrowseEquipment = () => {
             {/* STATE */}
             <div className="dropdown">
               <div
-                className={`input-group ${stateOpen ? "open" : ""}`}
+                className="input-group"
                 onClick={() => {
                   setStateOpen(!stateOpen);
                   setCityOpen(false);
@@ -114,7 +178,7 @@ const BrowseEquipment = () => {
                   placeholder="Select State"
                   value={selectedState?.name || ""}
                 />
-                <span className="dropdown-arrow">▾</span>
+                <span>▾</span>
               </div>
 
               {stateOpen && (
@@ -150,7 +214,7 @@ const BrowseEquipment = () => {
             {/* CITY */}
             <div className="dropdown">
               <div
-                className={`input-group ${cityOpen ? "open" : ""}`}
+                className="input-group"
                 onClick={() => selectedState && setCityOpen(!cityOpen)}
               >
                 <input
@@ -158,7 +222,7 @@ const BrowseEquipment = () => {
                   placeholder="Select City"
                   value={selectedCity?.name || ""}
                 />
-                <span className="dropdown-arrow">▾</span>
+                <span>▾</span>
               </div>
 
               {cityOpen && (
@@ -207,21 +271,7 @@ const BrowseEquipment = () => {
 
       <div className="equipment-grid">
         {filteredEquipment.map((item) => (
-          <div key={item.id} className="equipment-card">
-            <h3>{item.name}</h3>
-
-            <div className="equipment-meta">
-              <span>📍 {item.city}</span>
-              <span>Condition: {item.condition}</span>
-            </div>
-
-            <div className="equipment-footer">
-              <span className="price">{item.price}</span>
-              <button className="contact-btn">Contact Seller</button>
-            </div>
-
-            <p className="seller">Seller: {item.seller}</p>
-          </div>
+          <EquipmentCard key={item.id} item={item} />
         ))}
       </div>
     </div>
