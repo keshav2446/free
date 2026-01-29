@@ -140,7 +140,13 @@ const Home = () => {
         </div>
       </section>
 
-      <FeaturedPhotographers />
+      {/* <FeaturedPhotographers /> */}
+
+         <FeaturedPhotographers
+        selectedState={selectedState?.name || ""}
+        selectedCity={selectedCity?.name || ""}
+      />
+
       <Footer />
     </>
   );

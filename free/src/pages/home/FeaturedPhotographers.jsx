@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import PhotographerCard from "./PhotographerCard";
 import "./FeaturedPhotographers.css";
 
+/* TEMP DATA (API LATER) */
 const photographers = [
   {
     username: "vishu",
@@ -9,6 +11,7 @@ const photographers = [
     rating: 4.9,
     tags: ["Wedding", "Portrait"],
     image: "/images/vishu.jpeg",
+    featured: true,
   },
   {
     username: "vaibhav-gupta",
@@ -17,6 +20,7 @@ const photographers = [
     rating: 4.8,
     tags: ["Architecture", "Real Estate"],
     image: "/images/vaibhav.jpeg",
+    featured: true,
   },
   {
     username: "keshav-singh",
@@ -25,6 +29,7 @@ const photographers = [
     rating: 4.9,
     tags: ["Wildlife", "Nature"],
     image: "/images/ks.jpg",
+    featured: true,
   },
   {
     username: "mika",
@@ -33,16 +38,32 @@ const photographers = [
     rating: 4.7,
     tags: ["Street", "Documentary"],
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    featured: true,
   },
 ];
 
-const FeaturedPhotographers = () => {
+const FeaturedPhotographers = ({ selectedState, selectedCity }) => {
+  const navigate = useNavigate();
+
+  /* 🔥 FEATURED FILTER LOGIC */
+  const filteredPhotographers = selectedCity
+    ? photographers.filter(
+        (p) =>
+          p.featured &&
+          p.city.toLowerCase() === selectedCity.toLowerCase()
+      )
+    : photographers.filter((p) => p.featured);
+
   return (
     <section className="featured-section">
-      <h2>Featured Photographers</h2>
+      <h2>
+        {selectedCity
+          ? `Featured Photographers in ${selectedCity}`
+          : "Featured Photographers"}
+      </h2>
 
       <div className="photographers-grid">
-        {photographers.map((p) => (
+        {filteredPhotographers.slice(0, 4).map((p) => (
           <PhotographerCard
             key={p.username}
             photographer={p}
@@ -51,7 +72,17 @@ const FeaturedPhotographers = () => {
       </div>
 
       <div className="discover-btn">
-        <button>Discover More Photographers →</button>
+        <button
+          onClick={() =>
+            navigate(
+              `/photographers?state=${encodeURIComponent(
+                selectedState || ""
+              )}&city=${encodeURIComponent(selectedCity || "")}`
+            )
+          }
+        >
+          Discover More Photographers →
+        </button>
       </div>
     </section>
   );

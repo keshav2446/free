@@ -27,59 +27,55 @@ import AdminSettings from "./pages/admin/AdminSettings";
 import AdminGuard from "./pages/admin/AdminGuard";
 
 import PendingApproval from "./components/auth/PendingApproval";
-
 import Subscription from "./components/auth/Subscription";
-
 import SubscriptionGuard from "./guards/SubscriptionGuard";
 
 import PhotographerProfile from "./pages/photographer/PhotographerProfile";
 
-
-
+/* ✅ DISCOVER PAGE (HOME FOLDER) */
+import DiscoverPhotographers from "./pages/home/DiscoverPhotographers";
 
 function App() {
   return (
     <Routes>
-      {/* PUBLIC (WITH NAVBAR) */}
+      {/* ================= PUBLIC (WITH NAVBAR) ================= */}
       <Route element={<Navbar />}>
         <Route path="/" element={<Home />} />
         <Route path="/for-photographers" element={<ForPhotographers />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
 
-          <Route
-    path="/photographers/:username"
-    element={<PhotographerProfile />}
-  />
+        {/* ✅ DISCOVER MORE PHOTOGRAPHERS PAGE */}
+        <Route path="/photographers" element={<DiscoverPhotographers />} />
 
+        {/* PHOTOGRAPHER PROFILE */}
+        <Route
+          path="/photographers/:username"
+          element={<PhotographerProfile />}
+        />
       </Route>
 
-      
-
-      {/* PHOTOGRAPHER (NO NAVBAR) */}
+      {/* ================= PHOTOGRAPHER (NO NAVBAR) ================= */}
       <Route
-  path="/photographer"
-  element={
-    <SubscriptionGuard>
-      <PhotographerLayout />
-    </SubscriptionGuard>
-  }
->
-
+        path="/photographer"
+        element={
+          <SubscriptionGuard>
+            <PhotographerLayout />
+          </SubscriptionGuard>
+        }
+      >
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<EditProfile />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="subscription" element={<SubscriptionStatus />} />
         <Route path="ai-availability" element={<Availability />} />
       </Route>
-      
 
+      {/* ================= AUTH ================= */}
       <Route path="/auth/pending-approval" element={<PendingApproval />} />
-
       <Route path="/auth/subscription" element={<Subscription />} />
 
-
-      {/* ADMIN (NO NAVBAR, PROTECTED) */}
+      {/* ================= ADMIN ================= */}
       <Route
         path="/admin"
         element={
@@ -95,6 +91,7 @@ function App() {
         <Route path="settings" element={<AdminSettings />} />
       </Route>
 
+      {/* ================= 404 ================= */}
       <Route path="*" element={<h2>Page Not Found</h2>} />
     </Routes>
   );
