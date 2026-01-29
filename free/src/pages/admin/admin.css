@@ -315,3 +315,120 @@
     max-width: 100%;
   }
 }
+
+
+
+
+/* =======================
+   SIDEBAR COLLAPSE
+======================= */
+
+/* smooth transition */
+.admin-sidebar {
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+/* collapsed state */
+.admin-layout.collapsed .admin-sidebar {
+  width: 80px;
+  padding: 20px 10px;
+}
+
+/* hide text when collapsed */
+.admin-layout.collapsed .admin-sidebar h2 {
+  font-size: 16px;
+  text-align: center;
+}
+
+.admin-layout.collapsed .admin-role {
+  font-size: 10px;
+  text-align: center;
+}
+
+/* nav icons / text center */
+.admin-layout.collapsed .admin-sidebar nav a {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0;
+}
+
+/* keep active background visible */
+.admin-layout.collapsed .admin-sidebar nav a.active {
+  background: var(--border);
+}
+
+/* =======================
+   TOGGLE BUTTON
+======================= */
+
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.sidebar-toggle:hover {
+  background: var(--border);
+}
+
+/* header layout */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* =======================
+   CONTENT SHIFT
+======================= */
+
+.admin-content {
+  transition: margin-left 0.3s ease;
+}
+
+
+/* =======================
+   SIDEBAR ICON MODE
+======================= */
+
+.admin-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ICON */
+.nav-icon {
+  font-size: 18px;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* TEXT */
+.nav-text {
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+/* COLLAPSED STATE */
+.admin-layout.collapsed .nav-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* CENTER ICONS WHEN COLLAPSED */
+.admin-layout.collapsed .admin-sidebar nav a {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* KEEP ACTIVE INDICATOR */
+.admin-layout.collapsed .admin-sidebar nav a.active {
+  background: var(--border);
+}
