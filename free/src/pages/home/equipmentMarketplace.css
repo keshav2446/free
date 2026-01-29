@@ -1,0 +1,124 @@
+.equipment-marketplace {
+  padding: 120px 32px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--bg) 96%, transparent)
+  );
+}
+
+/* CONTAINER */
+.marketplace-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* LEFT */
+.marketplace-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.marketplace-left h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin: 12px 0 18px;
+}
+
+.marketplace-left span {
+  color: var(--primary);
+}
+
+.marketplace-desc {
+  color: var(--muted-text);
+  max-width: 520px;
+  margin-bottom: 26px;
+  font-size: 0.95rem;
+}
+
+/* LIST */
+.marketplace-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 36px;
+}
+
+.marketplace-list li {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+/* CTA */
+.marketplace-btn {
+  display: inline-block;
+  padding: 14px 26px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* RIGHT */
+.marketplace-right {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.marketplace-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.marketplace-stats div {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  text-align: center;
+}
+
+.marketplace-stats strong {
+  font-size: 1.4rem;
+}
+
+.marketplace-stats span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-text);
+}
+
+/* TAGS */
+.marketplace-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.marketplace-tags span {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .marketplace-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .marketplace-left h2 {
+    font-size: 2.1rem;
+  }
+}

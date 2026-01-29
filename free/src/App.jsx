@@ -32,8 +32,11 @@ import SubscriptionGuard from "./guards/SubscriptionGuard";
 
 import PhotographerProfile from "./pages/photographer/PhotographerProfile";
 
-/* ✅ DISCOVER PAGE (HOME FOLDER) */
+/* Discover */
 import DiscoverPhotographers from "./pages/home/DiscoverPhotographers";
+
+/* 🛒 EQUIPMENT MARKETPLACE */
+import BrowseEquipment from "./pages/marketplace/BrowseEquipment";
 
 function App() {
   return (
@@ -45,14 +48,17 @@ function App() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
 
-        {/* ✅ DISCOVER MORE PHOTOGRAPHERS PAGE */}
+        {/* 🔍 DISCOVER PHOTOGRAPHERS */}
         <Route path="/photographers" element={<DiscoverPhotographers />} />
 
-        {/* PHOTOGRAPHER PROFILE */}
+        {/* 👤 PHOTOGRAPHER PROFILE */}
         <Route
           path="/photographers/:username"
           element={<PhotographerProfile />}
         />
+
+        {/* 🛒 EQUIPMENT MARKETPLACE (BROWSE ONLY) */}
+        <Route path="/marketplace" element={<BrowseEquipment />} />
       </Route>
 
       {/* ================= PHOTOGRAPHER (NO NAVBAR) ================= */}

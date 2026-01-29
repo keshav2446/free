@@ -3,6 +3,8 @@ import { State, City } from "country-state-city";
 import FeaturedPhotographers from "./FeaturedPhotographers";
 import "./home.css";
 import Footer from "../../components/footer/Footer";
+import EquipmentMarketplace from "./EquipmentMarketplace";
+
 
 const Home = () => {
   const [states, setStates] = useState([]);
@@ -174,6 +176,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* 🛒 EQUIPMENT MARKETPLACE */}
+<EquipmentMarketplace />
 
       {/* <FeaturedPhotographers /> */}
 
