@@ -1,6 +1,7 @@
 /* ===============================
    RESET & BASE
 ================================ */
+
 *,
 *::before,
 *::after {
@@ -14,18 +15,24 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  background: #000000;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  background: var(--bg);              /* ✅ FIX */
+  color: var(--text);
 }
 
 /* ===============================
    AUTH PAGE WRAPPER
 ================================ */
+
 .auth-container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #2E2E2E, #000000);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--card) 60%, black),
+    var(--bg)
+  );                                   /* ✅ FIX */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,15 +42,21 @@ body {
 /* ===============================
    AUTH CARD
 ================================ */
+
 .auth-card {
   width: 100%;
   max-width: 440px;
-  background: linear-gradient(180deg, #3B3B3B, #1C1C1C);
+  background: linear-gradient(
+    180deg,
+    var(--card),
+    color-mix(in srgb, var(--card) 70%, black)
+  );                                   /* ✅ FIX */
   padding: 36px;
   border-radius: 16px;
+  border: 1px solid var(--border);
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   animation: fadeUp 0.45s ease both;
 }
 
@@ -61,15 +74,16 @@ body {
 /* ===============================
    HEADINGS
 ================================ */
+
 .auth-card h2 {
-  color: #FFFFFF;
+  color: var(--text);                 /* ✅ FIX */
   font-size: 1.65rem;
   font-weight: 700;
   margin-bottom: 6px;
 }
 
 .auth-subtitle {
-  color: #B0B0B0;
+  color: var(--muted-text);           /* ✅ FIX */
   font-size: 0.9rem;
   margin-bottom: 28px;
 }
@@ -77,6 +91,7 @@ body {
 /* ===============================
    FORM
 ================================ */
+
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -85,68 +100,77 @@ body {
 
 .auth-form input {
   padding: 14px 16px;
-  background: #242424;
-  border: 1px solid #3F3F3F;
+  background: var(--card);            /* ✅ FIX */
+  border: 1px solid var(--border);
   border-radius: 10px;
-  color: #E5E5E5;
+  color: var(--text);
   font-size: 0.95rem;
   transition: border 0.25s ease, box-shadow 0.25s ease;
 }
 
 .auth-form input::placeholder {
-  color: #8A8A8A;
+  color: var(--muted-text);
 }
 
 .auth-form input:focus {
   outline: none;
-  border-color: #6B6B6B;
-  box-shadow: 0 0 0 3px rgba(107, 107, 107, 0.35);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--primary) 35%, transparent);
 }
 
 /* Autofill fix */
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #242424 inset;
-  -webkit-text-fill-color: #757474;
+  -webkit-box-shadow: 0 0 0 1000px var(--card) inset;
+  -webkit-text-fill-color: var(--text);
 }
 
 /* ===============================
    BUTTON
 ================================ */
+
 .auth-btn {
   margin-top: 8px;
   padding: 14px;
-  background: linear-gradient(135deg, #808080, #3B3B3B);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-hover)
+  );                                   /* ✅ FIX */
   border: none;
   border-radius: 12px;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .auth-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(128, 128, 128, 0.45);
+  box-shadow: 0 10px 24px
+    color-mix(in srgb, var(--primary) 45%, transparent);
 }
 
 .auth-btn:active {
   transform: translateY(0);
-  box-shadow: 0 6px 16px rgba(128, 128, 128, 0.35);
+  box-shadow: 0 6px 16px
+    color-mix(in srgb, var(--primary) 35%, transparent);
 }
 
 /* ===============================
    FOOTER
 ================================ */
+
 .auth-footer {
   margin-top: 20px;
   text-align: center;
   font-size: 0.8rem;
-  color: #B0B0B0;
+  color: var(--muted-text);
 }
 
 .auth-footer span {
-  color: #D0D0D0;
+  color: var(--text);
   cursor: pointer;
   font-weight: 500;
 }
@@ -156,22 +180,23 @@ input:-webkit-autofill {
 }
 
 .auth-footer.muted {
-  color: #8A8A8A;
+  color: var(--muted-text);
 }
 
 /* ===============================
    PLAN BOX (Subscription)
 ================================ */
+
 .plan-box {
-  background: #1C1C1C;
-  border: 1px solid #3F3F3F;
+  background: var(--card);            /* ✅ FIX */
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px;
   margin-bottom: 22px;
 }
 
 .plan-box h3 {
-  color: #FFFFFF;
+  color: var(--text);
   margin-bottom: 12px;
 }
 
@@ -180,7 +205,7 @@ input:-webkit-autofill {
 }
 
 .plan-box li {
-  color: #B0B0B0;
+  color: var(--muted-text);
   font-size: 0.9rem;
   margin-bottom: 8px;
 }
@@ -188,6 +213,7 @@ input:-webkit-autofill {
 /* ===============================
    RESPONSIVE
 ================================ */
+
 @media (max-width: 480px) {
   .auth-card {
     padding: 26px;

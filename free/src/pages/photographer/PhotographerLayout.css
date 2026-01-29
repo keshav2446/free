@@ -1,18 +1,22 @@
+/* =============================
+   PHOTOGRAPHER LAYOUT
+============================= */
+
 .photographer-layout {
   display: flex;
   min-height: 100vh;
-  /* background: #f8fafc;  */
-}
-.photographer-layout {
-  background: transparent;
+  background: transparent;   /* 🔥 body controls bg */
   color: var(--text);
-  min-height: 100vh;
 }
 
+/* =============================
+   MAIN CONTENT AREA
+============================= */
 
 .photographer-main {
   flex: 1;
-  background: #f8fafc;
+  background: transparent;   /* 🔥 IMPORTANT FIX */
   padding: 24px;
   overflow-y: auto;
+  color: var(--text);
 }

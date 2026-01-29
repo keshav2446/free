@@ -1,46 +1,60 @@
-/* ===== SIDEBAR LAYOUT ===== */
+/* =============================
+   SIDEBAR LAYOUT
+============================= */
+
 .sidebar {
   width: 240px;
-  background: #ffffff;
-  border-right: 1px solid #e5e7eb;
+  background: var(--card);              /* ✅ FIX */
+  border-right: 1px solid var(--border);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  color: var(--text);
 }
 
-/* ===== LOGO ===== */
+/* =============================
+   LOGO
+============================= */
+
 .sidebar-logo {
   font-weight: 700;
   font-size: 16px;
   margin-bottom: 24px;
+  color: var(--text);
 }
 
-/* ===== NAV LINKS ===== */
+/* =============================
+   NAV LINKS
+============================= */
+
 .sidebar nav a {
   display: block;
   padding: 10px 12px;
   margin-bottom: 4px;
   font-size: 14px;
   font-weight: 500;
-  color: #242424;
+  color: var(--muted-text);
   text-decoration: none;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .sidebar nav a:hover {
-  background: #f1f5f9;
-  color: #808080;
+  background: var(--border);
+  color: var(--text);
 }
 
 /* ACTIVE LINK */
 .sidebar nav a.active {
-  background: #e0f2fe;
-  color: #3B3B3B;
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--text);
   font-weight: 600;
 }
 
-/* ===== USER SECTION (BOTTOM) ===== */
+/* =============================
+   USER SECTION (BOTTOM)
+============================= */
+
 .sidebar-user-wrapper {
   margin-top: auto;
   position: relative;
@@ -58,14 +72,18 @@
 }
 
 .sidebar-user:hover {
-  background: #f1f5f9;
+  background: var(--border);
 }
 
 /* AVATAR */
 .avatar {
   width: 36px;
   height: 36px;
-  background: #696969;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-hover)
+  );
   color: white;
   border-radius: 50%;
   display: grid;
@@ -79,25 +97,30 @@
   display: flex;
   flex-direction: column;
   font-size: 13px;
+  color: var(--text);
 }
 
 .user-info span {
   font-size: 12px;
-  color: #64748b;
+  color: var(--muted-text);
 }
 
-/* ===== DROPDOWN ===== */
+/* =============================
+   DROPDOWN
+============================= */
+
 .sidebar-dropdown {
   position: absolute;
   bottom: 56px;
   left: 0;
   width: 100%;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--card);              /* ✅ FIX */
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   animation: fadeUp 0.2s ease;
+  color: var(--text);
 }
 
 @keyframes fadeUp {
@@ -111,12 +134,14 @@
   }
 }
 
+/* DROPDOWN TITLE */
 .dropdown-title {
   font-weight: 600;
   font-size: 13px;
   padding: 8px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 /* DROPDOWN ITEMS */
@@ -127,24 +152,23 @@
   gap: 8px;
   padding: 8px 10px;
   font-size: 14px;
-  color: #334155;
+  color: var(--text);
   text-decoration: none;
   background: none;
   border: none;
   width: 100%;
   cursor: pointer;
   border-radius: 8px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .sidebar-dropdown a:hover,
 .sidebar-dropdown button:hover {
-  background: #f1f5f9;
+  background: var(--border);
+  color: var(--text);
 }
 
 /* LOGOUT */
 .logout {
-  color: #dc2626;
+  color: var(--danger);
 }
-
-

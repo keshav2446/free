@@ -1,12 +1,22 @@
+/* =============================
+   PAGE
+============================= */
+
 .page {
   padding: 30px;
-  color: #fff;
+  color: var(--text);
+  background: transparent; /* 🔥 body controls bg */
 }
 
 .page-title {
   font-size: 24px;
   margin-bottom: 20px;
+  color: var(--text);
 }
+
+/* =============================
+   GRID
+============================= */
 
 .grid {
   display: grid;
@@ -14,22 +24,37 @@
   gap: 20px;
 }
 
+/* =============================
+   CARD
+============================= */
+
 .card {
-  background: #111827;
+  background: var(--card);          /* ✅ FIX */
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  color: var(--text);
 }
+
+/* =============================
+   FORM
+============================= */
 
 .form-card input,
 .form-card textarea {
   width: 100%;
   margin-bottom: 14px;
   padding: 12px;
-  background: #020617;
-  border: 1px solid #1f2933;
-  color: #fff;
+  background: var(--card);          /* ✅ FIX */
+  border: 1px solid var(--border);
+  color: var(--text);
   border-radius: 8px;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+  color: var(--muted-text);
 }
 
 textarea {
@@ -37,14 +62,27 @@ textarea {
   height: 90px;
 }
 
+/* =============================
+   BUTTON
+============================= */
+
 .primary-btn {
-  background: #696969;
-  color: #000;
+  background: var(--primary);       /* ✅ FIX */
+  color: #ffffff;
   padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
 }
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* =============================
+   STATUS
+============================= */
 
 .status.pending {
   color: #facc15;
@@ -54,15 +92,26 @@ textarea {
   color: #22c55e;
 }
 
+/* =============================
+   AVATAR
+============================= */
+
 .avatar {
   width: 60px;
   height: 60px;
-  background: #020617;
+  background: var(--border);        /* ✅ FIX */
   border-radius: 50%;
   margin-bottom: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  font-weight: 600;
 }
 
-/* Responsive */
+/* =============================
+   RESPONSIVE
+============================= */
+
 @media (max-width: 600px) {
   .page {
     padding: 20px;

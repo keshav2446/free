@@ -25,13 +25,13 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
 
       {/* ⚡ QUICK ACTIONS */}
-      <div className="quick-actions">
+      {/* <div className="quick-actions">
         <button onClick={() => navigate("/profile")}>Edit Profile</button>
         <button onClick={() => navigate("/portfolio")}>Add Portfolio</button>
         <button onClick={() => navigate("/availability")}>
           Set Availability
         </button>
-      </div>
+      </div> */}
 
       {/* 💎 SUBSCRIPTION STATUS CARD */}
       <div className={`subscription-status ${!isSubscribed ? "free" : ""}`}>

@@ -4,24 +4,7 @@ import "./home.css";
 import Footer from "../../components/footer/Footer";
 
 const Home = () => {
-  // useEffect(() => {
-  //   const overlay = document.querySelector(".fade-overlay");
 
-  //   const handleScroll = () => {
-  //     if (!overlay) return;
-
-  //     const scrollY = window.scrollY;
-  //     const heroHeight = window.innerHeight * 0.9;
-
-  //     let opacity = scrollY / heroHeight;
-  //     opacity = Math.min(opacity, 1);
-
-  //     overlay.style.background = `rgba(248, 250, 252, ${opacity})`;
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
   useEffect(() => {
   const overlay = document.querySelector(".fade-overlay");
   const hero = document.querySelector(".hero");
@@ -32,13 +15,11 @@ const Home = () => {
     const rect = hero.getBoundingClientRect();
     const heroHeight = rect.height;
 
-    // progress from 0 → 1 while hero scrolls out
     const progress = Math.min(
       Math.max(-rect.top / heroHeight, 0),
       1
     );
 
-    // overlay.style.background = `rgba(248, 250, 252, ${progress})`;
     overlay.style.background = `linear-gradient(
   to bottom,
   rgba(255, 255, 255, ${progress * 0.2}),
@@ -48,7 +29,7 @@ const Home = () => {
   };
 
   window.addEventListener("scroll", handleScroll);
-  handleScroll(); // run once on load
+  handleScroll(); 
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
@@ -58,7 +39,6 @@ const Home = () => {
     <>
       {/* HERO SECTION */}
       <section className="hero">
-        {/* White fade overlay (scroll controlled) */}
         <div className="fade-overlay"></div>
 
         <div className="hero-content">

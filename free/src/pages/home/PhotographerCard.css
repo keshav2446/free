@@ -1,15 +1,25 @@
+/* =========================
+   PHOTOGRAPHER CARD
+========================= */
+
 .photographer-card {
-  background: white;
+  background: var(--card);                 /* ✅ FIX */
+  border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: var(--text);
 }
 
 .photographer-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
 }
+
+/* =========================
+   IMAGE
+========================= */
 
 .image-wrapper {
   position: relative;
@@ -23,32 +33,48 @@
   object-fit: cover;
 }
 
+/* =========================
+   RATING BADGE
+========================= */
+
 .rating {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: white;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
   padding: 4px 10px;
   font-size: 0.8rem;
   font-weight: 600;
   border-radius: 20px;
 }
 
+/* =========================
+   CONTENT
+========================= */
+
 .card-content {
   padding: 16px;
   text-align: left;
 }
 
+/* NAME */
 .card-content h3 {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 4px;
+  color: var(--text);                      /* ✅ FIX */
 }
 
+/* LOCATION */
 .location {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--muted-text);                /* ✅ FIX */
 }
+
+/* =========================
+   TAGS
+========================= */
 
 .tags {
   display: flex;
@@ -58,27 +84,28 @@
 }
 
 .tags span {
-  background: #f1f5f9;
+  background: var(--border);               /* ✅ FIX */
+  color: var(--text);
   padding: 4px 10px;
   border-radius: 14px;
   font-size: 0.7rem;
   font-weight: 500;
 }
 
-.view-profile {
-  color: #808080;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-}
+/* =========================
+   VIEW PROFILE
+========================= */
+
 .view-profile {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #808080;
+  color: var(--primary);                   /* ✅ FIX */
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-
+.view-profile:hover {
+  text-decoration: underline;
+}

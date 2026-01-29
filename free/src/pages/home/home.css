@@ -9,7 +9,7 @@
   justify-content: center;
   padding: 40px 16px;
   overflow: hidden;
-  background: transparent; /* 🔥 body controls bg */
+  background: transparent; 
 }
 
 /* =========================
@@ -99,7 +99,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--bg);
+  /* background: var(--bg); */
   padding: 12px 14px;
   border-radius: 10px;
   flex: 1;
@@ -181,7 +181,7 @@
 
 .about-platform {
   padding: 80px 20px;
-  background: transparent; /* 🔥 IMPORTANT */
+  background: transparent; 
   text-align: center;
 }
 

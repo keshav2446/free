@@ -1,18 +1,33 @@
+/* =============================
+   TOPBAR
+============================= */
+
 .topbar {
   height: 60px;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--card);          /* ✅ FIX */
+  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px;
+  color: var(--text);
 }
 
+/* =============================
+   PUBLIC PROFILE BUTTON
+============================= */
+
 .public-btn {
-  border: 1px solid #808080;
-  background: #C4C4C4;
-  color: #242424;
+  border: 1px solid var(--border);
+  background: var(--card);          /* ✅ FIX */
+  color: var(--text);
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.public-btn:hover {
+  background: var(--border);
 }

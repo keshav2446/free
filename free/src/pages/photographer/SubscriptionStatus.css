@@ -1,43 +1,59 @@
+/* =============================
+   PAGE
+============================= */
+
 .subscription-page {
   padding: 24px;
+  background: transparent;   /* 🔥 body controls bg */
+  color: var(--text);
 }
 
 .page-title {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 24px;
+  color: var(--text);
 }
 
-/* GRID */
+/* =============================
+   GRID
+============================= */
+
 .subscription-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
 
-/* LEFT CARD */
+/* =============================
+   LEFT CARD
+============================= */
+
 .subscription-card {
-  background: #ffffff;
+  background: var(--card);             /* ✅ FIX */
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
 }
 
+/* TEXT */
 .subscription-card h2 {
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 .muted-text {
-  color: #64748b;
+  color: var(--muted-text);            /* ✅ FIX */
   font-size: 14px;
   margin-bottom: 20px;
 }
 
+/* CURRENT PLAN */
 .current-plan {
   display: flex;
   gap: 16px;
   align-items: center;
-  background: #f8fafc;
+  background: var(--border);           /* ✅ FIX */
   padding: 16px;
   border-radius: 12px;
   margin-bottom: 16px;
@@ -49,35 +65,50 @@
 
 .plan-info h3 {
   margin: 0;
+  color: var(--text);
 }
 
 .status-text {
-  color: #475569;
+  color: var(--muted-text);
   font-size: 14px;
 }
 
 .renew-info {
   font-size: 14px;
   margin-bottom: 16px;
+  color: var(--text);
 }
 
+/* BUTTON */
 .outline-btn {
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 10px 16px;
   border-radius: 8px;
   cursor: pointer;
+  color: var(--text);
 }
 
-/* RIGHT PRO CARD */
+.outline-btn:hover {
+  background: var(--border);
+}
+
+/* =============================
+   RIGHT PRO CARD
+============================= */
+
 .pro-card {
-  background: linear-gradient(135deg, #808080, #3B3B3B);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-hover)
+  );
   color: white;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 20px 40px #3B3B3B;
 }
 
+/* PRO CONTENT */
 .pro-header {
   display: flex;
   align-items: center;
@@ -101,6 +132,7 @@
   font-weight: 400;
 }
 
+/* FEATURES */
 .features-list {
   list-style: none;
   padding: 0;
@@ -112,9 +144,10 @@
   margin-bottom: 8px;
 }
 
+/* PRO CTA */
 .pro-btn {
   width: 100%;
-  background: #242424;
+  background: rgba(0, 0, 0, 0.25);
   border: none;
   color: white;
   padding: 12px;
@@ -123,8 +156,14 @@
   cursor: pointer;
 }
 
+.pro-btn:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
 
-/* META INFO */
+/* =============================
+   META INFO
+============================= */
+
 .plan-meta {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -133,32 +172,36 @@
 }
 
 .meta-item {
-  background: #f8fafc;
+  background: var(--card);             /* ✅ FIX */
   padding: 12px;
   border-radius: 10px;
+  border: 1px solid var(--border);
 }
 
 .meta-label {
   display: block;
   font-size: 12px;
-  color: #808080;
+  color: var(--muted-text);
   margin-bottom: 4px;
 }
 
 .meta-value {
   font-size: 14px;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .meta-value.highlight {
-  color: #16a34a;
+  color: #22c55e;
 }
 
-/* PROGRESS BAR */
+/* =============================
+   PROGRESS BAR
+============================= */
+
 .progress-bar {
   height: 6px;
-  background: #e5e7eb;
+  background: var(--border);            /* ✅ FIX */
   border-radius: 999px;
   margin-bottom: 16px;
 }
@@ -169,9 +212,12 @@
   border-radius: 999px;
 }
 
-/* EXPIRY WARNING */
+/* =============================
+   EXPIRY WARNING
+============================= */
+
 .expiry-warning {
   font-size: 13px;
-  color: #dc2626;
+  color: var(--danger);
   margin-bottom: 12px;
 }

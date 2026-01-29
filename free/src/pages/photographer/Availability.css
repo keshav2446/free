@@ -2,55 +2,68 @@
   max-width: 1200px;
   margin: auto;
   padding: 24px;
+  background: transparent; /* 🔥 body controls bg */
+  color: var(--text);
 }
 
 .availability-page h1 {
   font-size: 26px;
   margin-bottom: 12px;
+  color: var(--text);
 }
 
-/* INFO BOX */
+/* ======================
+   INFO BOX
+====================== */
 .calendar-info {
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
+  background: var(--card);               /* ✅ FIX */
+  border: 1px solid var(--border);       /* ✅ FIX */
   padding: 14px 18px;
   border-radius: 12px;
   margin-bottom: 18px;
   font-size: 14px;
-  color: #334155;
+  color: var(--muted-text);
 }
 
-/* CALENDAR WRAPPER */
+/* ======================
+   CALENDAR WRAPPER
+====================== */
 .calendar-wrapper {
-  background: #ffffff;
+  background: var(--card);               /* ✅ FIX */
   padding: 16px;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-/* BOOKED EVENTS */
+/* BOOKED EVENTS (BASE) */
 .fc-event {
   font-size: 12px;
   border-radius: 6px;
   font-weight: 600;
 }
 
-/* SELECTED SLOT */
+/* ======================
+   SELECTED SLOT
+====================== */
 .selected-slot {
   margin-top: 18px;
-  background: #ecfeff;
-  border: 1px solid #808080;
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  border: 1px solid var(--primary);
   padding: 14px 18px;
   border-radius: 12px;
   font-size: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--text);
 }
 
-/* CONFIRM BUTTON */
+/* ======================
+   CONFIRM BUTTON
+====================== */
 .confirm-btn {
-  background: #808080;
+  background: var(--primary);             /* ✅ FIX */
   color: #ffffff;
   border: none;
   padding: 8px 16px;
@@ -60,34 +73,39 @@
 }
 
 .confirm-btn:hover {
-  background: #969696;
+  background: var(--primary-hover);
 }
 
+/* ======================
+   CALENDAR STATES
+====================== */
 
 /* 🔴 BOOKED SLOT */
 .fc-event.BOOKED {
-  background-color: #fecaca !important;
-  border-color: #dc2626 !important;
-  color: #7f1d1d !important;
+  background-color: #dc2626 !important;
+  border-color: #7f1d1d !important;
+  color: #ffffff !important;
 }
 
 /* 🟢 SELECTED SLOT */
 .fc-event.SELECTED {
-  background-color: #bbf7d0 !important;
-  border-color: #16a34a !important;
-  color: #14532d !important;
+  background-color: #16a34a !important;
+  border-color: #14532d !important;
+  color: #ffffff !important;
 }
 
-
-/* 🎛 FILTER PANEL */
+/* ======================
+   FILTER PANEL
+====================== */
 .filter-panel {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-  background: #ffffff;
+  background: var(--card);               /* ✅ FIX */
   padding: 16px;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   margin-bottom: 18px;
 }
 
@@ -96,18 +114,22 @@
   font-weight: 600;
   display: block;
   margin-bottom: 4px;
+  color: var(--muted-text);
 }
 
 .filter-panel input {
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
 }
 
+/* APPLY BUTTON */
 .apply-btn {
   align-self: end;
-  background: #808080;
+  background: var(--primary);            /* ✅ FIX */
   color: white;
   border: none;
   padding: 10px;
@@ -117,5 +139,5 @@
 }
 
 .apply-btn:hover {
-  background: #808080;
+  background: var(--primary-hover);
 }

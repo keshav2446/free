@@ -1,6 +1,6 @@
 .fp-hero {
   min-height: 90vh;
-  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  background: transparent; /* 🔥 body controls bg */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,22 +12,25 @@
   text-align: center;
 }
 
+/* Heading */
 .fp-container h1 {
   font-size: 3.2rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text);                 /* ✅ FIX */
 }
 
 .fp-container h1 span {
-  color: #696969;
+  color: var(--primary);              /* ✅ FIX */
 }
 
+/* Subtitle */
 .fp-container p {
   margin-top: 16px;
   font-size: 1.15rem;
-  color: #475569;
+  color: var(--muted-text);           /* ✅ FIX */
 }
 
+/* Actions */
 .fp-actions {
   margin-top: 40px;
   display: flex;
@@ -42,26 +45,30 @@
   font-weight: 600;
   text-decoration: none;
   transition: 0.2s ease;
+  border: none;
 }
 
+/* Primary button */
 .fp-btn.primary {
-  background: #696969;
-  color: white;
+  background: var(--primary);         /* ✅ FIX */
+  color: #ffffff;
 }
 
 .fp-btn.primary:hover {
-  background: #3B3B3B;
+  background: var(--primary-hover);
 }
 
+/* Secondary button */
 .fp-btn.secondary {
-  border: 2px solid #696969;
-  color: #696969;
+  border: 2px solid var(--primary);   /* ✅ FIX */
+  color: var(--primary);
 }
 
 .fp-btn.secondary:hover {
-  background: #e0f2fe;
+  background: var(--border);
 }
 
+/* Stats */
 .fp-stats {
   margin-top: 60px;
   display: flex;
@@ -71,12 +78,12 @@
 
 .fp-stats h3 {
   font-size: 2rem;
-  color: #0f172a;
+  color: var(--text);                 /* ✅ FIX */
 }
 
 .fp-stats span {
   display: block;
-  color: #64748b;
+  color: var(--muted-text);           /* ✅ FIX */
   margin-top: 6px;
 }
 
