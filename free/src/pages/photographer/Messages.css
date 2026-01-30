@@ -1,0 +1,69 @@
+.messages-page {
+  padding: 40px;
+}
+
+.messages-header {
+  margin-bottom: 25px;
+}
+
+.messages-header h1 {
+  font-size: 26px;
+}
+
+.messages-header p {
+  color: var(--muted-text);
+  margin-top: 4px;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-card {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  transition: box-shadow 0.2s ease;
+}
+
+.message-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.message-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-top strong {
+  font-size: 15px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--muted-text);
+}
+
+.project {
+  font-size: 13px;
+  color: var(--primary);
+  margin: 6px 0;
+}
+
+.text {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.message-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.empty {
+  color: var(--muted-text);
+}

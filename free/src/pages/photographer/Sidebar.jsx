@@ -40,6 +40,12 @@ const Sidebar = () => {
             {sidebarOpen && <span>Portfolio</span>}
           </NavLink>
 
+          <NavLink to="/photographer/messages">
+  <img src="/images/icons/message.png" alt="Messages" />
+  {sidebarOpen && <span>Messages</span>}
+</NavLink>
+
+
           <NavLink to="/photographer/ai-availability">
             <img src="/images/icons/google.png" alt="Availability" />
             {sidebarOpen && <span>Availability</span>}

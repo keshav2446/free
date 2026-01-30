@@ -208,3 +208,41 @@
   background: var(--border);
   color: var(--text);
 }
+
+
+
+
+
+
+/* ================= APPLY / CONTACT MODAL ================= */
+
+.crew-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.crew-modal {
+  background: var(--card);
+  color: var(--text);
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.crew-modal h3 {
+  margin-bottom: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}

@@ -20,6 +20,9 @@ const CrewRequirements = () => {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
 
+  /* 🔥 APPLY MODAL STATE */
+  const [activeRequirement, setActiveRequirement] = useState(null);
+
   /* ================= DATA ================= */
   const requirements = [
     {
@@ -32,7 +35,7 @@ const CrewRequirements = () => {
       budget: "₹5,000 / day",
       postedBy: "Rahul Photography",
       description:
-        "Need an experienced assistant photographer for a full-day wedding shoot."
+        "Need an experienced assistant photographer for a full-day wedding shoot.",
     },
     {
       id: 2,
@@ -44,8 +47,8 @@ const CrewRequirements = () => {
       budget: "₹15,000 total",
       postedBy: "LensCraft Studio",
       description:
-        "Looking for creative videographer and drone operator for a pre-wedding shoot."
-    }
+        "Looking for creative videographer and drone operator for a pre-wedding shoot.",
+    },
   ];
 
   /* ================= LOAD STATES ================= */
@@ -98,9 +101,7 @@ const CrewRequirements = () => {
       ? item.roles.includes(selectedRole)
       : true;
 
-    const dateMatch = selectedDate
-      ? item.date === selectedDate
-      : true;
+    const dateMatch = selectedDate ? item.date === selectedDate : true;
 
     return stateMatch && cityMatch && roleMatch && dateMatch;
   });
@@ -147,9 +148,7 @@ const CrewRequirements = () => {
               <div className="crew-scroll">
                 {states
                   .filter((s) =>
-                    s.name
-                      .toLowerCase()
-                      .includes(stateSearch.toLowerCase())
+                    s.name.toLowerCase().includes(stateSearch.toLowerCase())
                   )
                   .map((state) => (
                     <div
@@ -191,9 +190,7 @@ const CrewRequirements = () => {
               <div className="crew-scroll">
                 {cities
                   .filter((c) =>
-                    c.name
-                      .toLowerCase()
-                      .includes(citySearch.toLowerCase())
+                    c.name.toLowerCase().includes(citySearch.toLowerCase())
                   )
                   .map((city) => (
                     <div
@@ -263,7 +260,10 @@ const CrewRequirements = () => {
                 <span className="crew-posted">
                   Posted by {item.postedBy}
                 </span>
-                <button className="crew-apply">
+                <button
+                  className="crew-apply"
+                  onClick={() => setActiveRequirement(item)}
+                >
                   Apply / Contact
                 </button>
               </div>
@@ -271,9 +271,49 @@ const CrewRequirements = () => {
           ))
         )}
       </div>
+
+      {/* 🔥 APPLY / CONTACT MODAL */}
+      {activeRequirement && (
+        <div className="crew-modal-overlay">
+          <div className="crew-modal">
+            <h3>{activeRequirement.title}</h3>
+
+            <p><strong>Posted by:</strong> {activeRequirement.postedBy}</p>
+            <p>
+              <strong>Location:</strong>{" "}
+              {activeRequirement.city}, {activeRequirement.state}
+            </p>
+            <p>
+              <strong>Roles:</strong>{" "}
+              {activeRequirement.roles.join(", ")}
+            </p>
+
+            <p className="crew-desc">
+              {activeRequirement.description}
+            </p>
+
+            <div className="modal-actions">
+              <button
+                className="secondary-btn"
+                onClick={() =>
+                  alert("Messaging feature coming soon 🚀")
+                }
+              >
+                Send Message
+              </button>
+
+              <button
+                className="danger-btn"
+                onClick={() => setActiveRequirement(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
-
 
 export default CrewRequirements;

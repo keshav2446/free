@@ -17,6 +17,7 @@ import EditProfile from "./pages/photographer/EditProfile";
 import Portfolio from "./pages/photographer/Portfolio";
 import SubscriptionStatus from "./pages/photographer/SubscriptionStatus";
 import Availability from "./pages/photographer/Availability";
+import Messages from "./pages/photographer/Messages";
 
 /* Admin */
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -93,8 +94,9 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<EditProfile />} />
         <Route path="portfolio" element={<Portfolio />} />
-        <Route path="subscription" element={<SubscriptionStatus />} />
+        <Route path="messages" element={<Messages />} /> {/* 🔥 ADDED */}
         <Route path="ai-availability" element={<Availability />} />
+        <Route path="subscription" element={<SubscriptionStatus />} />
       </Route>
 
       {/* ================= AUTH ================= */}
