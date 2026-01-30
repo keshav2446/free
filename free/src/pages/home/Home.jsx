@@ -6,8 +6,6 @@ import Footer from "../../components/footer/Footer";
 import EquipmentMarketplace from "./EquipmentMarketplace";
 import TeamRequirements from "./TeamRequirements";
 
-
-
 const Home = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -20,6 +18,9 @@ const Home = () => {
 
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   useEffect(() => {
     setStates(State.getStatesOfCountry("IN"));
@@ -35,6 +36,19 @@ const Home = () => {
 
   const selectCity = (city) => {
     setSelectedCity(city);
+    setCityOpen(false);
+  };
+
+  /* 🔥 CLEAR FILTER FUNCTION */
+  const clearFilters = () => {
+    setSelectedState(null);
+    setSelectedCity(null);
+    setCities([]);
+    setStateSearch("");
+    setCitySearch("");
+    setDate("");
+    setTime("");
+    setStateOpen(false);
     setCityOpen(false);
   };
 
@@ -131,15 +145,29 @@ const Home = () => {
 
             {/* DATE */}
             <div className="input-group">
-              <input type="date" />
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
             </div>
 
             {/* TIME */}
             <div className="input-group">
-              <input type="time" />
+              <input
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+              />
             </div>
 
-            <button className="search-btn">Search</button>
+         {/* 🔥 CLEAR FILTER BUTTON */}
+<button className="clear-btn" onClick={clearFilters}>
+  Clear 
+</button>
+
+<button className="search-btn">Search</button>
+
           </div>
         </div>
       </section>

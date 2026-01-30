@@ -72,10 +72,7 @@ const EquipmentCard = ({ item }) => {
 
             <div className="slider-dots">
               {item.images.map((_, i) => (
-                <span
-                  key={i}
-                  className={i === index ? "active" : ""}
-                />
+                <span key={i} className={i === index ? "active" : ""} />
               ))}
             </div>
           </>
@@ -128,6 +125,19 @@ const BrowseEquipment = () => {
 
   const selectCity = (city) => {
     setSelectedCity(city);
+    setCityOpen(false);
+  };
+
+  /* 🔥 CLEAR FILTERS */
+  const clearFilters = () => {
+    setSearch("");
+    setSelectedState(null);
+    setSelectedCity(null);
+    setCondition("");
+    setCities([]);
+    setStateSearch("");
+    setCitySearch("");
+    setStateOpen(false);
     setCityOpen(false);
   };
 
@@ -265,6 +275,11 @@ const BrowseEquipment = () => {
               <option value="Excellent">Excellent</option>
               <option value="Good">Good</option>
             </select>
+
+            {/* 🔥 CLEAR FILTER BUTTON */}
+            <button className="filter-btn" onClick={clearFilters}>
+              Clear Filters 
+            </button>
           </div>
         )}
       </div>
