@@ -8,7 +8,8 @@
   color: var(--text);
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 .crew-header {
   text-align: center;
   margin-bottom: 40px;
@@ -23,7 +24,8 @@
   color: var(--muted-text);
 }
 
-/* FILTERS */
+/* ================= FILTERS ================= */
+
 .crew-filters {
   display: flex;
   gap: 15px;
@@ -37,14 +39,76 @@
   min-width: 180px;
 }
 
-/* LIST */
+/* ================= CITY DROPDOWN ================= */
+
+.crew-dropdown {
+  position: relative;
+  min-width: 220px;
+}
+
+.crew-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.crew-input input {
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.crew-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  z-index: 20;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.crew-search {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.crew-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.crew-item {
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.crew-item:hover {
+  background: var(--border);
+}
+
+/* ================= LIST ================= */
+
 .crew-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
 }
 
-/* CARD */
+/* ================= CARD ================= */
+
 .crew-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -73,14 +137,16 @@
   color: var(--primary);
 }
 
-/* DESCRIPTION */
+/* ================= DESCRIPTION ================= */
+
 .crew-desc {
   margin: 12px 0;
   font-size: 14px;
   color: var(--muted-text);
 }
 
-/* META */
+/* ================= META ================= */
+
 .crew-meta {
   display: flex;
   flex-wrap: wrap;
@@ -89,7 +155,8 @@
   margin-bottom: 15px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 .crew-footer {
   display: flex;
   justify-content: space-between;
@@ -101,7 +168,8 @@
   color: var(--muted-text);
 }
 
-/* APPLY */
+/* ================= APPLY ================= */
+
 .crew-apply {
   background: var(--primary);
   color: #fff;
@@ -109,8 +177,34 @@
   padding: 8px 14px;
   border-radius: 8px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .crew-apply:hover {
   background: var(--primary-hover);
+}
+
+/* ================= EMPTY STATE ================= */
+
+.crew-empty {
+  text-align: center;
+  color: var(--muted-text);
+  grid-column: 1 / -1;
+}
+
+
+/* CLEAR FILTER BUTTON */
+.crew-clear-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted-text);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.crew-clear-btn:hover {
+  background: var(--border);
+  color: var(--text);
 }

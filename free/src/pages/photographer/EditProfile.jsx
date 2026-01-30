@@ -16,6 +16,18 @@ const EditProfile = () => {
   const [profilePhoto, setProfilePhoto] = useState(null);
   const fileInputRef = useRef(null);
 
+  /* 🔥 CREW REQUIREMENTS */
+  const [crewRequirements, setCrewRequirements] = useState([
+    {
+      title: "",
+      roles: "",
+      city: "",
+      date: "",
+      budget: "",
+      description: "",
+    },
+  ]);
+
   /* 🔥 SELLING EQUIPMENT (WITH IMAGES) */
   const [sellingEquipment, setSellingEquipment] = useState([
     {
@@ -26,6 +38,8 @@ const EditProfile = () => {
       images: [],
     },
   ]);
+
+  /* ================= HANDLERS ================= */
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,14 +52,38 @@ const EditProfile = () => {
     if (file) setProfilePhoto(file);
   };
 
-  /* SELLING ITEM CHANGE */
+  /* CREW REQUIREMENT HANDLERS */
+  const handleCrewChange = (index, field, value) => {
+    const updated = [...crewRequirements];
+    updated[index][field] = value;
+    setCrewRequirements(updated);
+  };
+
+  const addCrewRequirement = () => {
+    setCrewRequirements([
+      ...crewRequirements,
+      {
+        title: "",
+        roles: "",
+        city: "",
+        date: "",
+        budget: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const removeCrewRequirement = (index) => {
+    setCrewRequirements(crewRequirements.filter((_, i) => i !== index));
+  };
+
+  /* SELLING EQUIPMENT HANDLERS */
   const handleSellingChange = (index, field, value) => {
     const updated = [...sellingEquipment];
     updated[index][field] = value;
     setSellingEquipment(updated);
   };
 
-  /* 🔥 IMAGE UPLOAD */
   const handleSellingImages = (index, files) => {
     const updated = [...sellingEquipment];
     updated[index].images = [...files];
@@ -63,10 +101,15 @@ const EditProfile = () => {
     setSellingEquipment(sellingEquipment.filter((_, i) => i !== index));
   };
 
+  /* ================= SAVE ================= */
+
   const handleSave = () => {
     const payload = {
       ...formData,
       photo: profilePhoto,
+      crewRequirements: crewRequirements.filter(
+        (req) => req.title && req.roles
+      ),
       sellingEquipment: sellingEquipment.filter(
         (item) => item.name && item.price
       ),
@@ -75,6 +118,8 @@ const EditProfile = () => {
     console.log("SAVE PROFILE DATA 👉", payload);
     alert("Profile data logged in console (frontend only)");
   };
+
+  /* ================= UI ================= */
 
   return (
     <div className="edit-profile-page">
@@ -169,6 +214,84 @@ const EditProfile = () => {
           />
         </div>
 
+        {/* 🔥 CREW REQUIREMENTS */}
+        <div className="profile-card wide">
+          <h3>Crew / Team Requirements</h3>
+
+          {crewRequirements.map((req, i) => (
+            <div key={i} className="selling-form">
+              <input
+                placeholder="Project Title (Wedding, Commercial, etc.)"
+                value={req.title}
+                onChange={(e) =>
+                  handleCrewChange(i, "title", e.target.value)
+                }
+              />
+
+              <div className="two-col">
+                <input
+                  placeholder="Required Roles (Assistant, Videographer)"
+                  value={req.roles}
+                  onChange={(e) =>
+                    handleCrewChange(i, "roles", e.target.value)
+                  }
+                />
+                <input
+                  placeholder="City"
+                  value={req.city}
+                  onChange={(e) =>
+                    handleCrewChange(i, "city", e.target.value)
+                  }
+                />
+              </div>
+
+              <div className="two-col">
+                <input
+                  type="date"
+                  value={req.date}
+                  onChange={(e) =>
+                    handleCrewChange(i, "date", e.target.value)
+                  }
+                />
+                <input
+                  placeholder="Budget (₹)"
+                  value={req.budget}
+                  onChange={(e) =>
+                    handleCrewChange(i, "budget", e.target.value)
+                  }
+                />
+              </div>
+
+              <textarea
+                rows="3"
+                placeholder="Requirement Description"
+                value={req.description}
+                onChange={(e) =>
+                  handleCrewChange(i, "description", e.target.value)
+                }
+              />
+
+              {crewRequirements.length > 1 && (
+                <button
+                  className="danger-btn"
+                  onClick={() => removeCrewRequirement(i)}
+                >
+                  Remove Requirement
+                </button>
+              )}
+
+              <hr />
+            </div>
+          ))}
+
+          <button
+            className="secondary-btn"
+            onClick={addCrewRequirement}
+          >
+            + Add Another Requirement
+          </button>
+        </div>
+
         {/* 🔥 SELLING EQUIPMENT */}
         <div className="profile-card wide">
           <h3>Selling Equipment</h3>
@@ -209,7 +332,6 @@ const EditProfile = () => {
                 />
               </div>
 
-              {/* 🔥 IMAGE UPLOAD */}
               <label>Equipment Images</label>
               <input
                 type="file"
@@ -220,7 +342,6 @@ const EditProfile = () => {
                 }
               />
 
-              {/* PREVIEW */}
               {item.images.length > 0 && (
                 <div className="image-preview-row">
                   {Array.from(item.images).map((img, idx) => (
@@ -248,14 +369,6 @@ const EditProfile = () => {
 
           <button className="secondary-btn" onClick={addSellingItem}>
             + Add Another Item
-          </button>
-
-          <button
-            className="primary-btn full"
-            style={{ marginTop: "12px" }}
-            onClick={handleSave}
-          >
-            Save Selling Equipment
           </button>
         </div>
       </div>

@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
-import { City } from "country-state-city";
+import { State, City } from "country-state-city";
 import "./crewRequirements.css";
 
 const CrewRequirements = () => {
-  /* ================= STATES ================= */
+  /* ================= LOCATION STATES ================= */
+  const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+
+  const [stateOpen, setStateOpen] = useState(false);
+  const [cityOpen, setCityOpen] = useState(false);
+
+  const [stateSearch, setStateSearch] = useState("");
+  const [citySearch, setCitySearch] = useState("");
+
+  const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState("");
 
+  /* ================= OTHER FILTERS ================= */
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
 
@@ -15,6 +25,7 @@ const CrewRequirements = () => {
     {
       id: 1,
       title: "Wedding Shoot – Assistant Photographer",
+      state: "Delhi",
       city: "Delhi",
       date: "2026-02-12",
       roles: ["Assistant Photographer"],
@@ -26,6 +37,7 @@ const CrewRequirements = () => {
     {
       id: 2,
       title: "Pre-Wedding Video Project",
+      state: "Maharashtra",
       city: "Mumbai",
       date: "2026-02-20",
       roles: ["Videographer", "Drone Operator"],
@@ -36,14 +48,48 @@ const CrewRequirements = () => {
     }
   ];
 
-  /* ================= LOAD CITIES (INDIA) ================= */
+  /* ================= LOAD STATES ================= */
   useEffect(() => {
-    const allCities = City.getCitiesOfCountry("IN");
-    setCities(allCities);
+    setStates(State.getStatesOfCountry("IN"));
   }, []);
+
+  /* ================= SELECT STATE ================= */
+  const selectState = (state) => {
+    setSelectedState(state);
+    setSelectedCity("");
+    setCities(City.getCitiesOfState("IN", state.isoCode));
+    setStateOpen(false);
+    setCityOpen(false);
+    setStateSearch("");
+    setCitySearch("");
+  };
+
+  /* ================= SELECT CITY ================= */
+  const selectCity = (city) => {
+    setSelectedCity(city.name);
+    setCityOpen(false);
+    setCitySearch("");
+  };
+
+  /* ================= CLEAR FILTERS ================= */
+  const clearFilters = () => {
+    setSelectedState(null);
+    setSelectedCity("");
+    setSelectedRole("");
+    setSelectedDate("");
+    setCities([]);
+    setStateSearch("");
+    setCitySearch("");
+    setStateOpen(false);
+    setCityOpen(false);
+  };
 
   /* ================= FILTER LOGIC ================= */
   const filteredRequirements = requirements.filter((item) => {
+    const stateMatch = selectedState
+      ? item.state.toLowerCase() === selectedState.name.toLowerCase()
+      : true;
+
     const cityMatch = selectedCity
       ? item.city.toLowerCase() === selectedCity.toLowerCase()
       : true;
@@ -56,7 +102,7 @@ const CrewRequirements = () => {
       ? item.date === selectedDate
       : true;
 
-    return cityMatch && roleMatch && dateMatch;
+    return stateMatch && cityMatch && roleMatch && dateMatch;
   });
 
   /* ================= UI ================= */
@@ -72,18 +118,96 @@ const CrewRequirements = () => {
 
       {/* FILTER BAR */}
       <div className="crew-filters">
+        {/* STATE */}
+        <div className="crew-dropdown">
+          <div
+            className="crew-input"
+            onClick={() => {
+              setStateOpen(!stateOpen);
+              setCityOpen(false);
+            }}
+          >
+            <input
+              readOnly
+              placeholder="Select State"
+              value={selectedState?.name || ""}
+            />
+            <span>▾</span>
+          </div>
+
+          {stateOpen && (
+            <div className="crew-menu">
+              <input
+                className="crew-search"
+                placeholder="Search state..."
+                value={stateSearch}
+                onChange={(e) => setStateSearch(e.target.value)}
+              />
+
+              <div className="crew-scroll">
+                {states
+                  .filter((s) =>
+                    s.name
+                      .toLowerCase()
+                      .includes(stateSearch.toLowerCase())
+                  )
+                  .map((state) => (
+                    <div
+                      key={state.isoCode}
+                      className="crew-item"
+                      onClick={() => selectState(state)}
+                    >
+                      {state.name}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* CITY */}
-        <select
-          value={selectedCity}
-          onChange={(e) => setSelectedCity(e.target.value)}
-        >
-          <option value="">All Cities</option>
-          {cities.map((city) => (
-            <option key={city.name} value={city.name}>
-              {city.name}
-            </option>
-          ))}
-        </select>
+        <div className="crew-dropdown">
+          <div
+            className="crew-input"
+            onClick={() => selectedState && setCityOpen(!cityOpen)}
+          >
+            <input
+              readOnly
+              placeholder="Select City"
+              value={selectedCity}
+            />
+            <span>▾</span>
+          </div>
+
+          {cityOpen && (
+            <div className="crew-menu">
+              <input
+                className="crew-search"
+                placeholder="Search city..."
+                value={citySearch}
+                onChange={(e) => setCitySearch(e.target.value)}
+              />
+
+              <div className="crew-scroll">
+                {cities
+                  .filter((c) =>
+                    c.name
+                      .toLowerCase()
+                      .includes(citySearch.toLowerCase())
+                  )
+                  .map((city) => (
+                    <div
+                      key={city.name}
+                      className="crew-item"
+                      onClick={() => selectCity(city)}
+                    >
+                      {city.name}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* ROLE */}
         <select
@@ -104,14 +228,21 @@ const CrewRequirements = () => {
           value={selectedDate || ""}
           onChange={(e) => setSelectedDate(e.target.value)}
         />
+
+        {/* CLEAR FILTERS */}
+        <button
+          type="button"
+          className="crew-clear-btn"
+          onClick={clearFilters}
+        >
+          Clear Filters
+        </button>
       </div>
 
       {/* LIST */}
       <div className="crew-list">
         {filteredRequirements.length === 0 ? (
-          <p className="crew-empty">
-            No requirements found.
-          </p>
+          <p className="crew-empty">No requirements found.</p>
         ) : (
           filteredRequirements.map((item) => (
             <div className="crew-card" key={item.id}>
@@ -123,7 +254,7 @@ const CrewRequirements = () => {
               <p className="crew-desc">{item.description}</p>
 
               <div className="crew-meta">
-                <span>📍 {item.city}</span>
+                <span>📍 {item.city}, {item.state}</span>
                 <span>📅 {item.date}</span>
                 <span>👥 {item.roles.join(", ")}</span>
               </div>
@@ -143,5 +274,6 @@ const CrewRequirements = () => {
     </section>
   );
 };
+
 
 export default CrewRequirements;
