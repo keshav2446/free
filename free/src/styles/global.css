@@ -18,15 +18,15 @@
 
 /* 🌙 DARK MODE OVERRIDES (SOFT + TRUE DARK) */
 body.dark {
-  --bg: #121212;
-  --text: #eaeaea;
-  --muted-text: #a0a0a0;
+  --bg: #242424;
+  --text: #DBDBDB;
+  --muted-text: #DBDBDB;
 
   --card: #1e1e1e;
-  --border: #2a2a2a;
+  --border: #3B3B3B;
 
-  --primary: #969696;
-  --primary-hover: #696969;
+  --primary: #696969;
+  --primary-hover: #3B3B3B;
 
   --danger: #ff6b6b;
 }

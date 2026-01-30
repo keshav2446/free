@@ -141,3 +141,29 @@
 .apply-btn:hover {
   background: var(--primary-hover);
 }
+
+
+/* ======================
+   FULLCALENDAR DATE FIX
+   (ONLY DATE TEXT)
+====================== */
+
+/* Day header text */
+.fc-col-header-cell-cushion {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Dark mode date contrast */
+body.dark .fc-col-header-cell {
+  background: var(--card);
+}
+
+body.dark .fc-col-header-cell-cushion {
+  color: var(--text);
+}
+
+/* Today highlight */
+.fc-day-today .fc-col-header-cell-cushion {
+  color: var(--primary);
+}
