@@ -46,7 +46,7 @@ const equipmentData = [
   },
 ];
 
-/* 🔥 CARD WITH SLIDER */
+/* 🔥 EQUIPMENT CARD */
 const EquipmentCard = ({ item }) => {
   const [index, setIndex] = useState(0);
 
@@ -63,12 +63,8 @@ const EquipmentCard = ({ item }) => {
 
         {item.images.length > 1 && (
           <>
-            <button className="slide-btn prev" onClick={prev}>
-              ‹
-            </button>
-            <button className="slide-btn next" onClick={next}>
-              ›
-            </button>
+            <button className="slide-btn prev" onClick={prev}>‹</button>
+            <button className="slide-btn next" onClick={next}>›</button>
 
             <div className="slider-dots">
               {item.images.map((_, i) => (
@@ -89,7 +85,12 @@ const EquipmentCard = ({ item }) => {
 
         <div className="equipment-footer">
           <span className="price">{item.price}</span>
-          <button className="contact-btn">Contact Seller</button>
+          <button
+            className="contact-btn"
+            onClick={() => alert("Contact feature coming soon 🚀")}
+          >
+            Contact Seller
+          </button>
         </div>
 
         <p className="seller">Seller: {item.seller}</p>
@@ -128,7 +129,6 @@ const BrowseEquipment = () => {
     setCityOpen(false);
   };
 
-  /* 🔥 CLEAR FILTERS */
   const clearFilters = () => {
     setSearch("");
     setSelectedState(null);
@@ -203,9 +203,7 @@ const BrowseEquipment = () => {
                   <div className="dropdown-scroll">
                     {states
                       .filter((s) =>
-                        s.name
-                          .toLowerCase()
-                          .includes(stateSearch.toLowerCase())
+                        s.name.toLowerCase().includes(stateSearch.toLowerCase())
                       )
                       .map((state) => (
                         <div
@@ -247,9 +245,7 @@ const BrowseEquipment = () => {
                   <div className="dropdown-scroll">
                     {cities
                       .filter((c) =>
-                        c.name
-                          .toLowerCase()
-                          .includes(citySearch.toLowerCase())
+                        c.name.toLowerCase().includes(citySearch.toLowerCase())
                       )
                       .map((city) => (
                         <div
@@ -276,9 +272,8 @@ const BrowseEquipment = () => {
               <option value="Good">Good</option>
             </select>
 
-            {/* 🔥 CLEAR FILTER BUTTON */}
             <button className="filter-btn" onClick={clearFilters}>
-              Clear Filters 
+              Clear Filters
             </button>
           </div>
         )}
