@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./PhotographerProfile.css";
 
-/* ================= MOCK DATA ================= */
+/* ================= MOCK DATA (API REPLACE LATER) ================= */
 const mockPortfolioData = {
   vishu: {
+    id: "user_123",
     name: "Vishu",
     city: "Lahore",
     rating: 4.9,
@@ -19,17 +20,18 @@ const mockPortfolioData = {
       "Profoto A1X",
     ],
 
-    // 🔥 SELLING EQUIPMENT
     sellingEquipment: [
       {
+        id: "sell_1",
         name: "Canon EOS 5D Mark IV",
-        price: "INR 320,000",
+        price: "₹3,20,000",
         condition: "Used - Excellent",
         description: "Well maintained, shutter count 45k",
       },
       {
+        id: "sell_2",
         name: "Sigma 35mm f/1.4 Art",
-        price: "INR 120,000",
+        price: "₹1,20,000",
         condition: "Used - Good",
         description: "No fungus, clean glass",
       },
@@ -42,7 +44,8 @@ const mockPortfolioData = {
 
     videos: [
       {
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+        thumbnail:
+          "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       },
     ],
@@ -52,25 +55,66 @@ const mockPortfolioData = {
 /* ================= COMPONENT ================= */
 const PhotographerProfile = () => {
   const { username } = useParams();
+  const navigate = useNavigate();
   const data = mockPortfolioData[username];
 
   const [lightbox, setLightbox] = useState(null);
   const [sellIndex, setSellIndex] = useState(0);
 
+  const [contactContext, setContactContext] = useState(null);
+  const [messageText, setMessageText] = useState("");
+
+  const isLoggedIn = true; // 🔥 backend se replace hoga
+
   if (!data) {
     return (
       <div className="public-profile-page">
-        <div className="public-profile-not-found">Profile not found</div>
+        <div className="public-profile-not-found">
+          Profile not found
+        </div>
       </div>
     );
   }
 
   const currentItem = data.sellingEquipment?.[sellIndex];
 
+  /* ================= HANDLERS ================= */
+
+  const handleAvailability = () => {
+    navigate(`/photographers/${username}/availability`);
+  };
+
+  const openContact = (context) => {
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+      return;
+    }
+    setContactContext(context);
+  };
+
+  const sendMessage = () => {
+    if (!messageText.trim()) return;
+
+    /* 🔥 BACKEND READY PAYLOAD */
+    const payload = {
+      toUserId: data.id,
+      message: messageText,
+      context: contactContext.type, // profile | equipment
+      referenceId: contactContext.referenceId || null,
+    };
+
+    console.log("SEND MESSAGE PAYLOAD 👉", payload);
+
+    setMessageText("");
+    setContactContext(null);
+    alert("Message sent (frontend demo)");
+  };
+
   return (
     <div className="public-profile-page">
       <div className="public-profile-container">
         <div className="profile-top">
+
           {/* ================= LEFT ================= */}
           <div className="profile-left">
             <div className="profile-card">
@@ -85,7 +129,7 @@ const PhotographerProfile = () => {
 
                 <div className="meta">
                   <span>📍 {data.city}</span>
-                  <span>⭐ {data.rating} ({data.reviews} reviews)</span>
+                  <span>⭐ {data.rating} ({data.reviews})</span>
                   <span>🕒 {data.experience}</span>
                 </div>
 
@@ -109,7 +153,9 @@ const PhotographerProfile = () => {
                   <div
                     key={i}
                     className="gallery-item clickable"
-                    onClick={() => setLightbox({ type: "image", src: img })}
+                    onClick={() =>
+                      setLightbox({ type: "image", src: img })
+                    }
                   >
                     <img src={img} alt="portfolio" />
                   </div>
@@ -122,7 +168,9 @@ const PhotographerProfile = () => {
                   <div
                     key={i}
                     className="gallery-item clickable"
-                    onClick={() => setLightbox({ type: "video", src: vid.url })}
+                    onClick={() =>
+                      setLightbox({ type: "video", src: vid.url })
+                    }
                   >
                     <img src={vid.thumbnail} alt="video" />
                     <div className="video-badge">▶</div>
@@ -136,9 +184,21 @@ const PhotographerProfile = () => {
           <div className="profile-right">
             <div className="booking-card">
               <h3>Book Now</h3>
-              <button className="primary-btn">📅 Check Availability</button>
-              <button className="secondary-btn">✉ Contact</button>
-              <p className="hint">Contact info visible to logged-in users</p>
+
+              <button className="primary-btn" onClick={handleAvailability}>
+                📅 Check Availability
+              </button>
+
+              <button
+                className="secondary-btn"
+                onClick={() =>
+                  openContact({ type: "profile" })
+                }
+              >
+                ✉ Contact
+              </button>
+
+              <p className="hint">Contact available after login</p>
             </div>
 
             {/* EQUIPMENT */}
@@ -151,7 +211,7 @@ const PhotographerProfile = () => {
               </ul>
             </div>
 
-            {/* 🔥 SELLING EQUIPMENT SLIDER */}
+            {/* SELLING EQUIPMENT */}
             {currentItem && (
               <div className="selling-equipment-card">
                 <div className="selling-header">
@@ -165,7 +225,9 @@ const PhotographerProfile = () => {
                       ◀
                     </button>
                     <button
-                      disabled={sellIndex === data.sellingEquipment.length - 1}
+                      disabled={
+                        sellIndex === data.sellingEquipment.length - 1
+                      }
                       onClick={() => setSellIndex(sellIndex + 1)}
                     >
                       ▶
@@ -176,11 +238,21 @@ const PhotographerProfile = () => {
                 <div className="selling-item">
                   <h4>📷 {currentItem.name}</h4>
                   <p className="price">💰 {currentItem.price}</p>
-                  <p className="condition">📦 {currentItem.condition}</p>
+                  <p className="condition">
+                    📦 {currentItem.condition}
+                  </p>
                   <p className="desc">{currentItem.description}</p>
                 </div>
 
-                <button className="secondary-btn">
+                <button
+                  className="secondary-btn"
+                  onClick={() =>
+                    openContact({
+                      type: "equipment",
+                      referenceId: currentItem.id,
+                    })
+                  }
+                >
                   ✉ Contact Seller
                 </button>
               </div>
@@ -189,7 +261,34 @@ const PhotographerProfile = () => {
         </div>
       </div>
 
-      {/* LIGHTBOX */}
+      {/* ================= MESSAGE MODAL ================= */}
+      {contactContext && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Send Message</h3>
+
+            <textarea
+              placeholder="Write your message..."
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
+            />
+
+            <div className="modal-actions">
+              <button className="primary-btn" onClick={sendMessage}>
+                Send
+              </button>
+              <button
+                className="secondary-btn"
+                onClick={() => setContactContext(null)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= LIGHTBOX ================= */}
       {lightbox && (
         <div className="lightbox" onClick={() => setLightbox(null)}>
           <div
@@ -203,7 +302,6 @@ const PhotographerProfile = () => {
                 src={lightbox.src.replace("watch?v=", "embed/")}
                 title="video"
                 frameBorder="0"
-                allow="autoplay; encrypted-media"
                 allowFullScreen
               />
             )}
