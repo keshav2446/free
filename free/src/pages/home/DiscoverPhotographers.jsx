@@ -7,7 +7,7 @@ const ALL_PHOTOGRAPHERS = [
     username: "vishu",
     name: "Vishu",
     city: "Lahore",
-    rating: 4.9,
+    rating: 4.2,
     tags: ["Wedding", "Portrait"],
     image: "/images/vishu.jpeg",
   },
@@ -26,6 +26,14 @@ const ALL_PHOTOGRAPHERS = [
     rating: 4.7,
     tags: ["Street", "Documentary"],
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+  },
+    {
+    username: "Keshav Singh",
+    name: "Keshav Singh", 
+    city: "Moradabad",
+    rating: 4.9,
+    tags: ["Street", "Documentary", "Nature", "Weeding"],
+    image: "/images/ks.jpg",
   },
   {
     username: "arjun-verma",
