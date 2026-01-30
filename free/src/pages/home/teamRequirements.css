@@ -1,0 +1,106 @@
+/* ===============================
+   TEAM REQUIREMENTS – HOMEPAGE
+================================ */
+
+.team-section {
+  padding: 90px 6%;
+  background: var(--bg);
+}
+
+.team-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT */
+.team-eyebrow {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted-text);
+}
+
+.team-left h2 {
+  font-size: 36px;
+  margin: 12px 0;
+}
+
+.team-left h2 span {
+  color: var(--primary);
+}
+
+.team-desc {
+  margin: 18px 0;
+  max-width: 500px;
+  color: var(--muted-text);
+}
+
+.team-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.team-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* CTA BUTTON */
+.team-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 26px;
+  border-radius: 25px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.team-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* RIGHT */
+.team-right {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px;
+}
+
+.team-stats {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.team-stats div strong {
+  display: block;
+  font-size: 22px;
+  color: var(--text);
+}
+
+.team-stats div span {
+  font-size: 13px;
+  color: var(--muted-text);
+}
+
+/* TAGS */
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.team-tags span {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}

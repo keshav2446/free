@@ -4,6 +4,8 @@ import FeaturedPhotographers from "./FeaturedPhotographers";
 import "./home.css";
 import Footer from "../../components/footer/Footer";
 import EquipmentMarketplace from "./EquipmentMarketplace";
+import TeamRequirements from "./TeamRequirements";
+
 
 
 const Home = () => {
@@ -179,6 +181,8 @@ const Home = () => {
 
       {/* 🛒 EQUIPMENT MARKETPLACE */}
 <EquipmentMarketplace />
+
+<TeamRequirements />
 
       {/* <FeaturedPhotographers /> */}
 

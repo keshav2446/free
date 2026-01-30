@@ -1,0 +1,116 @@
+/* ===============================
+   CREW REQUIREMENTS PAGE
+================================ */
+
+.crew-page {
+  padding: 80px 6%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+.crew-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.crew-header h1 {
+  font-size: 38px;
+}
+
+.crew-header p {
+  margin-top: 10px;
+  color: var(--muted-text);
+}
+
+/* FILTERS */
+.crew-filters {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.crew-filters select,
+.crew-filters input {
+  min-width: 180px;
+}
+
+/* LIST */
+.crew-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.crew-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.crew-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.crew-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crew-card-top h3 {
+  font-size: 18px;
+}
+
+.crew-budget {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* DESCRIPTION */
+.crew-desc {
+  margin: 12px 0;
+  font-size: 14px;
+  color: var(--muted-text);
+}
+
+/* META */
+.crew-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+/* FOOTER */
+.crew-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crew-posted {
+  font-size: 13px;
+  color: var(--muted-text);
+}
+
+/* APPLY */
+.crew-apply {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.crew-apply:hover {
+  background: var(--primary-hover);
+}

@@ -27,16 +27,21 @@ import AdminSubscriptions from "./pages/admin/AdminSubscriptions";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminGuard from "./pages/admin/AdminGuard";
 
+/* Guards & Auth States */
 import PendingApproval from "./components/auth/PendingApproval";
 import Subscription from "./components/auth/Subscription";
 import SubscriptionGuard from "./guards/SubscriptionGuard";
 
+/* Profiles */
 import PhotographerProfile from "./pages/photographer/PhotographerProfile";
+
+/* Crew Requirements */
+import CrewRequirements from "./pages/crewRequirements/CrewRequirements";
 
 /* Discover */
 import DiscoverPhotographers from "./pages/home/DiscoverPhotographers";
 
-/* 🛒 EQUIPMENT MARKETPLACE */
+/* 🛒 Equipment Marketplace */
 import BrowseEquipment from "./pages/marketplace/BrowseEquipment";
 
 function App() {
@@ -71,6 +76,9 @@ function App() {
 
         {/* 🛒 EQUIPMENT MARKETPLACE */}
         <Route path="/marketplace" element={<BrowseEquipment />} />
+
+        {/* 👥 CREW REQUIREMENTS */}
+        <Route path="/crew-requirements" element={<CrewRequirements />} />
       </Route>
 
       {/* ================= PHOTOGRAPHER (NO NAVBAR) ================= */}
