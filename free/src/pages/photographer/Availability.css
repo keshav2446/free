@@ -167,3 +167,77 @@ body.dark .fc-col-header-cell-cushion {
 .fc-day-today .fc-col-header-cell-cushion {
   color: var(--primary);
 }
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   MOBILE FIX – AVAILABILITY PAGE
+================================ */
+@media (max-width: 768px) {
+
+  /* Page spacing */
+  .availability-page {
+    padding: 16px;
+  }
+
+  .availability-page h1 {
+    font-size: 20px;
+  }
+
+  /* Filter panel stack */
+  .filter-panel {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  /* Apply button full width */
+  .apply-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  /* Calendar wrapper */
+  .calendar-wrapper {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  /* FullCalendar mobile readability */
+  .fc-event {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  .fc-col-header-cell-cushion {
+    font-size: 12px;
+  }
+
+  /* Selected slot stack */
+  .selected-slot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .confirm-btn {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .fc .fc-toolbar-title {
+    font-size: 16px;
+  }
+}

@@ -432,3 +432,177 @@
 .admin-layout.collapsed .admin-sidebar nav a.active {
   background: var(--border);
 }
+
+
+
+
+
+/* =======================
+   MOBILE FIX – ADMIN PANEL
+======================= */
+@media (max-width: 768px) {
+
+  /* Layout stack */
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  /* Sidebar becomes top bar */
+  .admin-sidebar {
+    width: 100%;
+    padding: 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Hide role text */
+  .admin-role {
+    display: none;
+  }
+
+  /* Nav becomes horizontal */
+  .admin-sidebar nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .admin-sidebar nav a {
+    margin-bottom: 0;
+    padding: 8px 10px;
+  }
+
+  .nav-text {
+    display: none; /* icon-only on mobile */
+  }
+
+  /* Header spacing */
+  .admin-page {
+    padding: 20px 16px;
+  }
+
+  .admin-header h1 {
+    font-size: 22px;
+  }
+
+  /* Cards spacing */
+  .admin-card,
+  .admin-table-card,
+  .admin-action-card,
+  .admin-stat-card {
+    padding: 16px;
+  }
+
+  /* Stats grid tighter */
+  .admin-stats-grid {
+    gap: 14px;
+  }
+
+  /* Action grid tighter */
+  .admin-actions-grid {
+    gap: 14px;
+  }
+
+  /* Table horizontal scroll */
+  .admin-table-card {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 600px;
+  }
+
+  /* Buttons full width */
+  .admin-btn {
+    width: 100%;
+  }
+
+  .admin-btn.small {
+    width: auto;
+  }
+}
+
+
+
+
+/* =======================
+   MOBILE FIX – ADMIN NAVBAR
+======================= */
+@media (max-width: 768px) {
+
+  /* Make sidebar act like a real navbar */
+  .admin-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 56px;
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Brand / title */
+  .admin-sidebar h2 {
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* Hide unnecessary text */
+  .admin-role {
+    display: none;
+  }
+
+  /* Nav icons container */
+  .admin-sidebar nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Icon buttons */
+  .admin-sidebar nav a {
+    padding: 8px;
+    border-radius: 10px;
+    margin: 0;
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  .admin-sidebar nav a.active {
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+
+  /* Icons only */
+  .nav-text {
+    display: none;
+  }
+
+  .nav-icon {
+    font-size: 18px;
+  }
+
+  /* Remove collapse logic on mobile */
+  .admin-layout.collapsed .admin-sidebar {
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  /* Prevent content jump */
+  .admin-content {
+    margin-top: 0;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .admin-sidebar nav a.active {
+    box-shadow: inset 0 -2px 0 var(--primary);
+  }
+}

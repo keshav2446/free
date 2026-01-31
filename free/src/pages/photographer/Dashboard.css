@@ -1,6 +1,6 @@
 .dashboard-content {
   padding: 30px;
-  background: transparent; /* 🔥 body controls bg */
+  background: transparent;
   color: var(--text);
 }
 
@@ -11,10 +11,11 @@
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* ✅ mobile wrap */
 }
 
 .quick-actions button {
-  background: var(--card);             /* ✅ FIX */
+  background: var(--card);
   border: 1px solid var(--border);
   padding: 8px 14px;
   border-radius: 8px;
@@ -45,7 +46,6 @@
 .subscription-status.free {
   background: var(--card);
   border: 1px solid var(--border);
-  color: var(--text);
 }
 
 .subscription-status button {
@@ -62,7 +62,6 @@
   background: var(--border);
 }
 
-/* Warning text */
 .warning {
   display: block;
   color: var(--danger);
@@ -81,11 +80,12 @@
 }
 
 .stat-card {
-  background: var(--card);             /* ✅ FIX */
+  background: var(--card);
   padding: 20px;
   border-radius: 12px;
   border: 1px solid var(--border);
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .stat-card:hover {
@@ -95,7 +95,6 @@
 /* Locked cards */
 .locked {
   opacity: 0.6;
-  cursor: pointer;
   position: relative;
 }
 
@@ -116,7 +115,7 @@
 }
 
 .box {
-  background: var(--card);             /* ✅ FIX */
+  background: var(--card);
   padding: 20px;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -126,7 +125,7 @@
 .link-btn {
   background: none;
   border: none;
-  color: var(--primary);               /* ✅ FIX */
+  color: var(--primary);
   cursor: pointer;
   padding: 0;
   margin-top: 6px;
@@ -147,13 +146,15 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 16px;
 }
 
 .modal {
-  background: var(--card);             /* ✅ FIX */
+  background: var(--card);
   padding: 24px;
   border-radius: 14px;
   width: 360px;
+  max-width: 100%;
   border: 1px solid var(--border);
   color: var(--text);
 }
@@ -166,4 +167,62 @@
 .modal-actions {
   display: flex;
   gap: 12px;
+}
+
+.modal-actions .secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal-actions .secondary:hover {
+  background: var(--border);
+}
+
+/* ======================
+   MOBILE FIXES
+====================== */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  .subscription-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .subscription-status button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .dashboard-bottom {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .box {
+    padding: 16px;
+  }
+
+  .quick-actions button {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .warning {
+    font-size: 12px;
+  }
 }

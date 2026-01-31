@@ -392,3 +392,87 @@
 .public-profile-page .modal-actions button {
   flex: 1;
 }
+
+
+
+
+
+/* =============================
+   MOBILE FIX – PUBLIC PROFILE
+============================= */
+@media (max-width: 768px) {
+
+  /* Page padding */
+  .public-profile-page .public-profile-container {
+    padding: 16px;
+  }
+
+  /* Stack main layout */
+  .public-profile-page .profile-top {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Profile card stack */
+  .public-profile-page .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .public-profile-page .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Meta wrap */
+  .public-profile-page .meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  .public-profile-page .tags {
+    justify-content: center;
+  }
+
+  /* Buttons spacing */
+  .public-profile-page .primary-btn,
+  .public-profile-page .secondary-btn {
+    padding: 14px;
+  }
+
+  /* Gallery thumbnails */
+  .public-profile-page .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .public-profile-page .gallery-item img {
+    height: 140px;
+  }
+
+  /* Lightbox image resize */
+  .public-profile-page .lightbox-content img {
+    width: 260px;
+    height: 260px;
+  }
+
+  /* Modal spacing */
+  .public-profile-page .modal {
+    margin: 0 16px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .public-profile-page .booking-card {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    border-radius: 16px 16px 0 0;
+  }
+}
+

@@ -1,20 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "./Dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  const isSubscribed = user?.subscriptionActive;
+  // ✅ SAFE user parsing (no crash)
+  const user = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || {};
+    } catch {
+      return {};
+    }
+  }, []);
 
-  // 🔹 Mock subscription data (backend ready)
-  const expiresOn = new Date("2025-08-01");
+  const isSubscribed = Boolean(user.subscriptionActive);
+
+  // ✅ FRONTEND-READY expiry handling
+  const expiresOn = user.subscriptionExpiresAt
+    ? new Date(user.subscriptionExpiresAt)
+    : null;
+
   const today = new Date();
-  const daysLeft = Math.max(
-    Math.ceil((expiresOn - today) / (1000 * 60 * 60 * 24)),
-    0
-  );
+  const daysLeft =
+    isSubscribed && expiresOn
+      ? Math.max(
+          Math.ceil((expiresOn - today) / (1000 * 60 * 60 * 24)),
+          0
+        )
+      : 0;
 
   const isExpiringSoon = isSubscribed && daysLeft <= 30;
 
@@ -24,16 +38,7 @@ const Dashboard = () => {
     <div className="dashboard-content">
       <h1>Dashboard</h1>
 
-      {/* ⚡ QUICK ACTIONS */}
-      {/* <div className="quick-actions">
-        <button onClick={() => navigate("/profile")}>Edit Profile</button>
-        <button onClick={() => navigate("/portfolio")}>Add Portfolio</button>
-        <button onClick={() => navigate("/availability")}>
-          Set Availability
-        </button>
-      </div> */}
-
-      {/* 💎 SUBSCRIPTION STATUS CARD */}
+      {/* 💎 SUBSCRIPTION STATUS */}
       <div className={`subscription-status ${!isSubscribed ? "free" : ""}`}>
         {isSubscribed ? (
           <>
@@ -124,8 +129,11 @@ const Dashboard = () => {
 
       {/* 🔒 UPGRADE MODAL */}
       {showUpgradeModal && (
-        <div className="modal-backdrop">
-          <div className="modal">
+        <div
+          className="modal-backdrop"
+          onClick={() => setShowUpgradeModal(false)}
+        >
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h2>Upgrade to Pro 🚀</h2>
             <ul>
               <li>✔ Get client bookings</li>

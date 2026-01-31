@@ -221,3 +221,64 @@
   color: var(--danger);
   margin-bottom: 12px;
 }
+
+
+
+
+
+
+
+
+/* =============================
+   MOBILE SUBSCRIPTION FIX
+============================= */
+@media (max-width: 768px) {
+  .subscription-page {
+    padding: 16px;
+  }
+
+  /* Stack left + right */
+  .subscription-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Cards spacing */
+  .subscription-card,
+  .pro-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  /* Plan row stack */
+  .current-plan {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Meta info single column */
+  .plan-meta {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Typography scaling */
+  .page-title {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 26px;
+  }
+
+  .features-list li {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pro-card {
+    margin-top: 8px;
+  }
+}

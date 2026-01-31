@@ -112,3 +112,63 @@
   color: #fff;
   text-decoration: none;
 }
+
+
+
+
+
+/* ===============================
+   MOBILE FIX – TEAM SECTION
+================================ */
+@media (max-width: 768px) {
+
+  .team-section {
+    padding: 60px 16px;
+  }
+
+  /* Stack left + right */
+  .team-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Typography scale */
+  .team-left h2 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .team-desc {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  /* CTA full width */
+  .team-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Right card spacing */
+  .team-right {
+    padding: 20px;
+  }
+
+  /* Stats stack better */
+  .team-stats {
+    gap: 16px;
+  }
+
+  .team-stats div strong {
+    font-size: 18px;
+  }
+
+  .team-tags {
+    gap: 8px;
+  }
+
+  .team-tags span {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

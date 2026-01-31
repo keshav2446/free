@@ -379,3 +379,85 @@ body.dark .equipment-card:hover {
 }
 
 
+
+
+
+
+
+
+
+
+/* =======================
+   MOBILE FIX – BROWSE EQUIPMENT
+======================= */
+@media (max-width: 768px) {
+
+  /* Page spacing */
+  .browse-equipment-page {
+    padding: 70px 16px 40px;
+  }
+
+  /* Header text */
+  .browse-header h1 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+
+  .browse-header p {
+    font-size: 0.9rem;
+  }
+
+  /* Search + filter stack */
+  .search-filter-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .browse-header input,
+  .filter-btn {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Filter panel stack */
+  .filter-panel {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .filter-panel select {
+    width: 100%;
+  }
+
+  /* Grid spacing */
+  .equipment-grid {
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  /* Card tweaks */
+  .equipment-body {
+    padding: 16px;
+  }
+
+  .equipment-body h3 {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  /* Slider buttons always visible on mobile */
+  .slide-btn {
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}
