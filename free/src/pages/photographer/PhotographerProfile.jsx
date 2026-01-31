@@ -118,11 +118,24 @@ const PhotographerProfile = () => {
           {/* ================= LEFT ================= */}
           <div className="profile-left">
             <div className="profile-card">
-              <img
+              {/* <img
                 className="profile-avatar"
                 src={data.images[0]}
                 alt={data.name}
-              />
+              /> */}
+
+              <img
+  className="profile-avatar clickable"
+  src={data.images[0]}
+  alt={data.name}
+  onClick={() =>
+    setLightbox({
+      type: "image",
+      src: data.images[0],
+    })
+  }
+/>
+
 
               <div className="profile-info">
                 <h1>{data.name}</h1>

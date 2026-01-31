@@ -45,7 +45,6 @@ const photographers = [
 const FeaturedPhotographers = ({ selectedState, selectedCity }) => {
   const navigate = useNavigate();
 
-  /* 🔥 FEATURED FILTER LOGIC */
   const filteredPhotographers = selectedCity
     ? photographers.filter(
         (p) =>

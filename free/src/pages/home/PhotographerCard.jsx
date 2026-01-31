@@ -4,10 +4,19 @@ import "./PhotographerCard.css";
 const PhotographerCard = ({ photographer }) => {
   const navigate = useNavigate();
 
+  const openProfile = () => {
+    navigate(`/photographers/${photographer.username}`);
+  };
+
   return (
     <div className="photographer-card">
-      <div className="image-wrapper">
-        <img src={photographer.image} alt={photographer.name} />
+      
+      {/* IMAGE CLICKABLE */}
+      <div className="image-wrapper" onClick={openProfile}>
+        <img
+          src={photographer.image}
+          alt={photographer.name}
+        />
         <span className="rating">⭐ {photographer.rating}</span>
       </div>
 
@@ -21,11 +30,10 @@ const PhotographerCard = ({ photographer }) => {
           ))}
         </div>
 
+        {/* BUTTON STILL WORKS */}
         <button
           className="view-profile"
-          onClick={() =>
-            navigate(`/photographers/${photographer.username}`)
-          }
+          onClick={openProfile}
         >
           View Profile →
         </button>

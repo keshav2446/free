@@ -73,6 +73,11 @@
   color: var(--muted-text);
 }
 
+.profile-avatar.clickable {
+  cursor: pointer;
+}
+
+
 /* =============================
    BOOKING + EQUIPMENT CARDS
 ============================= */
