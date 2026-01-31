@@ -53,6 +53,7 @@ const CrewRequirements = () => {
 
   /* ================= LOAD STATES ================= */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStates(State.getStatesOfCountry("IN"));
   }, []);
 
