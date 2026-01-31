@@ -49,6 +49,7 @@ const equipmentData = [
 /* 🔥 EQUIPMENT CARD */
 const EquipmentCard = ({ item }) => {
   const [index, setIndex] = useState(0);
+  
 
   const prev = () =>
     setIndex((i) => (i === 0 ? item.images.length - 1 : i - 1));
